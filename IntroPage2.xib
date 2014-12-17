@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="PFAgoraSansPro-Light.ttf">
+            <string>PFAgoraSansPro-Light</string>
+            <string>PFAgoraSansPro-Light</string>
+            <string>PFAgoraSansPro-Light</string>
+            <string>PFAgoraSansPro-Light</string>
+            <string>PFAgoraSansPro-Light</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="NPD-GC-We3">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Жалуйтесь на страховые" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWx-XZ-ed8">
+                    <rect key="frame" x="9" y="48" width="583" height="21"/>
+                    <fontDescription key="fontDescription" name="PFAgoraSansPro-Light" family="PF Agora Sans Pro" pointSize="21"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="компании" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pkp-XB-3Km">
+                    <rect key="frame" x="97" y="72" width="406" height="21"/>
+                    <fontDescription key="fontDescription" name="PFAgoraSansPro-Light" family="PF Agora Sans Pro" pointSize="21"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" alpha="0.69999999999999973" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon2.png" translatesAutoresizingMaskIntoConstraints="NO" id="wZf-pm-N6B">
+                    <rect key="frame" x="245" y="167" width="110" height="110"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="110" id="QRD-PM-6FI"/>
+                        <constraint firstAttribute="height" constant="110" id="v4J-h7-vEp"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Получайте юридическую помощь" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZbF-MU-0sg">
+                    <rect key="frame" x="20" y="373" width="561" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="ksA-bc-y83"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="PFAgoraSansPro-Light" family="PF Agora Sans Pro" pointSize="19"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="звонков" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0dI-Pp-5cg">
+                    <rect key="frame" x="20" y="416" width="561" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="kMy-bY-Wkm"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="PFAgoraSansPro-Light" family="PF Agora Sans Pro" pointSize="19"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="в течении 30 минут, без лишних" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zGu-xV-Y3Q">
+                    <rect key="frame" x="14" y="395" width="572" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="7xj-ku-FVB"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="PFAgoraSansPro-Light" family="PF Agora Sans Pro" pointSize="19"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="zGu-xV-Y3Q" firstAttribute="top" secondItem="ZbF-MU-0sg" secondAttribute="bottom" constant="1" id="274-gX-zhx"/>
+                <constraint firstItem="ZbF-MU-0sg" firstAttribute="trailing" secondItem="0dI-Pp-5cg" secondAttribute="trailing" id="36l-gn-2rJ"/>
+                <constraint firstItem="ZbF-MU-0sg" firstAttribute="leading" secondItem="NPD-GC-We3" secondAttribute="leading" constant="20" id="BOd-CR-lqP"/>
+                <constraint firstItem="aWx-XZ-ed8" firstAttribute="top" secondItem="NPD-GC-We3" secondAttribute="top" constant="48" id="OJ5-gw-y6i"/>
+                <constraint firstItem="0dI-Pp-5cg" firstAttribute="top" secondItem="zGu-xV-Y3Q" secondAttribute="bottom" id="PmY-9j-6T1"/>
+                <constraint firstItem="0dI-Pp-5cg" firstAttribute="leading" secondItem="ZbF-MU-0sg" secondAttribute="leading" id="RKO-QE-JYo"/>
+                <constraint firstItem="Pkp-XB-3Km" firstAttribute="leading" secondItem="NPD-GC-We3" secondAttribute="leading" constant="97" id="TbP-M6-RHi"/>
+                <constraint firstItem="0dI-Pp-5cg" firstAttribute="centerX" secondItem="zGu-xV-Y3Q" secondAttribute="centerX" id="Uqi-kR-8Pi"/>
+                <constraint firstItem="zGu-xV-Y3Q" firstAttribute="leading" secondItem="NPD-GC-We3" secondAttribute="leading" constant="14" id="YTI-0V-uGs"/>
+                <constraint firstItem="aWx-XZ-ed8" firstAttribute="trailing" secondItem="NPD-GC-We3" secondAttribute="trailingMargin" id="bdi-Lz-z2t"/>
+                <constraint firstItem="Pkp-XB-3Km" firstAttribute="top" secondItem="aWx-XZ-ed8" secondAttribute="bottom" constant="3" id="f3q-4G-sZt"/>
+                <constraint firstItem="ZbF-MU-0sg" firstAttribute="top" secondItem="wZf-pm-N6B" secondAttribute="bottom" constant="96" id="iD4-PQ-Rgo"/>
+                <constraint firstItem="Pkp-XB-3Km" firstAttribute="centerX" secondItem="wZf-pm-N6B" secondAttribute="centerX" id="j8c-3y-RW2"/>
+                <constraint firstItem="Pkp-XB-3Km" firstAttribute="centerX" secondItem="aWx-XZ-ed8" secondAttribute="centerX" id="oS0-43-SGb"/>
+                <constraint firstItem="ZbF-MU-0sg" firstAttribute="centerX" secondItem="NPD-GC-We3" secondAttribute="centerX" id="olw-we-AXW"/>
+                <constraint firstItem="ZbF-MU-0sg" firstAttribute="centerX" secondItem="wZf-pm-N6B" secondAttribute="centerX" id="szA-h0-1BP"/>
+                <constraint firstItem="wZf-pm-N6B" firstAttribute="top" secondItem="Pkp-XB-3Km" secondAttribute="bottom" constant="74" id="yNs-o3-FAk"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <point key="canvasLocation" x="375" y="366"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon2.png" width="216" height="216"/>
+    </resources>
+</document>
