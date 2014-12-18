@@ -90,6 +90,10 @@
         
         if ([self.textField_SMS.text isEqualToString:TEST_SMS]) {
             NSLog(@"YES");
+            SinglTone * tone = [SinglTone singleton];
+            [[NSUserDefaults standardUserDefaults] setObject:tone.phone_number forKey:User_Telephone_Number];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [self go_to_appView];
         }
         
         else {
@@ -97,8 +101,6 @@
             NSLog(@"NO");
             
             [self startShake:self.view_dots];
-//
-            
             int64_t delayInSeconds = 300;
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_MSEC);
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -107,11 +109,7 @@
                 [anim set_Dot_Empty:self.image_dot_3 ImageName:[UIImage imageNamed:@"pinkodoff.png"]];
                 [anim set_Dot_Empty:self.image_dot_4 ImageName:[UIImage imageNamed:@"pinkodoff.png"]];
             });
-//
-
             self.textField_SMS.text = @"";
-            
-
         }
     }
     
@@ -157,5 +155,15 @@
     }
     else
     {return YES;}
+}
+
+
+
+#pragma mark - go_to_appView
+
+-(void) go_to_appView {
+    UIStoryboard* storyBoard =  [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *paneViewController = [storyBoard instantiateViewControllerWithIdentifier:@"tabBarView"];
+    [self.navigationController pushViewController:paneViewController animated:YES];
 }
 @end

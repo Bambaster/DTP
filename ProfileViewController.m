@@ -7,54 +7,454 @@
 //
 
 #import "ProfileViewController.h"
+#import "UIImage+ImagePickerCrop.h"
+#import "AppConstant.h"
+#import "UIImage+ImageEffects.h"
+#import "SMPageControl.h"
+#import "Animations.h"
+
 
 @interface ProfileViewController ()
+{
+    UIView *rootView;
+}
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 
 @property (strong, nonatomic) IBOutlet UITextField *textField_Name;
-
 @property (strong, nonatomic) IBOutlet UITextField *textField_Phone;
-
-
-- (IBAction)slider_Action_Possibility:(id)sender;
-
-- (IBAction)Back_Action:(id)sender;
-
-- (IBAction)change_Photo_Action:(id)sender;
 @property (strong, nonatomic) IBOutlet UILabel *label_change_Photo_One;
 @property (strong, nonatomic) IBOutlet UILabel *label_change_Photo_Two;
 @property (strong, nonatomic) IBOutlet UILabel *label_NoName;
 @property (strong, nonatomic) IBOutlet UIImageView *image_Avatar;
+- (IBAction)slider_Action_Possibility:(id)sender;
+- (IBAction)Back_Action:(id)sender;
+- (IBAction)change_Photo_Action:(id)sender;
+- (IBAction)text_phone_changed:(id)sender;
+- (IBAction)text_name_changed:(id)sender;
+- (IBAction)show_instruktion_action:(id)sender;
 
 @end
 
 @implementation ProfileViewController
 
+
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self setView];
+    rootView = self.navigationController.view;
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    [tapRecognizer setDelegate:self];
+    [tapRecognizer setNumberOfTapsRequired:1];
+    [self.view addGestureRecognizer:tapRecognizer];
+}
+
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+
+- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer
+{
+    if ([self.textField_Phone.text length] == 16) {
+    [self.view endEditing:YES];
+    [[NSUserDefaults standardUserDefaults] setObject:self.textField_Name.text forKey:User_Name];
+    [[NSUserDefaults standardUserDefaults] setObject:self.textField_Phone.text forKey:User_Telephone_Number];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+        
+    }
+}
+
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+
+- (void) setView {
+    Animations * anim = [Animations new];
+    self.image_Avatar.layer.cornerRadius = self.image_Avatar.frame.size.width / 2;
+    self.image_Avatar.clipsToBounds = YES;
+    self.textField_Phone.text = [[NSUserDefaults standardUserDefaults] stringForKey:User_Telephone_Number];
+    self.textField_Name.text = [[NSUserDefaults standardUserDefaults] stringForKey:User_Name];
+    NSData* imageData = [[NSUserDefaults standardUserDefaults]objectForKey:User_Avatar];
+    UIImage *imageAvatar = [[UIImage alloc]initWithData:imageData];
+    self.image_Avatar.image = imageAvatar;
+    [self checkImage];
+    if ([self.textField_Name.text length] > 0) {
+          [anim hide_Label_NoName:self.label_NoName];
+    }
+    else {
+        
+        [anim show_Label_NoName:self.label_NoName];
+    }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - set avatar 
+- (IBAction)change_Photo_Action:(id)sender {
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Установите ваш аватар"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Отменить"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"Снять фото", @"Выбрать изображение", nil];
+    
+    [actionSheet showInView:self.view];
+    [self.view endEditing:YES];
+
 }
-*/
+
+
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex == actionSheet.cancelButtonIndex)
+        return;
+    UIImagePickerControllerSourceType sourceType = buttonIndex ? UIImagePickerControllerSourceTypePhotoLibrary : UIImagePickerControllerSourceTypeCamera;
+    [self displayImagePickerWithSourceType:sourceType];
+}
+
+- (void) checkImage {
+    
+    if (self.image_Avatar.image == nil) {
+        self.label_change_Photo_One.alpha = 1;
+        self.label_change_Photo_Two.alpha = 1;
+        self.image_Avatar.image = [UIImage imageNamed:@"avatar.png"];
+        }
+    
+    else {
+        self.label_change_Photo_One.alpha = 0;
+        self.label_change_Photo_Two.alpha = 0;
+        NSData * imageData = UIImagePNGRepresentation(self.image_Avatar.image);
+        [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:User_Avatar];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
+}
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+
+#pragma mark - Image picker delegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    self.image_Avatar.image = [UIImage croppedImageWithImagePickerInfo:info];
+    [self checkImage];
+    
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (void)displayImagePickerWithSourceType:(UIImagePickerControllerSourceType)sourceType {
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.delegate = self;
+    imagePicker.sourceType = sourceType;
+    imagePicker.allowsEditing = YES;
+    imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [self presentViewController:imagePicker animated:YES completion:nil];
+}
+
+#pragma mark - text fields 
+- (IBAction)text_phone_changed:(id)sender {
+    
+    if ([self.textField_Phone.text length] == 16) {
+        
+        NSLog(@"[self.textField_Phone.text length] %d", [self.textField_Phone.text length]);
+        
+        [self.view endEditing:YES];
+        [[NSUserDefaults standardUserDefaults] setObject:self.textField_Phone.text forKey:User_Telephone_Number];
+
+    }
+    
+}
+
+- (IBAction)text_name_changed:(id)sender {
+    
+    Animations * anim = [Animations new];
+    if ([self.textField_Name.text length] > 0) {
+        [anim hide_Label_NoName:self.label_NoName];
+    }
+    else {
+        [anim show_Label_NoName:self.label_NoName];
+    }
+    
+}
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == self.textField_Name) {
+        [textField resignFirstResponder];
+        [[NSUserDefaults standardUserDefaults] setObject:self.textField_Name.text forKey:User_Name];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        return NO;
+    }
+    return YES;
+}
+
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if (textField == self.textField_Phone) {
+        
+    int length = [self getLength:textField.text];
+    NSLog(@"Length  =  %d ",length);
+    
+    if(length == 10)
+    {
+
+        
+        if(range.length == 0)
+            return NO;
+
+    }
+     if (length == 1) {
+        
+        NSString *num = [self formatNumber:textField.text];
+        textField.text = [NSString stringWithFormat:@"+7(%@) ",num];
+        if(range.length > 0)
+            textField.text = [NSString stringWithFormat:@"+7%@",[num substringToIndex:1]];
+    
+    }
+    
+    
+    else if (length == 2) {
+        
+        NSString *num = [self formatNumber:textField.text];
+        textField.text = [NSString stringWithFormat:@"+7(%@) ",num];
+        if(range.length > 0)
+            textField.text = [NSString stringWithFormat:@"+7%@",[num substringToIndex:2]];
+        
+    }
+    
+     else if(length == 3)
+    {
+        NSString *num = [self formatNumber:textField.text];
+        textField.text = [NSString stringWithFormat:@"+7(%@) ",num];
+        if(range.length > 0)
+            textField.text = [NSString stringWithFormat:@"+7%@",[num substringToIndex:3]];
+    }
+    else if(length == 6)
+    {
+        NSString *num = [self formatNumber:textField.text];
+        NSLog(@"%@",[num  substringToIndex:3]);
+        NSLog(@"%@",[num substringFromIndex:3]);
+        textField.text = [NSString stringWithFormat:@"+7(%@) %@-",[num  substringToIndex:3],[num substringFromIndex:3]];
+        if(range.length > 0)
+            textField.text = [NSString stringWithFormat:@"+7(%@) %@",[num substringToIndex:3],[num substringFromIndex:3]];
+    }
+    
+
+    
+    return YES;
+        
+        
+    }
+    
+    else {
+        
+     //   NSLog(@"self.textField_NAme");
+
+        
+    }
+    
+    return YES;
+
+}
+
+-(NSString*)formatNumber:(NSString*)mobileNumber
+{
+    
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"(" withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@")" withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"+" withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"7" withString:@""];
+
+    
+    NSLog(@"%@", mobileNumber);
+    
+    int length = [mobileNumber length];
+    if(length > 10)
+    {
+        mobileNumber = [mobileNumber substringFromIndex: length-10];
+        NSLog(@"%@", mobileNumber);
+        
+    }
+    
+    
+    return mobileNumber;
+}
+
+
+-(int)getLength:(NSString*)mobileNumber
+{
+    
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"(" withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@")" withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"+" withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"7" withString:@""];
+
+    int length = [mobileNumber length];
+    
+    return length;
+    
+    
+}
+
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+
+#pragma mark - info
+- (IBAction)show_instruktion_action:(id)sender {
+    
+    [self showIntroWithCrossDissolve];
+}
+- (void)showIntroWithCrossDissolve {
+    Animations * anim = [Animations new];
+    self.activity.alpha = 0;
+    [self.view endEditing:YES];
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [self.activity startAnimating];
+        [anim show_Activity:self.activity];
+        
+    });
+    
+    int64_t delayInSeconds = 200;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_MSEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+
+         [self setTabBarVisible:![self tabBarIsVisible] animated:YES];
+    
+    EAIntroPage *page1 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage1"];
+    page1.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon1.jpg"]];
+    
+    EAIntroPage *page2 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage2"];
+    page2.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon2.jpg"]];
+    
+    EAIntroPage *page3 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage3"];
+    page3.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon3.jpg"]];
+    
+    EAIntroPage *page4 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage4"];
+    page4.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon4.jpg"]];
+    
+    EAIntroPage *page5 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage5"];
+    page5.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon5.jpg"]];
+    
+    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:rootView.bounds andPages:@[page1,page2,page3,page4, page5]];
+    
+    intro.pageControlY = 70.0f;
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [btn setTitle:@"Закрыть" forState:UIControlStateNormal];
+    btn.tintColor = [UIColor whiteColor];
+    [btn setBackgroundImage:[UIImage imageNamed:@"start.png"] forState:UIControlStateNormal];
+    // btn.backgroundColor = [UIColor colorWithRed:0/255 green:250/255 blue:255/255 alpha:0.50];
+    
+    btn.frame = CGRectMake(((self.view.frame.size.width / 2) -  125), (self.view.frame.size.height) - 70, 250, 50);
+    
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    //    btn.layer.borderWidth = 1.0f;
+    //    btn.layer.cornerRadius = 5;
+    //    btn.layer.borderColor = [[UIColor clearColor] CGColor];
+    intro.skipButton = btn;
+    
+    
+    [intro setDelegate:self];
+    
+    [intro showInView:rootView animateDuration:0.5];
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self.activity stopAnimating];
+            
+            
+        });
+
+    });
+    
+
+}
+
+- (void)introDidFinish:(EAIntroView *)introView {
+    NSLog(@"introDidFinish callback");
+
+    [self setTabBarVisible:![self tabBarIsVisible] animated:YES];
+
+}
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+
+#pragma mark - set blur
+
+- (UIImage *)blurWithGPUImage:(UIImage *)sourceImage
+{
+    return [sourceImage applyBlurWithRadius:7 tintColor:[UIColor clearColor] saturationDeltaFactor:1.5 maskImage:nil];
+}
+
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+
+#pragma mark - hide tab bar
+
+- (void)setTabBarVisible:(BOOL)visible animated:(BOOL)animated {
+    
+    // bail if the current state matches the desired state
+    if ([self tabBarIsVisible] == visible) return;
+    
+    // get a frame calculation ready
+    CGRect frame = self.tabBarController.tabBar.frame;
+    CGFloat height = frame.size.height;
+    CGFloat offsetY = (visible)? -height : height;
+    
+    // zero duration means no animation
+    CGFloat duration = (animated)? 0.3 : 0.0;
+    
+    [UIView animateWithDuration:duration animations:^{
+        self.tabBarController.tabBar.frame = CGRectOffset(frame, 0, offsetY);
+    }];
+}
+
+// know the current state
+- (BOOL)tabBarIsVisible {
+    return self.tabBarController.tabBar.frame.origin.y < CGRectGetMaxY(self.view.frame);
+}
+
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+
 
 - (IBAction)slider_Action_Possibility:(id)sender {
+    
 }
 
 - (IBAction)Back_Action:(id)sender {
+    
+    [self.tabBarController setSelectedIndex:0];
 }
 
-- (IBAction)change_Photo_Action:(id)sender {
-}
+
 @end

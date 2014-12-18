@@ -209,4 +209,59 @@ static NSUInteger const Delay = 80;
     
 }
 
+
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+
+#pragma mark - settings
+
+- (void) show_Label_NoName : (UILabel * )label {
+    
+    CATransition *transitionAnimation = [CATransition animation];
+    
+    [transitionAnimation setType:kCATransitionPush];
+    [transitionAnimation setSubtype:kCATransitionFromRight];
+    [transitionAnimation setDuration:ADuration];
+    [transitionAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    [transitionAnimation setFillMode:kCAFillModeForwards];
+    
+    
+    [label.layer addAnimation:transitionAnimation forKey:@"FromRightAnimation"];
+    label.alpha = 1;
+    
+}
+
+- (void) hide_Label_NoName : (UILabel * )label {
+    
+    CATransition *transitionAnimation = [CATransition animation];
+    
+    [transitionAnimation setType:kCATransitionPush];
+    [transitionAnimation setSubtype:kCATransitionFromLeft];
+    [transitionAnimation setDuration:ADuration];
+    [transitionAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    [transitionAnimation setFillMode:kCAFillModeForwards];
+    
+    
+    [label.layer addAnimation:transitionAnimation forKey:@"FromRightAnimation"];
+    label.alpha = 0;
+    
+}
+
+- (void) show_Activity : (UIActivityIndicatorView * )activity {
+    
+    CATransition *transitionAnimation = [CATransition animation];
+    
+    [transitionAnimation setType:kCATransitionPush];
+    [transitionAnimation setSubtype:kCATransitionFromTop];
+    [transitionAnimation setDuration:ADuration];
+    [transitionAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    [transitionAnimation setFillMode:kCAFillModeForwards];
+    
+    
+    [activity.layer addAnimation:transitionAnimation forKey:@"FromRightAnimation"];
+    activity.alpha = 1;
+    
+}
+
 @end

@@ -20,6 +20,10 @@
 #define		TextViewFontSize		    18
 
 #define		User_Telephone_Number       @"tellNumber"
+#define		User_Avatar                 @"avatar"
+#define		User_Name                   @"UserName"
+
+
 
 
 

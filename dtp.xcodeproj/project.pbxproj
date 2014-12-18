@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E72EE36C1A4272EE00CC55C5 /* SinglTone.m in Sources */ = {isa = PBXBuildFile; fileRef = E72EE36B1A4272EE00CC55C5 /* SinglTone.m */; };
+		E7B915201A42399100A8FBD3 /* UIImage+ImagePickerCrop.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B9151F1A42399100A8FBD3 /* UIImage+ImagePickerCrop.m */; };
 		E7F230CF1A3E61030038890B /* SMSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7F230CE1A3E61030038890B /* SMSViewController.m */; };
 		E7F230D11A3F1E050038890B /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F230D01A3F1E050038890B /* start.png */; };
 		E7F230D41A3F24840038890B /* pinkodoff.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F230D21A3F24840038890B /* pinkodoff.png */; };
@@ -77,6 +79,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E72EE36A1A4272EE00CC55C5 /* SinglTone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinglTone.h; sourceTree = "<group>"; };
+		E72EE36B1A4272EE00CC55C5 /* SinglTone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinglTone.m; sourceTree = "<group>"; };
+		E7B9151E1A42399100A8FBD3 /* UIImage+ImagePickerCrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImagePickerCrop.h"; sourceTree = "<group>"; };
+		E7B9151F1A42399100A8FBD3 /* UIImage+ImagePickerCrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImagePickerCrop.m"; sourceTree = "<group>"; };
 		E7F230CD1A3E61030038890B /* SMSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSViewController.h; sourceTree = "<group>"; };
 		E7F230CE1A3E61030038890B /* SMSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSViewController.m; sourceTree = "<group>"; };
 		E7F230D01A3F1E050038890B /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
@@ -176,6 +182,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E72EE3691A4272D100CC55C5 /* SinglTone */ = {
+			isa = PBXGroup;
+			children = (
+				E72EE36A1A4272EE00CC55C5 /* SinglTone.h */,
+				E72EE36B1A4272EE00CC55C5 /* SinglTone.m */,
+			);
+			name = SinglTone;
+			sourceTree = "<group>";
+		};
 		E7F230CC1A3E60E30038890B /* SMS Conferm */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +226,8 @@
 		E7F230F41A41AC8D0038890B /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				E7B9151E1A42399100A8FBD3 /* UIImage+ImagePickerCrop.h */,
+				E7B9151F1A42399100A8FBD3 /* UIImage+ImagePickerCrop.m */,
 				E7F230E81A41AC880038890B /* avatar.png */,
 				E7F2310D1A4230A90038890B /* ProfileViewController.h */,
 				E7F2310E1A4230A90038890B /* ProfileViewController.m */,
@@ -221,6 +238,7 @@
 		E7F7BE791A3C60A90013F46A = {
 			isa = PBXGroup;
 			children = (
+				E72EE3691A4272D100CC55C5 /* SinglTone */,
 				E7F230F41A41AC8D0038890B /* Profile */,
 				E7F230DD1A41AC3A0038890B /* TabBar */,
 				E7F230CC1A3E60E30038890B /* SMS Conferm */,
@@ -494,10 +512,12 @@
 				E7F7BE8B1A3C60AA0013F46A /* AppDelegate.m in Sources */,
 				E7F7BEF21A3CB0100013F46A /* Animations.m in Sources */,
 				E7F7BE881A3C60AA0013F46A /* main.m in Sources */,
+				E7B915201A42399100A8FBD3 /* UIImage+ImagePickerCrop.m in Sources */,
 				E7F2310F1A4230A90038890B /* ProfileViewController.m in Sources */,
 				E7F230D81A3F2BC50038890B /* notesViewController.m in Sources */,
 				E7F230CF1A3E61030038890B /* SMSViewController.m in Sources */,
 				E7F7BE911A3C60AA0013F46A /* ViewController.m in Sources */,
+				E72EE36C1A4272EE00CC55C5 /* SinglTone.m in Sources */,
 				E7F7BE8E1A3C60AA0013F46A /* dtp.xcdatamodeld in Sources */,
 				E7F7BEB51A3C61AA0013F46A /* SMPageControl.m in Sources */,
 				E7F7BEED1A3CAC2F0013F46A /* SetShadow.m in Sources */,

@@ -17,6 +17,7 @@
 {
     UIView *rootView;
 }
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 
 @property (strong, nonatomic) IBOutlet UIView *navBar;
 
@@ -40,7 +41,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setView];
+    isFirstInstruktion = YES;
 
     NSLog(@"viewDidLoad %@", [[NSUserDefaults standardUserDefaults]
                                        stringForKey:User_Telephone_Number]);
@@ -51,7 +52,6 @@
     }
     
     else {
-    
     [self setView];
     rootView = self.navigationController.view;
     [self showIntroWithCrossDissolve];
@@ -66,7 +66,6 @@
 - (void) setView {
     SetShadow * shadow = [SetShadow new];
     [shadow setShadow:self.navBar];
-    
     self.navBar.alpha = 0;
     self.label_Main.alpha = 0;
     self.label_info_one.alpha = 0;
@@ -96,50 +95,128 @@
 
 - (void)showIntroWithCrossDissolve {
     
-    EAIntroPage *page1 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage1"];
-    page1.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon1.jpg"]];
-    
-    EAIntroPage *page2 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage2"];
-    page2.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon2.jpg"]];
-    
-    EAIntroPage *page3 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage3"];
-    page3.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon3.jpg"]];
-    
-    EAIntroPage *page4 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage4"];
-    page4.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon4.jpg"]];
-    
-    EAIntroPage *page5 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage5"];
-    page5.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon5.jpg"]];
-    
-    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:rootView.bounds andPages:@[page1,page2,page3,page4, page5]];
-    
-    intro.pageControlY = 70.0f;
-    
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [btn setTitle:@"Начать" forState:UIControlStateNormal];
-    btn.tintColor = [UIColor whiteColor];
-    [btn setBackgroundImage:[UIImage imageNamed:@"start.png"] forState:UIControlStateNormal];
-   // btn.backgroundColor = [UIColor colorWithRed:0/255 green:250/255 blue:255/255 alpha:0.50];
-
-    btn.frame = CGRectMake(((self.view.frame.size.width / 2) -  125), (self.view.frame.size.height) - 70, 250, 50);
-
-    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//    btn.layer.borderWidth = 1.0f;
-//    btn.layer.cornerRadius = 5;
-//    btn.layer.borderColor = [[UIColor clearColor] CGColor];
-    intro.skipButton = btn;
+    if (!isFirstInstruktion) {
 
     
-    [intro setDelegate:self];
+    Animations * anim = [Animations new];
+    self.activity.alpha = 0;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [self.activity startAnimating];
+        [anim show_Activity:self.activity];
+        [self.view endEditing:YES];
 
-    [intro showInView:rootView animateDuration:0.3];
+        
+    });
+        
+        int64_t delayInSeconds = 200;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_MSEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            
+            EAIntroPage *page1 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage1"];
+            page1.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon1.jpg"]];
+            
+            EAIntroPage *page2 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage2"];
+            page2.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon2.jpg"]];
+            
+            EAIntroPage *page3 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage3"];
+            page3.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon3.jpg"]];
+            
+            EAIntroPage *page4 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage4"];
+            page4.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon4.jpg"]];
+            
+            EAIntroPage *page5 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage5"];
+            page5.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon5.jpg"]];
+            
+            EAIntroView *intro = [[EAIntroView alloc] initWithFrame:rootView.bounds andPages:@[page1,page2,page3,page4, page5]];
+            
+            intro.pageControlY = 70.0f;
+            
+            UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            [btn setTitle:@"Начать" forState:UIControlStateNormal];
+            btn.tintColor = [UIColor whiteColor];
+            [btn setBackgroundImage:[UIImage imageNamed:@"start.png"] forState:UIControlStateNormal];
+            // btn.backgroundColor = [UIColor colorWithRed:0/255 green:250/255 blue:255/255 alpha:0.50];
+            
+            btn.frame = CGRectMake(((self.view.frame.size.width / 2) -  125), (self.view.frame.size.height) - 70, 250, 50);
+            
+            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            //    btn.layer.borderWidth = 1.0f;
+            //    btn.layer.cornerRadius = 5;
+            //    btn.layer.borderColor = [[UIColor clearColor] CGColor];
+            intro.skipButton = btn;
+            
+            
+            [intro setDelegate:self];
+            
+            [intro showInView:rootView animateDuration:0.5];
+            
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [self.activity stopAnimating];
+                
+                
+            });
+            
+        });
+
+        
+    }
+    
+    else {
+
+
+        EAIntroPage *page1 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage1"];
+        page1.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon1.jpg"]];
+        
+        EAIntroPage *page2 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage2"];
+        page2.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon2.jpg"]];
+        
+        EAIntroPage *page3 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage3"];
+        page3.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon3.jpg"]];
+        
+        EAIntroPage *page4 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage4"];
+        page4.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon4.jpg"]];
+        
+        EAIntroPage *page5 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage5"];
+        page5.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon5.jpg"]];
+        
+        EAIntroView *intro = [[EAIntroView alloc] initWithFrame:rootView.bounds andPages:@[page1,page2,page3,page4, page5]];
+        
+        intro.pageControlY = 70.0f;
+        
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [btn setTitle:@"Начать" forState:UIControlStateNormal];
+        btn.tintColor = [UIColor whiteColor];
+        [btn setBackgroundImage:[UIImage imageNamed:@"start.png"] forState:UIControlStateNormal];
+        // btn.backgroundColor = [UIColor colorWithRed:0/255 green:250/255 blue:255/255 alpha:0.50];
+        
+        btn.frame = CGRectMake(((self.view.frame.size.width / 2) -  125), (self.view.frame.size.height) - 70, 250, 50);
+        
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        //    btn.layer.borderWidth = 1.0f;
+        //    btn.layer.cornerRadius = 5;
+        //    btn.layer.borderColor = [[UIColor clearColor] CGColor];
+        intro.skipButton = btn;
+        [intro setDelegate:self];
+        [intro showInView:rootView animateDuration:0.3];
+
+        
+    }
+    
+    
+
 }
 
 - (void)introDidFinish:(EAIntroView *)introView {
     NSLog(@"introDidFinish callback");
     
+    if (isFirstInstruktion) {
     Animations * anim = [Animations new];
     [anim set_First_View:self.navBar F_Label:self.label_Main S_Label:self.label_info_one T_Label:self.label_info_two Seven_Label:self.label_seven Text_Field:self.textField_Phone_number];
+    isFirstInstruktion = NO;
+
     
     int64_t delayInSeconds = 400;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_MSEC);
@@ -148,6 +225,14 @@
         [self.textField_Phone_number becomeFirstResponder];
 
     });
+        
+    }
+    
+    else {
+        
+        [self.textField_Phone_number becomeFirstResponder];
+
+    }
     
 }
 
@@ -182,21 +267,17 @@
 }
 
 - (IBAction)button_Cancel_Action:(id)sender {
-    NSLog(@"button_Cancel_Action %@", [[NSUserDefaults standardUserDefaults]
-                  stringForKey:User_Telephone_Number]);
-    [self showIntroWithCrossDissolve];
-    [self setView];
 
-    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@""] forKey:User_Telephone_Number];
-    
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self showIntroWithCrossDissolve];
+//    [self setView];
 
 }
 
 - (IBAction)button_Next_Action:(id)sender {
     
-    NSLog(@"button_Next_Action %@", [[NSUserDefaults standardUserDefaults]
-                  stringForKey:User_Telephone_Number]);
+    SinglTone * tone = [SinglTone singleton];
+    tone.phone_number = [NSString stringWithFormat:@"+7%@", self.textField_Phone_number.text];
+    NSLog(@"button_Next_Action %@", tone.phone_number);
 
 
     [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"+7%@", self.textField_Phone_number.text] forKey:User_Telephone_Number];

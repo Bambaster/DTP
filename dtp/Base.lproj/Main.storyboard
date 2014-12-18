@@ -123,24 +123,30 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="PFAgoraSansPro-Light" family="PF Agora Sans Pro" pointSize="32"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="light"/>
                                 <connections>
                                     <action selector="phone_number_changed:" destination="vXZ-lx-hvc" eventType="editingChanged" id="qaS-uv-2tJ"/>
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="uxD-Lr-gUG"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+7" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="V5F-B9-h4n">
-                                <rect key="frame" x="25.000010077890234" y="258" width="38" height="52"/>
+                                <rect key="frame" x="25.000012489628261" y="258" width="38" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="PFAgoraSansPro-Light" family="PF Agora Sans Pro" pointSize="32"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="h8i-1q-wKs">
+                                <rect key="frame" x="142" y="249" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.6705882353" green="0.6705882353" blue="0.6705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="mwb-gS-TFy"/>
                     <connections>
+                        <outlet property="activity" destination="h8i-1q-wKs" id="Qxn-bv-xhu"/>
                         <outlet property="button_Next_Outlet" destination="cAN-IP-icB" id="5EC-Cr-U04"/>
                         <outlet property="label_Main" destination="0S3-9l-Cid" id="cWz-6b-asx"/>
                         <outlet property="label_info_one" destination="dQx-Ze-AWS" id="rZV-Wn-THZ"/>
@@ -206,7 +212,7 @@
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="PFAgoraSansPro-Light" family="PF Agora Sans Pro" pointSize="25"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="light"/>
                                         <connections>
                                             <action selector="textField_SMS_Changed:" destination="mvf-Rf-GfO" eventType="editingChanged" id="gMA-cR-ZcF"/>
                                             <outlet property="delegate" destination="mvf-Rf-GfO" id="cHz-PN-G4E"/>
@@ -508,14 +514,18 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" id="NNZ-nI-etA">
-                                        <rect key="frame" x="74" y="0.0" width="246" height="32"/>
+                                        <rect key="frame" x="74" y="0.0" width="225" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <color key="textColor" red="0.6705882352941176" green="0.6705882352941176" blue="0.6705882352941176" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="PFAgoraSansPro-Light" family="PF Agora Sans Pro" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardAppearance="light" returnKeyType="done"/>
+                                        <connections>
+                                            <action selector="text_name_changed:" destination="ZcA-Sv-xe0" eventType="editingChanged" id="0s1-pD-Rp6"/>
+                                            <outlet property="delegate" destination="ZcA-Sv-xe0" id="rh1-uX-hhg"/>
+                                        </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Без имени" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="T1x-d1-y8m">
-                                        <rect key="frame" x="230" y="8" width="90" height="18"/>
+                                        <rect key="frame" x="215" y="8" width="84" height="18"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="PFAgoraSansPro-Light" family="PF Agora Sans Pro" pointSize="15"/>
                                         <color key="textColor" red="0.6705882353" green="0.6705882353" blue="0.6705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -545,6 +555,16 @@
                                         <color key="textColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lGz-QN-BAB">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="show_instruktion_action:" destination="ZcA-Sv-xe0" eventType="touchUpInside" id="evY-b4-4bk"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -570,11 +590,15 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" id="gOl-pq-pzI">
-                                        <rect key="frame" x="74" y="0.0" width="246" height="32"/>
+                                        <rect key="frame" x="74" y="0.0" width="225" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <color key="textColor" red="0.6705882352941176" green="0.6705882352941176" blue="0.6705882352941176" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="PFAgoraSansPro-Light" family="PF Agora Sans Pro" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                        <connections>
+                                            <action selector="text_phone_changed:" destination="ZcA-Sv-xe0" eventType="editingChanged" id="SMy-pe-4oA"/>
+                                            <outlet property="delegate" destination="ZcA-Sv-xe0" id="kY8-ww-5VZ"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -669,11 +693,17 @@
                                     <action selector="change_Photo_Action:" destination="ZcA-Sv-xe0" eventType="touchUpInside" id="rGN-FZ-d1m"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="Bf1-F5-Siq">
+                                <rect key="frame" x="142" y="261" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.6705882353" green="0.6705882353" blue="0.6705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="r9T-xm-WaH"/>
                     <connections>
+                        <outlet property="activity" destination="Bf1-F5-Siq" id="NxM-3y-bSI"/>
                         <outlet property="image_Avatar" destination="mMi-Nq-yZB" id="OCp-5a-g9a"/>
                         <outlet property="label_NoName" destination="T1x-d1-y8m" id="1SS-bc-im4"/>
                         <outlet property="label_change_Photo_One" destination="XOt-RC-4vf" id="2QA-OH-dff"/>

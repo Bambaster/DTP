@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SinglTone.h"
+
 
 @interface SMSViewController : UIViewController <UITextFieldDelegate>
 

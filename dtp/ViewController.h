@@ -11,11 +11,17 @@
 #import <QuartzCore/QuartzCore.h>
 #import "Animations.h"
 #import <Foundation/Foundation.h>
+#import "SinglTone.h"
 
 
 
-@interface ViewController : UIViewController <EAIntroDelegate, UITextFieldDelegate>
+@interface ViewController : UIViewController <EAIntroDelegate, UITextFieldDelegate> {
+    
+    BOOL isFirstInstruktion;
+}
 
+@property (nonatomic, strong)UIImagePickerController *imagePicker;
+@property (nonatomic, strong)UIImage *image;
 
 
 
