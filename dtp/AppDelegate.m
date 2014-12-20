@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "AppConstant.h"
+
 
 @interface AppDelegate ()
 
@@ -17,6 +19,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+//    UIColor * tabBar_Color = [self getUIColorObjectFromHexString:COLOR_TABBAR alpha:1];
+//    [[UITabBar appearance] setTintColor:[UIColor ]];
     return YES;
 }
 

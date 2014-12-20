@@ -97,36 +97,23 @@
     
     if (!isFirstInstruktion) {
 
-    
-    Animations * anim = [Animations new];
-    self.activity.alpha = 0;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        [self.activity startAnimating];
-        [anim show_Activity:self.activity];
         [self.view endEditing:YES];
 
-        
-    });
-        
-        int64_t delayInSeconds = 200;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_MSEC);
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             
             EAIntroPage *page1 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage1"];
-            page1.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon1.jpg"]];
+            page1.bgImage = [UIImage imageNamed:@"fon1.jpg"];
             
             EAIntroPage *page2 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage2"];
-            page2.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon2.jpg"]];
+            page2.bgImage = [UIImage imageNamed:@"fon2.jpg"];
             
             EAIntroPage *page3 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage3"];
-            page3.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon3.jpg"]];
+            page3.bgImage = [UIImage imageNamed:@"fon3.jpg"];
             
             EAIntroPage *page4 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage4"];
-            page4.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon4.jpg"]];
+            page4.bgImage = [UIImage imageNamed:@"fon4.jpg"];
             
             EAIntroPage *page5 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage5"];
-            page5.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon5.jpg"]];
+            page5.bgImage = [UIImage imageNamed:@"fon5.jpg"];
             
             EAIntroView *intro = [[EAIntroView alloc] initWithFrame:rootView.bounds andPages:@[page1,page2,page3,page4, page5]];
             
@@ -149,17 +136,8 @@
             
             [intro setDelegate:self];
             
-            [intro showInView:rootView animateDuration:0.5];
-            
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-                [self.activity stopAnimating];
-                
-                
-            });
-            
-        });
+            [intro showInView:rootView animateDuration:0.3];
+
 
         
     }
@@ -168,19 +146,19 @@
 
 
         EAIntroPage *page1 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage1"];
-        page1.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon1.jpg"]];
+        page1.bgImage = [UIImage imageNamed:@"fon1.jpg"];
         
         EAIntroPage *page2 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage2"];
-        page2.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon2.jpg"]];
+        page2.bgImage = [UIImage imageNamed:@"fon2.jpg"];
         
         EAIntroPage *page3 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage3"];
-        page3.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon3.jpg"]];
+        page3.bgImage = [UIImage imageNamed:@"fon3.jpg"];
         
         EAIntroPage *page4 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage4"];
-        page4.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon4.jpg"]];
+        page4.bgImage = [UIImage imageNamed:@"fon4.jpg"];
         
         EAIntroPage *page5 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage5"];
-        page5.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon5.jpg"]];
+        page5.bgImage = [UIImage imageNamed:@"fon5.jpg"];
         
         EAIntroView *intro = [[EAIntroView alloc] initWithFrame:rootView.bounds andPages:@[page1,page2,page3,page4, page5]];
         

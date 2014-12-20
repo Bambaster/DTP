@@ -32,6 +32,7 @@
 - (IBAction)text_phone_changed:(id)sender;
 - (IBAction)text_name_changed:(id)sender;
 - (IBAction)show_instruktion_action:(id)sender;
+- (IBAction)tap_view_Name:(UITapGestureRecognizer *)sender;
 
 @end
 
@@ -58,13 +59,11 @@
 
 - (void)handleSingleTap:(UITapGestureRecognizer *)recognizer
 {
-    if ([self.textField_Phone.text length] == 16) {
     [self.view endEditing:YES];
     [[NSUserDefaults standardUserDefaults] setObject:self.textField_Name.text forKey:User_Name];
     [[NSUserDefaults standardUserDefaults] setObject:self.textField_Phone.text forKey:User_Telephone_Number];
     [[NSUserDefaults standardUserDefaults] synchronize];
         
-    }
 }
 
 //----------------------------------------------------------------------------------------
@@ -265,8 +264,17 @@
     }
     
     else {
+
         
-     //   NSLog(@"self.textField_NAme");
+        if(range.length + range.location > self.textField_Name.text.length)
+        {
+            return NO;
+        }
+        
+        NSUInteger newLength = [self.textField_Name.text length] + [string length] - range.length;
+        return (newLength > 14) ? NO : YES;
+        
+     return YES;
 
         
     }
@@ -317,7 +325,11 @@
     
     
 }
+- (IBAction)tap_view_Name:(UITapGestureRecognizer *)sender {
+    
+    [self.textField_Name becomeFirstResponder];
 
+}
 //----------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------
@@ -327,38 +339,30 @@
     
     [self showIntroWithCrossDissolve];
 }
-- (void)showIntroWithCrossDissolve {
-    Animations * anim = [Animations new];
-    self.activity.alpha = 0;
-    [self.view endEditing:YES];
 
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        [self.activity startAnimating];
-        [anim show_Activity:self.activity];
-        
-    });
+
+- (void)showIntroWithCrossDissolve {
+
+    [self.view endEditing:YES];
     
-    int64_t delayInSeconds = 200;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_MSEC);
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+
 
          [self setTabBarVisible:![self tabBarIsVisible] animated:YES];
     
-    EAIntroPage *page1 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage1"];
-    page1.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon1.jpg"]];
-    
-    EAIntroPage *page2 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage2"];
-    page2.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon2.jpg"]];
-    
-    EAIntroPage *page3 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage3"];
-    page3.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon3.jpg"]];
-    
-    EAIntroPage *page4 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage4"];
-    page4.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon4.jpg"]];
-    
-    EAIntroPage *page5 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage5"];
-    page5.bgImage = [self blurWithGPUImage:[UIImage imageNamed:@"fon5.jpg"]];
+        EAIntroPage *page1 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage1"];
+        page1.bgImage = [UIImage imageNamed:@"fon1.jpg"];
+        
+        EAIntroPage *page2 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage2"];
+        page2.bgImage = [UIImage imageNamed:@"fon2.jpg"];
+        
+        EAIntroPage *page3 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage3"];
+        page3.bgImage = [UIImage imageNamed:@"fon3.jpg"];
+        
+        EAIntroPage *page4 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage4"];
+        page4.bgImage = [UIImage imageNamed:@"fon4.jpg"];
+        
+        EAIntroPage *page5 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage5"];
+        page5.bgImage = [UIImage imageNamed:@"fon5.jpg"];
     
     EAIntroView *intro = [[EAIntroView alloc] initWithFrame:rootView.bounds andPages:@[page1,page2,page3,page4, page5]];
     
@@ -381,17 +385,8 @@
     
     [intro setDelegate:self];
     
-    [intro showInView:rootView animateDuration:0.5];
-        
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            [self.activity stopAnimating];
-            
-            
-        });
+    [intro showInView:rootView animateDuration:0.3];
 
-    });
     
 
 }

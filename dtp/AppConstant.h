@@ -10,7 +10,7 @@
 #define		COLOR_NAVBAR_BUTTON					HEXCOLOR(0xFFFFFFFF)
 #define		COLOR_NAVBAR_BACKGROUND				HEXCOLOR(0x19C5FF00)
 
-#define		COLOR_TABBAR_LABEL					HEXCOLOR(0xFFFFFFFF)
+#define		COLOR_TABBAR				     	HEXCOLOR(0x1781f1)
 #define		COLOR_TABBAR_BACKGROUND				HEXCOLOR(0x19C5FF00)
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
