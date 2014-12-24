@@ -98,6 +98,17 @@
 		E7C7F20D1A479B8200AF7B35 /* MessageData.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C7F20C1A479B8200AF7B35 /* MessageData.m */; };
 		E7C7F20F1A49FA2900AF7B35 /* Pfagorasanspro-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E7C7F20E1A49FA2900AF7B35 /* Pfagorasanspro-bold.ttf */; };
 		E7C7F2111A49FB0500AF7B35 /* Pfagorasanspro-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E7C7F2101A49FB0400AF7B35 /* Pfagorasanspro-regular.ttf */; };
+		E7CCBAD61A4B615900921C9D /* MZFormSheetBackgroundWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CCBAC81A4B615900921C9D /* MZFormSheetBackgroundWindow.m */; };
+		E7CCBAD71A4B615900921C9D /* MZFormSheetBackgroundWindowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CCBACA1A4B615900921C9D /* MZFormSheetBackgroundWindowViewController.m */; };
+		E7CCBAD81A4B615900921C9D /* MZFormSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CCBACC1A4B615900921C9D /* MZFormSheetController.m */; };
+		E7CCBAD91A4B615900921C9D /* MZFormSheetSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CCBACE1A4B615900921C9D /* MZFormSheetSegue.m */; };
+		E7CCBADA1A4B615900921C9D /* MZTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CCBAD11A4B615900921C9D /* MZTransition.m */; };
+		E7CCBADB1A4B615900921C9D /* UIImage+Additional.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CCBAD31A4B615900921C9D /* UIImage+Additional.m */; };
+		E7CCBADC1A4B615900921C9D /* UIViewController+TargetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CCBAD51A4B615900921C9D /* UIViewController+TargetViewController.m */; };
+		E7CCBAE61A4B618800921C9D /* MZAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CCBAE31A4B618800921C9D /* MZAppearance.m */; };
+		E7CCBAE71A4B618800921C9D /* NSInvocation+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CCBAE51A4B618800921C9D /* NSInvocation+Copy.m */; };
+		E7CCBAEB1A4B70FF00921C9D /* SearchCompaniesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CCBAEA1A4B70FF00921C9D /* SearchCompaniesViewController.m */; };
+		E7CCBAED1A4B75CD00921C9D /* Companies.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7CCBAEC1A4B75CD00921C9D /* Companies.rtf */; };
 		E7F230CF1A3E61030038890B /* SMSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7F230CE1A3E61030038890B /* SMSViewController.m */; };
 		E7F230D11A3F1E050038890B /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F230D01A3F1E050038890B /* start.png */; };
 		E7F230D41A3F24840038890B /* pinkodoff.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F230D21A3F24840038890B /* pinkodoff.png */; };
@@ -270,6 +281,28 @@
 		E7C7F20C1A479B8200AF7B35 /* MessageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageData.m; sourceTree = "<group>"; };
 		E7C7F20E1A49FA2900AF7B35 /* Pfagorasanspro-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pfagorasanspro-bold.ttf"; sourceTree = "<group>"; };
 		E7C7F2101A49FB0400AF7B35 /* Pfagorasanspro-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pfagorasanspro-regular.ttf"; sourceTree = "<group>"; };
+		E7CCBAC71A4B615900921C9D /* MZFormSheetBackgroundWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFormSheetBackgroundWindow.h; sourceTree = "<group>"; };
+		E7CCBAC81A4B615900921C9D /* MZFormSheetBackgroundWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZFormSheetBackgroundWindow.m; sourceTree = "<group>"; };
+		E7CCBAC91A4B615900921C9D /* MZFormSheetBackgroundWindowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFormSheetBackgroundWindowViewController.h; sourceTree = "<group>"; };
+		E7CCBACA1A4B615900921C9D /* MZFormSheetBackgroundWindowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZFormSheetBackgroundWindowViewController.m; sourceTree = "<group>"; };
+		E7CCBACB1A4B615900921C9D /* MZFormSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFormSheetController.h; sourceTree = "<group>"; };
+		E7CCBACC1A4B615900921C9D /* MZFormSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZFormSheetController.m; sourceTree = "<group>"; };
+		E7CCBACD1A4B615900921C9D /* MZFormSheetSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFormSheetSegue.h; sourceTree = "<group>"; };
+		E7CCBACE1A4B615900921C9D /* MZFormSheetSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZFormSheetSegue.m; sourceTree = "<group>"; };
+		E7CCBACF1A4B615900921C9D /* MZMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMacro.h; sourceTree = "<group>"; };
+		E7CCBAD01A4B615900921C9D /* MZTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTransition.h; sourceTree = "<group>"; };
+		E7CCBAD11A4B615900921C9D /* MZTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTransition.m; sourceTree = "<group>"; };
+		E7CCBAD21A4B615900921C9D /* UIImage+Additional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Additional.h"; sourceTree = "<group>"; };
+		E7CCBAD31A4B615900921C9D /* UIImage+Additional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Additional.m"; sourceTree = "<group>"; };
+		E7CCBAD41A4B615900921C9D /* UIViewController+TargetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+TargetViewController.h"; sourceTree = "<group>"; };
+		E7CCBAD51A4B615900921C9D /* UIViewController+TargetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+TargetViewController.m"; sourceTree = "<group>"; };
+		E7CCBAE21A4B618800921C9D /* MZAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZAppearance.h; sourceTree = "<group>"; };
+		E7CCBAE31A4B618800921C9D /* MZAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZAppearance.m; sourceTree = "<group>"; };
+		E7CCBAE41A4B618800921C9D /* NSInvocation+Copy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+Copy.h"; sourceTree = "<group>"; };
+		E7CCBAE51A4B618800921C9D /* NSInvocation+Copy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation+Copy.m"; sourceTree = "<group>"; };
+		E7CCBAE91A4B70FF00921C9D /* SearchCompaniesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCompaniesViewController.h; sourceTree = "<group>"; };
+		E7CCBAEA1A4B70FF00921C9D /* SearchCompaniesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCompaniesViewController.m; sourceTree = "<group>"; };
+		E7CCBAEC1A4B75CD00921C9D /* Companies.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Companies.rtf; sourceTree = "<group>"; };
 		E7F230CD1A3E61030038890B /* SMSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSViewController.h; sourceTree = "<group>"; };
 		E7F230CE1A3E61030038890B /* SMSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSViewController.m; sourceTree = "<group>"; };
 		E7F230D01A3F1E050038890B /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
@@ -414,6 +447,8 @@
 		E755C18B1A458D2100E2BB6D /* Complain */ = {
 			isa = PBXGroup;
 			children = (
+				E7CCBAE81A4B70C900921C9D /* SearchCompanies */,
+				E7C7F1871A479B7100AF7B35 /* MessagesTableViewController */,
 				E755C18C1A458D5000E2BB6D /* KickViewController.h */,
 				E755C18D1A458D5000E2BB6D /* KickViewController.m */,
 			);
@@ -523,6 +558,49 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
+		E7CCBAC61A4B615900921C9D /* MZFormSheetController */ = {
+			isa = PBXGroup;
+			children = (
+				E7CCBAE11A4B618800921C9D /* Additional */,
+				E7CCBAC71A4B615900921C9D /* MZFormSheetBackgroundWindow.h */,
+				E7CCBAC81A4B615900921C9D /* MZFormSheetBackgroundWindow.m */,
+				E7CCBAC91A4B615900921C9D /* MZFormSheetBackgroundWindowViewController.h */,
+				E7CCBACA1A4B615900921C9D /* MZFormSheetBackgroundWindowViewController.m */,
+				E7CCBACB1A4B615900921C9D /* MZFormSheetController.h */,
+				E7CCBACC1A4B615900921C9D /* MZFormSheetController.m */,
+				E7CCBACD1A4B615900921C9D /* MZFormSheetSegue.h */,
+				E7CCBACE1A4B615900921C9D /* MZFormSheetSegue.m */,
+				E7CCBACF1A4B615900921C9D /* MZMacro.h */,
+				E7CCBAD01A4B615900921C9D /* MZTransition.h */,
+				E7CCBAD11A4B615900921C9D /* MZTransition.m */,
+				E7CCBAD21A4B615900921C9D /* UIImage+Additional.h */,
+				E7CCBAD31A4B615900921C9D /* UIImage+Additional.m */,
+				E7CCBAD41A4B615900921C9D /* UIViewController+TargetViewController.h */,
+				E7CCBAD51A4B615900921C9D /* UIViewController+TargetViewController.m */,
+			);
+			path = MZFormSheetController;
+			sourceTree = "<group>";
+		};
+		E7CCBAE11A4B618800921C9D /* Additional */ = {
+			isa = PBXGroup;
+			children = (
+				E7CCBAE21A4B618800921C9D /* MZAppearance.h */,
+				E7CCBAE31A4B618800921C9D /* MZAppearance.m */,
+				E7CCBAE41A4B618800921C9D /* NSInvocation+Copy.h */,
+				E7CCBAE51A4B618800921C9D /* NSInvocation+Copy.m */,
+			);
+			path = Additional;
+			sourceTree = "<group>";
+		};
+		E7CCBAE81A4B70C900921C9D /* SearchCompanies */ = {
+			isa = PBXGroup;
+			children = (
+				E7CCBAE91A4B70FF00921C9D /* SearchCompaniesViewController.h */,
+				E7CCBAEA1A4B70FF00921C9D /* SearchCompaniesViewController.m */,
+			);
+			name = SearchCompanies;
+			sourceTree = "<group>";
+		};
 		E7F230CC1A3E60E30038890B /* SMS Conferm */ = {
 			isa = PBXGroup;
 			children = (
@@ -570,9 +648,9 @@
 		E7F7BE791A3C60A90013F46A = {
 			isa = PBXGroup;
 			children = (
+				E7CCBAC61A4B615900921C9D /* MZFormSheetController */,
 				E7C7F2101A49FB0400AF7B35 /* Pfagorasanspro-regular.ttf */,
 				E7C7F20E1A49FA2900AF7B35 /* Pfagorasanspro-bold.ttf */,
-				E7C7F1871A479B7100AF7B35 /* MessagesTableViewController */,
 				E755C18B1A458D2100E2BB6D /* Complain */,
 				E70796F81A43AB9E00DF5E14 /* Lounch */,
 				E72EE3691A4272D100CC55C5 /* SinglTone */,
@@ -603,6 +681,7 @@
 		E7F7BE841A3C60AA0013F46A /* dtp */ = {
 			isa = PBXGroup;
 			children = (
+				E7CCBAEC1A4B75CD00921C9D /* Companies.rtf */,
 				E7F230D61A3F2BC50038890B /* notesViewController.h */,
 				E7F230D91A3F2C360038890B /* AppConstant.h */,
 				E7F230D71A3F2BC50038890B /* notesViewController.m */,
@@ -811,6 +890,7 @@
 				E7C7F2031A479B7100AF7B35 /* send.png in Resources */,
 				E712C3861A43AEB600EBFCF6 /* Icon@2x.png in Resources */,
 				E70796F71A43AA6F00DF5E14 /* splash.jpg in Resources */,
+				E7CCBAED1A4B75CD00921C9D /* Companies.rtf in Resources */,
 				E7C7F1E71A479B7100AF7B35 /* bubble-flat-incoming.png in Resources */,
 				E7C7F1E31A479B7100AF7B35 /* bubble-default-outgoing.png in Resources */,
 				E712C36E1A43AE9600EBFCF6 /* Icon-40@2x.png in Resources */,
@@ -952,29 +1032,39 @@
 				E755C18E1A458D5000E2BB6D /* KickViewController.m in Sources */,
 				E7C7F1D21A479B7100AF7B35 /* JSBubbleView.m in Sources */,
 				E7F7BEBA1A3C626E0013F46A /* UIImage+ImageEffects.m in Sources */,
+				E7CCBADC1A4B615900921C9D /* UIViewController+TargetViewController.m in Sources */,
 				E7C7F20D1A479B8200AF7B35 /* MessageData.m in Sources */,
 				E7C7F2091A479B7100AF7B35 /* UIImage+JSMessagesView.m in Sources */,
 				E7F7BE8B1A3C60AA0013F46A /* AppDelegate.m in Sources */,
+				E7CCBAE71A4B618800921C9D /* NSInvocation+Copy.m in Sources */,
 				E7F7BEF21A3CB0100013F46A /* Animations.m in Sources */,
 				E7C7F1D51A479B7100AF7B35 /* JSMessageSoundEffect.m in Sources */,
 				E7C7F20A1A479B7100AF7B35 /* UIView+AnimationOptionsForCurve.m in Sources */,
 				E7F7BE881A3C60AA0013F46A /* main.m in Sources */,
 				E7B915201A42399100A8FBD3 /* UIImage+ImagePickerCrop.m in Sources */,
 				E7C7F1D81A479B7100AF7B35 /* NSString+JSMessagesView.m in Sources */,
+				E7CCBAD91A4B615900921C9D /* MZFormSheetSegue.m in Sources */,
+				E7CCBADA1A4B615900921C9D /* MZTransition.m in Sources */,
 				E7F2310F1A4230A90038890B /* ProfileViewController.m in Sources */,
 				E7F230D81A3F2BC50038890B /* notesViewController.m in Sources */,
+				E7CCBAD81A4B615900921C9D /* MZFormSheetController.m in Sources */,
 				E7F230CF1A3E61030038890B /* SMSViewController.m in Sources */,
 				E7F7BE911A3C60AA0013F46A /* ViewController.m in Sources */,
 				E7C7F2071A479B7100AF7B35 /* UIButton+JSMessagesView.m in Sources */,
+				E7CCBADB1A4B615900921C9D /* UIImage+Additional.m in Sources */,
+				E7CCBAD71A4B615900921C9D /* MZFormSheetBackgroundWindowViewController.m in Sources */,
 				E7C7F1D11A479B7100AF7B35 /* JSBubbleMessageCell.m in Sources */,
 				E72EE36C1A4272EE00CC55C5 /* SinglTone.m in Sources */,
 				E7C7F2081A479B7100AF7B35 /* UIColor+JSMessagesView.m in Sources */,
+				E7CCBAE61A4B618800921C9D /* MZAppearance.m in Sources */,
 				E7F7BE8E1A3C60AA0013F46A /* dtp.xcdatamodeld in Sources */,
 				E7C7F1D61A479B7100AF7B35 /* JSMessagesViewController.m in Sources */,
+				E7CCBAEB1A4B70FF00921C9D /* SearchCompaniesViewController.m in Sources */,
 				E7C7F1D71A479B7100AF7B35 /* JSMessageTextView.m in Sources */,
 				E7C7F1D31A479B7100AF7B35 /* JSDismissiveTextView.m in Sources */,
 				E7F7BEB51A3C61AA0013F46A /* SMPageControl.m in Sources */,
 				E7F7BEED1A3CAC2F0013F46A /* SetShadow.m in Sources */,
+				E7CCBAD61A4B615900921C9D /* MZFormSheetBackgroundWindow.m in Sources */,
 				E7F230DC1A3FC7FD0038890B /* UIView+Shake.m in Sources */,
 				E7F7BEB61A3C61AA0013F46A /* EAIntroPage.m in Sources */,
 				E7F7BEB71A3C61AA0013F46A /* EAIntroView.m in Sources */,

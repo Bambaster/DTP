@@ -40,13 +40,14 @@
 #import "JSDismissiveTextView.h"
 #import "SetShadow.h"
 #import "Animations.h"
+#import "MZFormSheetController.h"
 
 
 #define OSVersionIsAtLeastiOS7  (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1)
 
 #define INPUT_HEIGHT 125.0f
 
-@interface JSMessagesViewController () <JSDismissiveTextViewDelegate>
+@interface JSMessagesViewController () <JSDismissiveTextViewDelegate, MZFormSheetBackgroundWindowDelegate>
 
 - (void)setup;
 
@@ -226,6 +227,10 @@
 {
     [super viewDidLoad];
     [self setup];
+    [[MZFormSheetBackgroundWindow appearance] setBackgroundBlurEffect:YES];
+    [[MZFormSheetBackgroundWindow appearance] setBlurRadius:5.0];
+    [[MZFormSheetBackgroundWindow appearance] setBackgroundColor:[UIColor clearColor]];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -244,6 +249,9 @@
 											 selector:@selector(handleWillHideKeyboard:)
 												 name:UIKeyboardWillHideNotification
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(show_companies) name:@"Show_Companies" object:nil];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -254,6 +262,8 @@
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"Show_Companies" object:nil];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -269,6 +279,40 @@
     self.tableView = nil;
     self.inputToolBarView = nil;
 }
+
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+
+#pragma mark - show companies
+
+- (void) show_companies {
+    
+    UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"CompaniesView"];
+    
+    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:vc];
+    formSheet.shouldDismissOnBackgroundViewTap = YES;
+    formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromBottom;
+//    formSheet.cornerRadius = 8.0;
+//    formSheet.portraitTopInset = 6.0;
+    formSheet.shouldCenterVertically = YES;
+
+//    formSheet.landscapeTopInset = 6.0;
+    formSheet.presentedFormSheetSize = CGSizeMake(self.view.frame.size.width - 20, self.view.frame.size.height);
+    [formSheet presentAnimated:YES completionHandler:^(UIViewController *presentedFSViewController) {
+        
+    }];
+    
+//    [self dismissFormSheetControllerAnimated:YES completionHandler:^(MZFormSheetController *formSheetController) {
+//        
+//    }];
+    
+    NSLog(@"__%s__",__func__);
+}
+
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
 
 #pragma mark - View rotation
 - (BOOL)shouldAutorotate

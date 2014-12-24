@@ -16,7 +16,6 @@
 @property (strong, nonatomic) NSMutableArray *messageArray;
 @property (nonatomic,strong) UIImage *willSendImage;
 @property (strong, nonatomic) IBOutlet UITextView *textView_Message;
-@property (strong, nonatomic) IBOutlet UIView *container_companies;
 
 @property (nonatomic,strong) SinglTone * sing;
 
@@ -33,7 +32,6 @@
     [super viewDidLoad];
     [self testData];
 
-    self.container_companies.alpha = 0;
     [self.navigationController.navigationBar setTitleTextAttributes:
      [NSDictionary dictionaryWithObjectsAndKeys:
       [UIFont fontWithName:@"PFAgoraSansPro-Regular" size:20],
@@ -47,7 +45,6 @@
     self.messageArray = [NSMutableArray array];
     
      
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(show_companies) name:@"Show_Companies" object:nil];
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self
 //                                             selector:@selector(show_TabBar)
@@ -66,7 +63,7 @@
     [super viewWillDisappear:animated];
 
 //    
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"Show_Companies" object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"Show_Companies" object:nil];
 //    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
@@ -87,22 +84,21 @@
 //    [self.messageArray addObject:message3];
 }
 
-//----------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------
-
-#pragma mark - show companies
-
-- (void) show_companies {
-    
-    self.container_companies.alpha = 1;
-
-    NSLog(@"__%s__",__func__);
-}
-
-//----------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------
+////----------------------------------------------------------------------------------------
+////----------------------------------------------------------------------------------------
+////----------------------------------------------------------------------------------------
+//
+//#pragma mark - show companies
+//
+//- (void) show_companies {
+//    
+//
+//    NSLog(@"__%s__",__func__);
+//}
+//
+////----------------------------------------------------------------------------------------
+////----------------------------------------------------------------------------------------
+////----------------------------------------------------------------------------------------
 
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -131,7 +127,6 @@
         isUserMessage = NO;
         NSString * string_Company = @"Росгосстрах";
         NSString * string_Type_Review = [[NSUserDefaults standardUserDefaults] stringForKey:Type_of_Review];
-        NSLog(@"sstring_Type_Review %@", string_Type_Review);
 
         NSString * string_Line = @"_______________________";
         NSString * total_review = [NSString stringWithFormat:@"%@\n%@\n%@\n\n,%@",string_Company,string_Type_Review, string_Line, text];
@@ -149,6 +144,19 @@
             [self.messageArray addObject:message];
             
             [self finishSend:NO];
+            
+            NSLog(@"last_Date_Value %@", last_Date_Value);
+            NSLog(@"current_Date_Value %@", current_Date_Value);
+            NSLog(@"current_Date %@", current_Date);
+
+            NSLog(@"last_Date %@", last_Date);
+
+
+            
+            NSLog(@"isEqualToString");
+
+            
+            
         }
         
         else {
@@ -160,6 +168,9 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         [self finishSend:NO];
+            
+            NSLog(@"!!isEqualToString");
+
             
         }
 

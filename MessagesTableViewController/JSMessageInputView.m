@@ -227,7 +227,7 @@ static id<JSMessageInputViewDelegate> __delegate;
     
         
     
-    NSLog(@"seg setSelectedSegmentIndex %d", self.segment_choose_Type_Review.selectedSegmentIndex);
+    NSLog(@"seg setSelectedSegmentIndex %ld", (long)self.segment_choose_Type_Review.selectedSegmentIndex);
 }
 
 
