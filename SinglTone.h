@@ -13,6 +13,8 @@
 
 
 @property (nonatomic, copy) NSString * phone_number;
+@property (nonatomic, strong) NSString * type_of_review;
+
 
 
 @end

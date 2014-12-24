@@ -347,7 +347,7 @@
     
 
 
-         [self setTabBarVisible:![self tabBarIsVisible] animated:YES];
+         [self hideTabBar:self.tabBarController];
     
         EAIntroPage *page1 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage1"];
         page1.bgImage = [UIImage imageNamed:@"fon1.jpg"];
@@ -364,8 +364,7 @@
         EAIntroPage *page5 = [EAIntroPage pageWithCustomViewFromNibNamed:@"IntroPage5"];
         page5.bgImage = [UIImage imageNamed:@"fon5.jpg"];
     
-    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:rootView.bounds andPages:@[page1,page2,page3,page4, page5]];
-    
+    EAIntroView *intro = [[EAIntroView alloc] initWithFrame:rootView.bounds andPages:@[page1,page2,page3,page4,page5]];
     intro.pageControlY = 70.0f;
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -374,7 +373,7 @@
     [btn setBackgroundImage:[UIImage imageNamed:@"start.png"] forState:UIControlStateNormal];
     // btn.backgroundColor = [UIColor colorWithRed:0/255 green:250/255 blue:255/255 alpha:0.50];
     
-    btn.frame = CGRectMake(((self.view.frame.size.width / 2) -  125), (self.view.frame.size.height) - 70, 250, 50);
+    btn.frame = CGRectMake(((self.view.frame.size.width / 2) -  125), (self.view.frame.size.height) - 20, 250, 50);
     
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     //    btn.layer.borderWidth = 1.0f;
@@ -394,7 +393,9 @@
 - (void)introDidFinish:(EAIntroView *)introView {
     NSLog(@"introDidFinish callback");
 
-    [self setTabBarVisible:![self tabBarIsVisible] animated:YES];
+//    [self setTabBarVisible:![self tabBarIsVisible] animated:YES];
+    
+     [self showTabBar:self.tabBarController];
 
 }
 //----------------------------------------------------------------------------------------
@@ -414,7 +415,29 @@
 
 #pragma mark - hide tab bar
 
+- (void)hideTabBar:(UITabBarController *)tabbarcontroller
+{
+    Animations * anim = [Animations new];
+    [anim hide_tabBar:tabbarcontroller.tabBar];
+    
+    
+//    [tabbarcontroller.tabBar setHidden:YES];
+
+}
+
+- (void)showTabBar:(UITabBarController *)tabbarcontroller
+{
+//    [tabbarcontroller.tabBar setHidden:NO];
+    
+    Animations * anim = [Animations new];
+    [anim show_tabBar:tabbarcontroller.tabBar];
+    
+}
+
+
 - (void)setTabBarVisible:(BOOL)visible animated:(BOOL)animated {
+    
+
     
     // bail if the current state matches the desired state
     if ([self tabBarIsVisible] == visible) return;

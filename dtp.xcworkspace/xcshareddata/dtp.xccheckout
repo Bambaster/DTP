@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>FFE47C11-798B-43D3-9C6E-88372D6CCDEF</string>
+	<key>IDESourceControlProjectName</key>
+	<string>dtp</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>73624AA2B13C168F9FE0D1314C5616E105A4528A</key>
+		<string>https://github.com/Bambaster/DTP.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>dtp.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>73624AA2B13C168F9FE0D1314C5616E105A4528A</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Bambaster/DTP.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>73624AA2B13C168F9FE0D1314C5616E105A4528A</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>73624AA2B13C168F9FE0D1314C5616E105A4528A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>DTP</string>
+		</dict>
+	</array>
+</dict>
+</plist>

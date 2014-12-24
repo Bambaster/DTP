@@ -30,6 +30,6 @@
 
 - (void) show_Label_NoName : (UILabel * )label;
 - (void) hide_Label_NoName : (UILabel * )label;
-- (void) show_Activity : (UIActivityIndicatorView * )activity;
-
+- (void) show_tabBar : (UITabBar * )tabBar;
+- (void) hide_tabBar : (UITabBar * )tabBar;
 @end

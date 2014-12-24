@@ -41,6 +41,9 @@
     
     // подписаться на нотификацию
     
+    NSLog(@"__%s__",__func__);
+
+    
     NSMutableDictionary * dictSEX = [[NSMutableDictionary alloc] init];
   //  [dictSEX setValue:sexString forKey:@"sex"];
     
@@ -49,7 +52,7 @@
     // воспроизвести нотификацию
     
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(method:) name:@"ShowNotification" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(method:) name:@"Show_Companies" object:nil];
 
     
     //вызов метода через время
@@ -405,4 +408,14 @@ requestViewViewController *paneViewController = [storyBoard instantiateViewContr
  
  
  */
+
+
+/* 
+ 
+     [self.button_choose_Company addTarget:self action:@selector(choose_comapany:) forControlEvents:UIControlEventTouchUpInside];
+ 
+      NSLog(@"__%s__",__func__);
+
+ */
+
 @end

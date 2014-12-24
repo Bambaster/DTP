@@ -19,9 +19,13 @@
 
 #define		TextViewFontSize		    18
 
+
+#define		LAST_MESSAGE_DATE           @"lastDate"
 #define		User_Telephone_Number       @"tellNumber"
 #define		User_Avatar                 @"avatar"
 #define		User_Name                   @"UserName"
+#define		Type_of_Review              @"Type_of_Review"
+
 
 
 

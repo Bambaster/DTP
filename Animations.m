@@ -248,19 +248,33 @@ static NSUInteger const Delay = 80;
     
 }
 
-- (void) show_Activity : (UIActivityIndicatorView * )activity {
+- (void) show_tabBar : (UITabBar * )tabBar {
     
     CATransition *transitionAnimation = [CATransition animation];
     
-    [transitionAnimation setType:kCATransitionPush];
-    [transitionAnimation setSubtype:kCATransitionFromTop];
+    [transitionAnimation setType:kCATransitionFade];
+    [transitionAnimation setDuration:0.3];
+    [transitionAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
+    [transitionAnimation setFillMode:kCAFillModeForwards];
+    
+    
+    [tabBar.layer addAnimation:transitionAnimation forKey:@"FromRightAnimation"];
+    tabBar.alpha = 1;
+    
+}
+
+- (void) hide_tabBar : (UITabBar * )tabBar {
+    
+    CATransition *transitionAnimation = [CATransition animation];
+    
+    [transitionAnimation setType:kCATransitionFade];
     [transitionAnimation setDuration:ADuration];
     [transitionAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
     [transitionAnimation setFillMode:kCAFillModeForwards];
     
     
-    [activity.layer addAnimation:transitionAnimation forKey:@"FromRightAnimation"];
-    activity.alpha = 1;
+    [tabBar.layer addAnimation:transitionAnimation forKey:@"FromRightAnimation"];
+    tabBar.alpha = 0;
     
 }
 

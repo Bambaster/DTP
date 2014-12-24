@@ -20,7 +20,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 //    UIColor * tabBar_Color = [self getUIColorObjectFromHexString:COLOR_TABBAR alpha:1];
-//    [[UITabBar appearance] setTintColor:[UIColor ]];
+    
+    [[UITabBar appearance] setBarTintColor:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1]];
+  //  [[UITabBar appearance] setTranslucent:NO];
+  //  [[UITabBar appearance] setTintColor:[UIColor colorWithRed:227/255.0 green:180/255.0 blue:204/255.0 alpha:1]];
+    
+    
     return YES;
 }
 
