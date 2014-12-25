@@ -51,6 +51,7 @@ static id<JSMessageInputViewDelegate> __delegate;
 
 - (void)setup;
 - (void)setupTextView;
+@property (nonatomic,strong) NSString * string_Company;
 
 @end
 
@@ -84,6 +85,10 @@ static id<JSMessageInputViewDelegate> __delegate;
 {
     self.textView = nil;
     self.sendButton = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ChooseCompany" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SetNormal" object:nil];
+
+
 }
 
 - (BOOL)resignFirstResponder
@@ -101,6 +106,11 @@ static id<JSMessageInputViewDelegate> __delegate;
     self.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin);
     self.opaque = YES;
     self.userInteractionEnabled = YES;
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(change_Company_Button) name:@"ChooseCompany" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(change_Company_Button_toNormal) name:@"SetNormal" object:nil];
+
+    
+
     [self setupTextView];
 }
 
@@ -237,6 +247,29 @@ static id<JSMessageInputViewDelegate> __delegate;
 
     
 //    NSLog(@"__%s__",__func__);
+}
+
+- (void) change_Company_Button{
+    
+
+
+    self.button_choose_Company.backgroundColor = [UIColor colorWithRed:23.0/255.0 green:129.0/255.0 blue:241.0/255.0 alpha:1.0];
+    
+    [self.button_choose_Company setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:23.0/255.0 green:129.0/255.0 blue:241.0/255.0 alpha:0.85]] forState:UIControlStateHighlighted];
+
+}
+
+- (void) change_Company_Button_toNormal{
+    
+    CATransition *transitionAnimation = [CATransition animation];
+    [transitionAnimation setType:kCATransitionFade];
+    [transitionAnimation setDuration:0.4];
+    [transitionAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    [transitionAnimation setFillMode:kCAFillModeForwards];
+    [self.button_choose_Company.layer addAnimation:transitionAnimation forKey:@"FromRightAnimation"];
+    self.button_choose_Company.backgroundColor = [UIColor clearColor];
+    [self.button_choose_Company setBackgroundImage:[self imageWithColor:[UIColor colorWithRed:23.0/255.0 green:129.0/255.0 blue:241.0/255.0 alpha:0.5]] forState:UIControlStateHighlighted];
+    
 }
 
 #pragma mark - Setters

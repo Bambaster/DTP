@@ -53,6 +53,7 @@
 
 @property (nonatomic, strong) UILabel * label_ButtonTitle;
 @property (nonatomic, strong) UILabel * label_TextPlaceholder;
+@property (nonatomic,strong) NSString * string_Company;
 
 
 @end
@@ -64,8 +65,9 @@
     [super loadView];
     [self fixFrame];
     isPlaceHolderHiden = NO;
-    
 }
+
+
 
 - (void)fixFrame
 {
@@ -252,6 +254,10 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(show_companies) name:@"Show_Companies" object:nil];
 
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(setCompany_Button_Title:) name:@"ChooseCompany" object:nil];
+
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(setCompany_Button_Title_Normal) name:@"SetNormal" object:nil];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -263,6 +269,9 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"Show_Companies" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ChooseCompany" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"SetNormal" object:nil];
+
 
 }
 
@@ -308,6 +317,29 @@
 //    }];
     
     NSLog(@"__%s__",__func__);
+}
+
+- (void) setCompany_Button_Title:(NSNotification*) notification  {
+    
+    
+    self.string_Company = [notification.userInfo valueForKey:@"ChooseCompany"];
+    self.label_ButtonTitle.text = self.string_Company;
+    self.label_ButtonTitle.textColor = [UIColor whiteColor];
+    self.inputToolBarView.sendButton.enabled = ([self.inputToolBarView.textView.text trimWhitespace].length > 0 && self.string_Company.length != 0);
+    
+}
+
+- (void) setCompany_Button_Title_Normal  {
+    CATransition *transitionAnimation = [CATransition animation];
+    [transitionAnimation setType:kCATransitionFade];
+    [transitionAnimation setDuration:0.4];
+    [transitionAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    [transitionAnimation setFillMode:kCAFillModeForwards];
+    [self.label_ButtonTitle.layer addAnimation:transitionAnimation forKey:@"FromRightAnimation"];
+    self.label_ButtonTitle.text = @"Выбирите страховую компанию";
+    self.label_ButtonTitle.textColor = [UIColor colorWithRed:23.0/255.0 green:129.0/255.0 blue:241.0/255.0 alpha:1.0];
+    self.string_Company = @"";
+    
 }
 
 //----------------------------------------------------------------------------------------
@@ -591,7 +623,7 @@
         
         self.previousTextViewContentHeight = MIN(textViewContentHeight, maxHeight);
     }
-    self.inputToolBarView.sendButton.enabled = ([textView.text trimWhitespace].length > 0);
+    self.inputToolBarView.sendButton.enabled = ([textView.text trimWhitespace].length > 0 && self.string_Company.length != 0);
     
     Animations * anim = [Animations new];
     if ([textView.text trimWhitespace].length > 0 || !isPlaceHolderHiden) {

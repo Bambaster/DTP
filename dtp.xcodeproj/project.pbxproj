@@ -108,7 +108,8 @@
 		E7CCBAE61A4B618800921C9D /* MZAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CCBAE31A4B618800921C9D /* MZAppearance.m */; };
 		E7CCBAE71A4B618800921C9D /* NSInvocation+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CCBAE51A4B618800921C9D /* NSInvocation+Copy.m */; };
 		E7CCBAEB1A4B70FF00921C9D /* SearchCompaniesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CCBAEA1A4B70FF00921C9D /* SearchCompaniesViewController.m */; };
-		E7CCBAED1A4B75CD00921C9D /* Companies.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7CCBAEC1A4B75CD00921C9D /* Companies.rtf */; };
+		E7CCBAEF1A4B7EC100921C9D /* InshCompanies in Resources */ = {isa = PBXBuildFile; fileRef = E7CCBAEE1A4B7EC100921C9D /* InshCompanies */; };
+		E7CCBAF11A4B800F00921C9D /* Companies.txt in Resources */ = {isa = PBXBuildFile; fileRef = E7CCBAF01A4B800F00921C9D /* Companies.txt */; };
 		E7F230CF1A3E61030038890B /* SMSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7F230CE1A3E61030038890B /* SMSViewController.m */; };
 		E7F230D11A3F1E050038890B /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F230D01A3F1E050038890B /* start.png */; };
 		E7F230D41A3F24840038890B /* pinkodoff.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F230D21A3F24840038890B /* pinkodoff.png */; };
@@ -302,7 +303,8 @@
 		E7CCBAE51A4B618800921C9D /* NSInvocation+Copy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation+Copy.m"; sourceTree = "<group>"; };
 		E7CCBAE91A4B70FF00921C9D /* SearchCompaniesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCompaniesViewController.h; sourceTree = "<group>"; };
 		E7CCBAEA1A4B70FF00921C9D /* SearchCompaniesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCompaniesViewController.m; sourceTree = "<group>"; };
-		E7CCBAEC1A4B75CD00921C9D /* Companies.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Companies.rtf; sourceTree = "<group>"; };
+		E7CCBAEE1A4B7EC100921C9D /* InshCompanies */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = InshCompanies; sourceTree = "<group>"; };
+		E7CCBAF01A4B800F00921C9D /* Companies.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Companies.txt; sourceTree = "<group>"; };
 		E7F230CD1A3E61030038890B /* SMSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSViewController.h; sourceTree = "<group>"; };
 		E7F230CE1A3E61030038890B /* SMSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSViewController.m; sourceTree = "<group>"; };
 		E7F230D01A3F1E050038890B /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
@@ -681,7 +683,7 @@
 		E7F7BE841A3C60AA0013F46A /* dtp */ = {
 			isa = PBXGroup;
 			children = (
-				E7CCBAEC1A4B75CD00921C9D /* Companies.rtf */,
+				E7CCBAF01A4B800F00921C9D /* Companies.txt */,
 				E7F230D61A3F2BC50038890B /* notesViewController.h */,
 				E7F230D91A3F2C360038890B /* AppConstant.h */,
 				E7F230D71A3F2BC50038890B /* notesViewController.m */,
@@ -697,6 +699,7 @@
 				E7F7BE8C1A3C60AA0013F46A /* dtp.xcdatamodeld */,
 				E7F7BE851A3C60AA0013F46A /* Supporting Files */,
 				E7F7BEEE1A3CAD530013F46A /* dtp-Prefix.pch */,
+				E7CCBAEE1A4B7EC100921C9D /* InshCompanies */,
 			);
 			path = dtp;
 			sourceTree = "<group>";
@@ -874,6 +877,7 @@
 			files = (
 				E7C7F2111A49FB0500AF7B35 /* Pfagorasanspro-regular.ttf in Resources */,
 				E7C7F20F1A49FA2900AF7B35 /* Pfagorasanspro-bold.ttf in Resources */,
+				E7CCBAEF1A4B7EC100921C9D /* InshCompanies in Resources */,
 				E712C3841A43AEB600EBFCF6 /* Icon-Small-50@2x.png in Resources */,
 				E7F230D41A3F24840038890B /* pinkodoff.png in Resources */,
 				E7F7BEE91A3C9A230013F46A /* PFAgoraSansPro-Light.ttf in Resources */,
@@ -890,7 +894,6 @@
 				E7C7F2031A479B7100AF7B35 /* send.png in Resources */,
 				E712C3861A43AEB600EBFCF6 /* Icon@2x.png in Resources */,
 				E70796F71A43AA6F00DF5E14 /* splash.jpg in Resources */,
-				E7CCBAED1A4B75CD00921C9D /* Companies.rtf in Resources */,
 				E7C7F1E71A479B7100AF7B35 /* bubble-flat-incoming.png in Resources */,
 				E7C7F1E31A479B7100AF7B35 /* bubble-default-outgoing.png in Resources */,
 				E712C36E1A43AE9600EBFCF6 /* Icon-40@2x.png in Resources */,
@@ -910,6 +913,7 @@
 				E7F7BEE61A3C80010013F46A /* pageDot.png in Resources */,
 				E7C7F1FF1A479B7100AF7B35 /* PhotoIcon.png in Resources */,
 				E7C7F1FA1A479B7100AF7B35 /* input-bar-flat@2x.png in Resources */,
+				E7CCBAF11A4B800F00921C9D /* Companies.txt in Resources */,
 				E7C7F1E61A479B7100AF7B35 /* bubble-flat-incoming-selected@2x.png in Resources */,
 				E712C3881A43AEB600EBFCF6 /* iTunesArtwork@2x.png in Resources */,
 				E7F7BECB1A3C647E0013F46A /* icon2.png in Resources */,

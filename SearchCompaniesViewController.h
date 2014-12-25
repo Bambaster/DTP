@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface SearchCompaniesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
+{
+    BOOL isSearching;
+    
+}
 
 @end

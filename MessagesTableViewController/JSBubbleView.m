@@ -223,7 +223,7 @@ CGFloat const kJSAvatarSize = 50.0f;
                 NSString * string_Type_Review =  [message objectAtIndex:1];
 //                NSString * review =  [message objectAtIndex:4];
                 NSString * string_Type_Review_total = [NSString stringWithFormat:@"\n\n%@",string_Type_Review];
-                NSString * total_review = [NSString stringWithFormat:@"\n\n%@\n\n%@",[message objectAtIndex:2], review];
+                NSString * total_review = [NSString stringWithFormat:@"\n\n%@\n%@",[message objectAtIndex:2], review];
 //
 //                NSLog(@"string_Company %@",  string_Company);
 //                NSLog(@"range_Type_Review %@",  range_Type_Review);

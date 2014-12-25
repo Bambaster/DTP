@@ -16,6 +16,8 @@
 @property (strong, nonatomic) NSMutableArray *messageArray;
 @property (nonatomic,strong) UIImage *willSendImage;
 @property (strong, nonatomic) IBOutlet UITextView *textView_Message;
+@property (nonatomic,strong) NSString * string_Company;
+
 
 @property (nonatomic,strong) SinglTone * sing;
 
@@ -55,6 +57,9 @@
 //                                             selector:@selector(hide_TabBar)
 //                                                 name:UIKeyboardWillHideNotification
 //                                               object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(setCompany:) name:@"ChooseCompany" object:nil];
+
+    
 }
 
 
@@ -63,7 +68,7 @@
     [super viewWillDisappear:animated];
 
 //    
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"Show_Companies" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ChooseCompany" object:nil];
 //    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
@@ -90,12 +95,19 @@
 //
 //#pragma mark - show companies
 //
-//- (void) show_companies {
-//    
-//
-//    NSLog(@"__%s__",__func__);
-//}
-//
+- (void) setCompany:(NSNotification*) notification  {
+    
+    
+    self.string_Company = [notification.userInfo valueForKey:@"ChooseCompany"];
+    
+    //    nationalityField.text = [notification.userInfo valueForKey:@"CurrentNationality"];
+    //
+    //    [pop dismissPopoverAnimated:YES];
+    //
+    //    isPopActive = NO;
+    
+    
+}
 ////----------------------------------------------------------------------------------------
 ////----------------------------------------------------------------------------------------
 ////----------------------------------------------------------------------------------------
@@ -117,15 +129,12 @@
     JSBubbleMessageType msgType;
 
     
-    if(isUserMessage){
-
-
-        self.sing = [SinglTone new];
+//    if(isUserMessage){
 
         msgType = JSBubbleMessageTypeOutgoing;
         [JSMessageSoundEffect playMessageSentSound];
         isUserMessage = NO;
-        NSString * string_Company = @"Росгосстрах";
+        NSString * string_Company = self.string_Company;
         NSString * string_Type_Review = [[NSUserDefaults standardUserDefaults] stringForKey:Type_of_Review];
 
         NSString * string_Line = @"_______________________";
@@ -138,22 +147,23 @@
         NSString * current_Date_Value = [[current_Date componentsSeparatedByString:@" "]firstObject];
 
 
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"SetNormal" object:nil userInfo:nil];
         if ([last_Date_Value isEqualToString:current_Date_Value]) {
             MessageData *message = [[MessageData alloc] initWithMsgId:msgId text:total_review date:nil msgType:msgType mediaType:JSBubbleMediaTypeText img:nil];
             
             [self.messageArray addObject:message];
             
             [self finishSend:NO];
-            
-            NSLog(@"last_Date_Value %@", last_Date_Value);
-            NSLog(@"current_Date_Value %@", current_Date_Value);
-            NSLog(@"current_Date %@", current_Date);
-
-            NSLog(@"last_Date %@", last_Date);
-
-
-            
-            NSLog(@"isEqualToString");
+//            
+//            NSLog(@"last_Date_Value %@", last_Date_Value);
+//            NSLog(@"current_Date_Value %@", current_Date_Value);
+//            NSLog(@"current_Date %@", current_Date);
+//
+//            NSLog(@"last_Date %@", last_Date);
+//
+//
+//            
+//            NSLog(@"isEqualToString");
 
             
             
@@ -173,44 +183,50 @@
 
             
         }
-
-    }else{
-        msgType = JSBubbleMessageTypeIncoming;
-        [JSMessageSoundEffect playMessageReceivedSound];
-        isUserMessage = YES;
-
-
-        NSString * last_Date = [[NSUserDefaults standardUserDefaults]
-                                stringForKey:LAST_MESSAGE_DATE];
-        NSString * current_Date = [NSString stringWithFormat:@"%@", [NSDate date]];
-        NSString * last_Date_Value = [[last_Date componentsSeparatedByString:@" "]firstObject];
-        NSString * current_Date_Value = [[current_Date componentsSeparatedByString:@" "]firstObject];
-        NSLog(@"current_Date_Value %@", current_Date_Value);
-        
-        if ([last_Date_Value isEqualToString:current_Date_Value]) {
-            MessageData *message = [[MessageData alloc] initWithMsgId:msgId text:text date:nil msgType:msgType mediaType:JSBubbleMediaTypeText img:nil];
-            
-            [self.messageArray addObject:message];
-            [self finishSend:NO];
-        }
-        
-        else {
-            
-            MessageData *message = [[MessageData alloc] initWithMsgId:msgId text:text date:[NSDate date] msgType:msgType mediaType:JSBubbleMediaTypeText img:nil];
-            [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@", [NSDate date]] forKey:LAST_MESSAGE_DATE];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            [self.messageArray addObject:message];
-            [self finishSend:NO];
-        }
-        
-//        
-//        MessageData *message = [[MessageData alloc] initWithMsgId:msgId text:text date:[NSDate date] msgType:msgType mediaType:JSBubbleMediaTypeText img:nil];
-        
-        
-
-        
-    }
     
+    string_Company = @"";
+    self.string_Company = @"";
+
+//    }
+//    
+//    
+//    else{
+//        msgType = JSBubbleMessageTypeIncoming;
+//        [JSMessageSoundEffect playMessageReceivedSound];
+//        isUserMessage = YES;
+//
+//
+//        NSString * last_Date = [[NSUserDefaults standardUserDefaults]
+//                                stringForKey:LAST_MESSAGE_DATE];
+//        NSString * current_Date = [NSString stringWithFormat:@"%@", [NSDate date]];
+//        NSString * last_Date_Value = [[last_Date componentsSeparatedByString:@" "]firstObject];
+//        NSString * current_Date_Value = [[current_Date componentsSeparatedByString:@" "]firstObject];
+//        NSLog(@"current_Date_Value %@", current_Date_Value);
+//        
+//        if ([last_Date_Value isEqualToString:current_Date_Value]) {
+//            MessageData *message = [[MessageData alloc] initWithMsgId:msgId text:text date:nil msgType:msgType mediaType:JSBubbleMediaTypeText img:nil];
+//            
+//            [self.messageArray addObject:message];
+//            [self finishSend:NO];
+//        }
+//        
+//        else {
+//            
+//            MessageData *message = [[MessageData alloc] initWithMsgId:msgId text:text date:[NSDate date] msgType:msgType mediaType:JSBubbleMediaTypeText img:nil];
+//            [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@", [NSDate date]] forKey:LAST_MESSAGE_DATE];
+//            [[NSUserDefaults standardUserDefaults] synchronize];
+//            [self.messageArray addObject:message];
+//            [self finishSend:NO];
+//        }
+//        
+////        
+////        MessageData *message = [[MessageData alloc] initWithMsgId:msgId text:text date:[NSDate date] msgType:msgType mediaType:JSBubbleMediaTypeText img:nil];
+//        
+//        
+//
+//        
+//    }
+//    
 
 
     
