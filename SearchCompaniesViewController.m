@@ -26,7 +26,9 @@
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc] init];
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setFont:[UIFont fontWithName:@"PFAgoraSansPro-Regular" size:18]];
-    // Do any additional setup after loading the view.
+
+
+
 }
 
 - (void)didReceiveMemoryWarning {
