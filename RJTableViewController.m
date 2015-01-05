@@ -27,6 +27,8 @@
 #import "RJTableViewController.h"
 #import "RJModel.h"
 #import "RJTableViewCell.h"
+#import "DetailCompanyViewController.h"
+
 
 static NSString *CellIdentifier = @"CellIdentifier";
 
@@ -97,6 +99,8 @@ static NSString *CellIdentifier = @"CellIdentifier";
                                              selector:@selector(contentSizeCategoryChanged:)
                                                  name:UIContentSizeCategoryDidChangeNotification
                                                object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(go_to_DetailCompany:) name:@"DetailVievCompany" object:nil];
+
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -106,6 +110,10 @@ static NSString *CellIdentifier = @"CellIdentifier";
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIContentSizeCategoryDidChangeNotification
                                                   object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"DetailVievCompany"
+                                                  object:nil];
+
 }
 
 // This method is called when the Dynamic Type user setting changes (from the system Settings app)
@@ -407,6 +415,21 @@ static NSString *CellIdentifier = @"CellIdentifier";
 ////----------------------------------------------------------------------------------------
 ////----------------------------------------------------------------------------------------
 ////----------------------------------------------------------------------------------------
+
+
+- (void) go_to_DetailCompany:(NSNotification*) notification  {
+    
+    UIStoryboard* storyBoard =  [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    DetailCompanyViewController *destViewController = [storyBoard instantiateViewControllerWithIdentifier:@"DetailCompany"];
+    destViewController.company_name = [notification.userInfo valueForKey:@"company_name"];
+    destViewController.minus_count = 321;
+    destViewController.plus_count = 300;
+
+    
+    
+    [self.navigationController pushViewController:destViewController animated:YES];
+
+}
 
 
 

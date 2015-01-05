@@ -118,6 +118,7 @@
 		E7CCBAEB1A4B70FF00921C9D /* SearchCompaniesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CCBAEA1A4B70FF00921C9D /* SearchCompaniesViewController.m */; };
 		E7CCBAEF1A4B7EC100921C9D /* InshCompanies in Resources */ = {isa = PBXBuildFile; fileRef = E7CCBAEE1A4B7EC100921C9D /* InshCompanies */; };
 		E7CCBAF11A4B800F00921C9D /* Companies.txt in Resources */ = {isa = PBXBuildFile; fileRef = E7CCBAF01A4B800F00921C9D /* Companies.txt */; };
+		E7CF5DEE1A5B052A004EE757 /* DetailCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CF5DED1A5B052A004EE757 /* DetailCompanyViewController.m */; };
 		E7F230CF1A3E61030038890B /* SMSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7F230CE1A3E61030038890B /* SMSViewController.m */; };
 		E7F230D11A3F1E050038890B /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F230D01A3F1E050038890B /* start.png */; };
 		E7F230D41A3F24840038890B /* pinkodoff.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F230D21A3F24840038890B /* pinkodoff.png */; };
@@ -329,6 +330,8 @@
 		E7CCBAEA1A4B70FF00921C9D /* SearchCompaniesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCompaniesViewController.m; sourceTree = "<group>"; };
 		E7CCBAEE1A4B7EC100921C9D /* InshCompanies */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = InshCompanies; sourceTree = "<group>"; };
 		E7CCBAF01A4B800F00921C9D /* Companies.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Companies.txt; sourceTree = "<group>"; };
+		E7CF5DEC1A5B052A004EE757 /* DetailCompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCompanyViewController.h; sourceTree = "<group>"; };
+		E7CF5DED1A5B052A004EE757 /* DetailCompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCompanyViewController.m; sourceTree = "<group>"; };
 		E7F230CD1A3E61030038890B /* SMSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSViewController.h; sourceTree = "<group>"; };
 		E7F230CE1A3E61030038890B /* SMSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSViewController.m; sourceTree = "<group>"; };
 		E7F230D01A3F1E050038890B /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
@@ -464,6 +467,7 @@
 		E70873F81A4DC01200E2503D /* News List */ = {
 			isa = PBXGroup;
 			children = (
+				E7CF5DEB1A5B04E6004EE757 /* DetailCompany */,
 				E73C11F21A59740700776D40 /* TableViewCellWithAutoLayout */,
 			);
 			name = "News List";
@@ -671,6 +675,15 @@
 				E7CCBAEA1A4B70FF00921C9D /* SearchCompaniesViewController.m */,
 			);
 			name = SearchCompanies;
+			sourceTree = "<group>";
+		};
+		E7CF5DEB1A5B04E6004EE757 /* DetailCompany */ = {
+			isa = PBXGroup;
+			children = (
+				E7CF5DEC1A5B052A004EE757 /* DetailCompanyViewController.h */,
+				E7CF5DED1A5B052A004EE757 /* DetailCompanyViewController.m */,
+			);
+			name = DetailCompany;
 			sourceTree = "<group>";
 		};
 		E7F230CC1A3E60E30038890B /* SMS Conferm */ = {
@@ -1139,6 +1152,7 @@
 				E7C7F2081A479B7100AF7B35 /* UIColor+JSMessagesView.m in Sources */,
 				E7CCBAE61A4B618800921C9D /* MZAppearance.m in Sources */,
 				E7F7BE8E1A3C60AA0013F46A /* dtp.xcdatamodeld in Sources */,
+				E7CF5DEE1A5B052A004EE757 /* DetailCompanyViewController.m in Sources */,
 				E7C7F1D61A479B7100AF7B35 /* JSMessagesViewController.m in Sources */,
 				E73C11FD1A59741700776D40 /* NSArray+PureLayout.m in Sources */,
 				E7CCBAEB1A4B70FF00921C9D /* SearchCompaniesViewController.m in Sources */,

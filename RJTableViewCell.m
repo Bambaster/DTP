@@ -198,8 +198,10 @@
 
 - (void)handleSingleTap
 {
-    NSLog(@"self.titleLabel %@", self.titleLabel.text);
-    
+    NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+    [dict setValue:self.titleLabel.text forKey:@"company_name"];
+    [dict setValue:self.bodyLabel.text forKey:@"review"];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"DetailVievCompany" object:nil userInfo:dict];
 }
 
 @end
