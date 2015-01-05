@@ -21,6 +21,8 @@
 #import <CoreData/CoreData.h>
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "PureLayout.h"
+
 
 
 #endif

@@ -12,6 +12,8 @@
 
 @interface AppDelegate ()
 
+@property (nonatomic, strong) UITabBarController * tabBarController;
+
 @end
 
 @implementation AppDelegate
@@ -28,6 +30,28 @@
     
     return YES;
 }
+
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken
+{
+    
+    // Store the deviceToken in the current installation and save it to Parse.
+
+    
+//    [[NSUserDefaults standardUserDefaults] setObject:[self deviceTokenWithData:newDeviceToken ] forKey:@"DeviceToken"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+    NSLog(@"newDeviceToken %@", [self deviceTokenWithData:newDeviceToken ]);
+    
+}
+
+-(NSString *)deviceTokenWithData:(NSData *)data
+{
+    NSString *deviceToken = [[data description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    deviceToken = [deviceToken stringByReplacingOccurrencesOfString:@" " withString:@""];
+    return deviceToken;
+}
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

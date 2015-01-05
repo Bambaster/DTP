@@ -18,11 +18,18 @@ PODS:
   - AFNetworking/UIKit (2.2.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - MBProgressHUD (0.9)
+  - MediaRSSParser (1.0.1):
+    - AFNetworking (~> 2.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.2.1)
+  - MBProgressHUD (~> 0.8)
+  - MediaRSSParser (~> 1.0)
 
 SPEC CHECKSUMS:
   AFNetworking: ab63e259fe91eef4519b371ef0a4955af0e73e64
+  MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
+  MediaRSSParser: 6d8bc5d86b7a7a897c122aa841a3302c8ee8113c
 
 COCOAPODS: 0.35.0

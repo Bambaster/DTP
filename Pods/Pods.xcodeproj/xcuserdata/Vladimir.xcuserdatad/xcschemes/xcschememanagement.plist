@@ -9,6 +9,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-dtp-MBProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-dtp-MediaRSSParser.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-dtp.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>94617FA91F00C6A9615CBEF1</key>
+		<key>2B2E2E03B13C7578869A763B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F261CC294507457747ADD2BB</key>
+		<key>57F97A62A6617D11E3FB3B46</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>588AB79D9DAEE36EA3EDD7E1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F420746A5A38FAB44874D52B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -63,9 +63,12 @@
     self.array_SearchResults = [self.array_Companies filteredArrayUsingPredicate:resultPredicate];
     if (searchBar.text.length == 0) {
         isSearching = NO;
+        
+
     }
     else {
         isSearching = YES;
+
     }
     
     [self reload_TableView];

@@ -287,10 +287,10 @@
             </objects>
             <point key="canvasLocation" x="1467" y="768.99999999999977"/>
         </scene>
-        <!--View Controller-->
+        <!--Sample Table View Controller-->
         <scene sceneID="70p-QQ-Cwg">
             <objects>
-                <viewController id="5Xv-RI-Zva" sceneMemberID="viewController">
+                <viewController id="5Xv-RI-Zva" customClass="HTKSampleTableViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MgE-K1-VlE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -323,24 +323,30 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3PS-WD-6Oe">
-                                <rect key="frame" x="26" y="205" width="240" height="36"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ANR-Ah-h5q">
+                                <rect key="frame" x="117" y="258" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
-                                    <outlet property="delegate" destination="Ad8-vL-BD6" id="nb1-zX-cZm"/>
+                                    <action selector="testAPI:" destination="Ad8-vL-BD6" eventType="touchUpInside" id="LM6-pd-aUr"/>
                                 </connections>
-                            </textView>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9Iv-Cv-KK3">
+                                <rect key="frame" x="111" y="359" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="testAPI2:" destination="Ad8-vL-BD6" eventType="touchUpInside" id="8xm-Bs-bbR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Xlp-FS-cxw"/>
-                    <connections>
-                        <outlet property="textView" destination="3PS-WD-6Oe" id="5kE-IB-DN5"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NZV-lD-Zad" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -363,10 +369,10 @@
             </objects>
             <point key="canvasLocation" x="1467" y="-537"/>
         </scene>
-        <!--News List View Controller-->
+        <!--Table View Controller-->
         <scene sceneID="jqp-Yk-2qQ">
             <objects>
-                <viewController id="sXB-bi-IQy" customClass="NewsListViewController" sceneMemberID="viewController">
+                <viewController id="sXB-bi-IQy" customClass="RJTableViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uUG-c4-061">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -375,14 +381,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" id="QPb-fD-EkO">
-                                        <rect key="frame" x="0.0" y="17" width="320" height="44"/>
+                                    <searchBar contentMode="redraw" placeholder="Поиск по страховым компаниям" translucent="NO" id="QPb-fD-EkO">
+                                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <color key="barTintColor" red="0.8901960784313725" green="0.8901960784313725" blue="0.8901960784313725" alpha="0.82000000000000006" colorSpace="calibratedRGB"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <color key="barTintColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                                         <connections>
-                                            <outlet property="delegate" destination="sXB-bi-IQy" id="YV5-tg-qOM"/>
+                                            <outlet property="delegate" destination="sXB-bi-IQy" id="P6T-5K-8Gw"/>
                                         </connections>
                                     </searchBar>
                                 </subviews>
@@ -392,51 +398,9 @@
                                 <rect key="frame" x="0.0" y="63" width="320" height="456"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="100" id="iik-UL-Pus" customClass="NewsTableViewCell">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iik-UL-Pus" id="ZZT-6F-mLR">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="feg-X6-zFa">
-                                                    <rect key="frame" x="8" y="8" width="50" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f1n-xH-di8">
-                                                    <rect key="frame" x="12" y="59" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AcQ-5F-k44">
-                                                    <rect key="frame" x="12" y="78" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" id="WtX-GE-ykB">
-                                                    <rect key="frame" x="66" y="36" width="246" height="56"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="sXB-bi-IQy" id="2Db-fC-CDQ"/>
-                                                    </connections>
-                                                </textView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="textView_News" destination="WtX-GE-ykB" id="ba3-Gx-K2M"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="sXB-bi-IQy" id="vUg-CM-87d"/>
-                                    <outlet property="delegate" destination="sXB-bi-IQy" id="oaL-jI-tgh"/>
+                                    <outlet property="dataSource" destination="sXB-bi-IQy" id="hqy-h1-Wrj"/>
+                                    <outlet property="delegate" destination="sXB-bi-IQy" id="93k-R6-foQ"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -444,8 +408,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="dp7-vB-jrO"/>
                     <connections>
-                        <outlet property="search_Bar" destination="QPb-fD-EkO" id="u18-bq-gAl"/>
-                        <outlet property="tableView" destination="0Ki-pc-mtN" id="tJe-BL-miA"/>
+                        <outlet property="search_Bar" destination="QPb-fD-EkO" id="AAD-t8-kLR"/>
+                        <outlet property="tableView" destination="0Ki-pc-mtN" id="opn-Dr-S1K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9EN-Sl-W6u" userLabel="First Responder" sceneMemberID="firstResponder"/>
