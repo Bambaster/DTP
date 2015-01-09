@@ -12,4 +12,7 @@
 
 @interface SMSViewController : UIViewController <UITextFieldDelegate>
 
+@property (nonatomic, strong) NSString * string_code_value;
+
+
 @end

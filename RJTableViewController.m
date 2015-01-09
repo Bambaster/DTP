@@ -424,7 +424,15 @@ static NSString *CellIdentifier = @"CellIdentifier";
     destViewController.company_name = [notification.userInfo valueForKey:@"company_name"];
     destViewController.minus_count = 321;
     destViewController.plus_count = 300;
-
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    NSDictionary *dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:[notification.userInfo valueForKey:@"company_name"], @"title",
+                                [notification.userInfo valueForKey:@"review"], @"body",
+                                @"", @"element2",
+                                @"", @"element3",
+                                @"", @"element4",
+                                nil];
+    [result addObject:dictionary];
+    destViewController.dataSource = result;
     
     
     [self.navigationController pushViewController:destViewController animated:YES];

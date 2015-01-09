@@ -11,6 +11,7 @@
 #import "SMPageControl.h"
 #import "SetShadow.h"
 #import "AppConstant.h"
+#import "SMSViewController.h"
 
 
 @interface ViewController ()
@@ -27,6 +28,8 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *label_seven;
 @property (strong, nonatomic) IBOutlet UITextField *textField_Phone_number;
+@property (strong, nonatomic) NSDictionary * answer;
+
 
 - (IBAction)phone_number_changed:(id)sender;
 - (IBAction)button_Cancel_Action:(id)sender;
@@ -258,9 +261,11 @@
     NSLog(@"button_Next_Action %@", tone.phone_number);
 
 
-    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"+7%@", self.textField_Phone_number.text] forKey:User_Telephone_Number];
+//    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"+7%@", self.textField_Phone_number.text] forKey:User_Telephone_Number];
+//    
+//    [[NSUserDefaults standardUserDefaults] synchronize];
     
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self get_session];
     
 }
 
@@ -305,5 +310,65 @@
     
     [self.navigationController pushViewController:paneViewController animated:NO];
 }
+
+
+
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+
+#pragma mark - API
+
+- (void) get_session {
+    SinglTone * tone = [SinglTone singleton];
+
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSDictionary *parameters = @{@"action": @"register",
+                                 @"mobilephone": tone.phone_number,
+                                 @"hardwareid": [[NSUserDefaults standardUserDefaults]stringForKey:TOKEN],};
+    [manager GET:Server_URL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //        NSLog(@"JSON: %@", responseObject);
+        self.answer = (NSDictionary *)responseObject;
+        NSLog(@"JSON: %@", self.answer);
+        [self go_to_Detail_SMS:[self.answer valueForKey:@"code"]];
+        NSLog(@"go_to_Detail_SMS code - %@", [self.answer valueForKey:@"code"]);
+
+
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:[error localizedDescription]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+        
+    }];
+    
+    
+}
+
+
+
+
+////----------------------------------------------------------------------------------------
+////----------------------------------------------------------------------------------------
+////----------------------------------------------------------------------------------------
+
+
+- (void) go_to_Detail_SMS: (NSString *) sms_code {
+    
+    UIStoryboard* storyBoard =  [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    SMSViewController *destViewController = [storyBoard instantiateViewControllerWithIdentifier:@"SMS"];
+    destViewController.string_code_value = sms_code;
+
+    
+    [self.navigationController pushViewController:destViewController animated:YES];
+    
+}
+
 
 @end

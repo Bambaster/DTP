@@ -686,7 +686,7 @@
 			name = DetailCompany;
 			sourceTree = "<group>";
 		};
-		E7F230CC1A3E60E30038890B /* SMS Conferm */ = {
+		E7F230CC1A3E60E30038890B /* SMS Confirm */ = {
 			isa = PBXGroup;
 			children = (
 				E7F230DA1A3FC7FD0038890B /* UIView+Shake.h */,
@@ -696,7 +696,7 @@
 				E7F230CD1A3E61030038890B /* SMSViewController.h */,
 				E7F230CE1A3E61030038890B /* SMSViewController.m */,
 			);
-			name = "SMS Conferm";
+			name = "SMS Confirm";
 			sourceTree = "<group>";
 		};
 		E7F230DD1A41AC3A0038890B /* TabBar */ = {
@@ -744,7 +744,7 @@
 				E72EE3691A4272D100CC55C5 /* SinglTone */,
 				E7F230F41A41AC8D0038890B /* Profile */,
 				E7F230DD1A41AC3A0038890B /* TabBar */,
-				E7F230CC1A3E60E30038890B /* SMS Conferm */,
+				E7F230CC1A3E60E30038890B /* SMS Confirm */,
 				E7F7BEEF1A3CAFF30013F46A /* Animations */,
 				E7F7BEEA1A3CAC170013F46A /* shadow */,
 				E7F7BEE81A3C9A230013F46A /* PFAgoraSansPro-Light.ttf */,
@@ -1247,7 +1247,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "a089b2c2-febc-4b8b-a4fc-ddeed790428e";
+				PROVISIONING_PROFILE = "ab812d3f-ab00-4d8b-9a88-be87d7efdf42";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1284,7 +1284,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "a089b2c2-febc-4b8b-a4fc-ddeed790428e";
+				PROVISIONING_PROFILE = "ab812d3f-ab00-4d8b-9a88-be87d7efdf42";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1300,10 +1300,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iOS Development: Vladimir Popov (3F35D3AA4N)";
 				GCC_PREFIX_HEADER = "dtp/dtp-Prefix.pch";
 				INFOPLIST_FILE = dtp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a089b2c2-febc-4b8b-a4fc-ddeed790428e";
+				PROVISIONING_PROFILE = "801ad2aa-fb19-4f05-bfd4-501cdce319e3";
 			};
 			name = Debug;
 		};
@@ -1318,10 +1318,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "dtp/dtp-Prefix.pch";
 				INFOPLIST_FILE = dtp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a089b2c2-febc-4b8b-a4fc-ddeed790428e";
+				PROVISIONING_PROFILE = "801ad2aa-fb19-4f05-bfd4-501cdce319e3";
 			};
 			name = Release;
 		};

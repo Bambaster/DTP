@@ -26,6 +26,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *label_change_Photo_Two;
 @property (strong, nonatomic) IBOutlet UILabel *label_NoName;
 @property (strong, nonatomic) IBOutlet UIImageView *image_Avatar;
+@property (strong, nonatomic) NSDictionary * answer;
 - (IBAction)slider_Action_Possibility:(id)sender;
 - (IBAction)Back_Action:(id)sender;
 - (IBAction)change_Photo_Action:(id)sender;
@@ -60,10 +61,23 @@
 - (void)handleSingleTap:(UITapGestureRecognizer *)recognizer
 {
     [self.view endEditing:YES];
-    [[NSUserDefaults standardUserDefaults] setObject:self.textField_Name.text forKey:User_Name];
-    [[NSUserDefaults standardUserDefaults] setObject:self.textField_Phone.text forKey:User_Telephone_Number];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-        
+    Animations * anim = [Animations new];
+    self.textField_Name.text = [[NSUserDefaults standardUserDefaults] stringForKey:User_Name];
+    if ([self.textField_Name.text length] > 0) {
+        [anim hide_Label_NoName:self.label_NoName];
+    }
+    else {
+        if (self.label_NoName.alpha == 0) {
+        [anim show_Label_NoName:self.label_NoName];
+
+        }
+    }
+//    [[NSUserDefaults standardUserDefaults] setObject:self.textField_Name.text forKey:User_Name];
+//    [[NSUserDefaults standardUserDefaults] setObject:self.textField_Phone.text forKey:User_Telephone_Number];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+//    
+//    [self upload_profile_name];
+    
 }
 
 //----------------------------------------------------------------------------------------
@@ -81,7 +95,7 @@
     self.image_Avatar.image = imageAvatar;
     [self checkImage];
     if ([self.textField_Name.text length] > 0) {
-          [anim hide_Label_NoName:self.label_NoName];
+        [anim hide_Label_NoName:self.label_NoName];
     }
     else {
         
@@ -150,6 +164,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     self.image_Avatar.image = [UIImage croppedImageWithImagePickerInfo:info];
     [self checkImage];
+    [self upload_profile_avatar];
     
 }
 
@@ -199,6 +214,9 @@
         [textField resignFirstResponder];
         [[NSUserDefaults standardUserDefaults] setObject:self.textField_Name.text forKey:User_Name];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        [self upload_profile_name];
+//        [self session_check];
+
         return NO;
     }
     return YES;
@@ -467,6 +485,19 @@
 
 - (IBAction)slider_Action_Possibility:(id)sender {
     
+    UISwitch *onoff = (UISwitch *) sender;
+//    NSLog(@"%@", onoff.on ? @"On" : @"Off");
+    if (onoff.on) {
+        NSLog(@"On");
+
+    }
+    
+    else {
+        
+        NSLog(@"Off");
+
+    }
+    
 }
 
 - (IBAction)Back_Action:(id)sender {
@@ -474,5 +505,159 @@
     [self.tabBarController setSelectedIndex:0];
 }
 
+
+
+
+
+
+
+
+
+
+
+
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+
+#pragma mark - API
+
+- (void) session_check {
+    NSString * token = [self md5:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults]stringForKey:TOKEN], [[NSUserDefaults standardUserDefaults]stringForKey:SESSION]]];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    //[[NSUserDefaults standardUserDefaults]stringForKey:TOKEN]
+    NSDictionary *parameters = @{@"action": @"sessioncheck",
+                            
+                                 @"token": token,};
+    [manager GET:Server_URL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //        NSLog(@"JSON: %@", responseObject);
+        self.answer = (NSDictionary *)responseObject;
+        NSLog(@"JSON: %@", self.answer);
+        
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:[error localizedDescription]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+        
+    }];
+}
+
+
+- (void) upload_profile_name {
+    
+    NSString * name = [[NSUserDefaults standardUserDefaults]stringForKey:User_Name];
+    NSString * token = [self md5:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults]stringForKey:TOKEN], [[NSUserDefaults standardUserDefaults]stringForKey:SESSION]]];
+    
+    NSLog(@"token - %@", token);
+    if ([name length] == 0) {
+        name = @"Аноним";
+    }
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    //[[NSUserDefaults standardUserDefaults]stringForKey:TOKEN]
+    NSDictionary *parameters = @{@"action": @"register",
+                                 @"username": name,
+                                 @"mobilephone": [[NSUserDefaults standardUserDefaults]stringForKey:User_Telephone_Number],
+                                 @"avatar": @"",
+                                 @"token": token,};
+    [manager GET:Server_URL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //        NSLog(@"JSON: %@", responseObject);
+        self.answer = (NSDictionary *)responseObject;
+        NSLog(@"JSON: %@", self.answer);
+
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:[error localizedDescription]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+        
+    }];
+    
+    
+}
+
+- (void) upload_profile_avatar {
+    NSString * name = [[NSUserDefaults standardUserDefaults]stringForKey:User_Name];
+    NSString * token = [self md5:[NSString stringWithFormat:@"%@%@",@"test", [[NSUserDefaults standardUserDefaults]stringForKey:SESSION]]];
+    
+    NSLog(@"token - %@", token);
+    if ([name length] == 0) {
+        name = @"Аноним";
+    }
+    
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    //[[NSUserDefaults standardUserDefaults]stringForKey:TOKEN]
+//    NSDictionary *parameters = @{@"action": @"register",
+//                                 @"username": name,
+//                                 @"mobilephone": [[NSUserDefaults standardUserDefaults]stringForKey:User_Telephone_Number],
+//                                 @"avatar": @"",
+//                                 @"token": token,};
+//    [manager POST:Server_URL parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//        [formData appendPartWithFileURL:filePath name:@"image" error:nil];
+//    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"Success: %@", responseObject);
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"Error: %@", error);
+//    }];
+//    
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    //[[NSUserDefaults standardUserDefaults]stringForKey:TOKEN]
+//    NSDictionary *parameters = @{@"action": @"sessionset",
+//                                 @"hardwareid": @"test",};
+//    [manager GET:Server_URL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        //        NSLog(@"JSON: %@", responseObject);
+//        self.answer = (NSDictionary *)responseObject;
+//        NSLog(@"JSON: %@", self.answer);
+//        [[NSUserDefaults standardUserDefaults] setObject:[self.answer valueForKey:@"sessionid"] forKey:SESSION];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+//        NSLog(@"SESSION: %@", [[NSUserDefaults standardUserDefaults]stringForKey:SESSION]);
+//        
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"Error: %@", error);
+//        
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+//                                                            message:[error localizedDescription]
+//                                                           delegate:nil
+//                                                  cancelButtonTitle:@"Ok"
+//                                                  otherButtonTitles:nil];
+//        [alertView show];
+//        
+//    }];
+    
+    
+}
+
+
+
+
+- (NSString *) md5:(NSString *) input
+{
+    const char *cStr = [input UTF8String];
+    unsigned char digest[16];
+    CC_MD5( cStr, strlen(cStr), digest ); // This is the md5 call
+    
+    NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    
+    for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
+        [output appendFormat:@"%02x", digest[i]];
+    NSLog(@"md5 output %@", output);
+
+    return  output;
+    
+}
 
 @end

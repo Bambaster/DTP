@@ -55,6 +55,8 @@
         [self.titleLabel setTextAlignment:NSTextAlignmentLeft];
         [self.titleLabel setTextColor:[UIColor blackColor]];
         self.titleLabel.backgroundColor = [UIColor clearColor];
+        self.titleLabel.userInteractionEnabled  = YES;
+
         
         self.bodyLabel = [UILabel newAutoLayoutView];
         [self.bodyLabel setLineBreakMode:NSLineBreakByCharWrapping];
@@ -110,6 +112,11 @@
         [tapRecognizer setDelegate:self];
         [tapRecognizer setNumberOfTapsRequired:1];
         [self.image_company addGestureRecognizer:tapRecognizer];
+        
+        UITapGestureRecognizer *tapRecognizer_Label = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handle_Label)];
+        [tapRecognizer_Label setDelegate:self];
+        [tapRecognizer_Label setNumberOfTapsRequired:1];
+        [self.titleLabel addGestureRecognizer:tapRecognizer_Label];
         
         [self updateFonts];
     }
@@ -197,6 +204,14 @@
 
 
 - (void)handleSingleTap
+{
+    NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+    [dict setValue:self.titleLabel.text forKey:@"company_name"];
+    [dict setValue:self.bodyLabel.text forKey:@"review"];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"DetailVievCompany" object:nil userInfo:dict];
+}
+
+- (void)handle_Label
 {
     NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
     [dict setValue:self.titleLabel.text forKey:@"company_name"];

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "AppConstant.h"
+#import "AFNetworkActivityIndicatorManager.h"
 
 
 @interface AppDelegate ()
@@ -21,13 +22,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-//    UIColor * tabBar_Color = [self getUIColorObjectFromHexString:COLOR_TABBAR alpha:1];
+    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+                                                    UIUserNotificationTypeBadge |
+                                                    UIUserNotificationTypeSound);
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                             categories:nil];
+    [application registerUserNotificationSettings:settings];
+    [application registerForRemoteNotifications];
     
     [[UITabBar appearance] setBarTintColor:[UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1]];
   //  [[UITabBar appearance] setTranslucent:NO];
   //  [[UITabBar appearance] setTintColor:[UIColor colorWithRed:227/255.0 green:180/255.0 blue:204/255.0 alpha:1]];
     
-    
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+
     return YES;
 }
 
@@ -35,13 +43,21 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken
 {
     
-    // Store the deviceToken in the current installation and save it to Parse.
+    if (![[NSUserDefaults standardUserDefaults]stringForKey:TOKEN]) {
+        [[NSUserDefaults standardUserDefaults] setObject:[self deviceTokenWithData:newDeviceToken ] forKey:TOKEN];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        NSLog(@"newDeviceToken %@", [self deviceTokenWithData:newDeviceToken ]);
+    }
+    else {
+        
+        NSLog(@"All ready have DeviceToken");
+    }
+    
+}
 
-    
-//    [[NSUserDefaults standardUserDefaults] setObject:[self deviceTokenWithData:newDeviceToken ] forKey:@"DeviceToken"];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-    NSLog(@"newDeviceToken %@", [self deviceTokenWithData:newDeviceToken ]);
-    
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+
+
 }
 
 -(NSString *)deviceTokenWithData:(NSData *)data

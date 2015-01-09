@@ -14,6 +14,12 @@
 #define		COLOR_TABBAR_BACKGROUND				HEXCOLOR(0x19C5FF00)
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
+
+#define		Server_URL                  @"http://www.it4y.ru/dtp/server/"
+
+
+
+
 #define		localRU				    	@"RU"
 #define		localENG				    @"EN"
 
@@ -25,6 +31,10 @@
 #define		User_Avatar                 @"avatar"
 #define		User_Name                   @"UserName"
 #define		Type_of_Review              @"Type_of_Review"
+#define		TOKEN                       @"DeviceToken"
+#define		SESSION                     @"Sessionid"
+
+
 
 
 

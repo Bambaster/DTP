@@ -22,7 +22,8 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "PureLayout.h"
-
+#import <AFNetworking/AFNetworking.h>
+#import <CommonCrypto/CommonDigest.h>
 
 
 #endif

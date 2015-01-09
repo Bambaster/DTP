@@ -10,6 +10,7 @@
 #import "EAIntroView.h"
 
 
+
 @interface ProfileViewController : UIViewController <UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, EAIntroDelegate>
 
 @end
