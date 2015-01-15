@@ -46,7 +46,9 @@
 		E74A3E521A51B6B600E6A1B3 /* Pfagorasanspro-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E7C7F20E1A49FA2900AF7B35 /* Pfagorasanspro-bold.ttf */; };
 		E755C18E1A458D5000E2BB6D /* KickViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E755C18D1A458D5000E2BB6D /* KickViewController.m */; };
 		E78D37AE1A52F72F00C9F632 /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = E78D37AD1A52F72F00C9F632 /* API.m */; };
+		E79385701A6694C8003B66D7 /* CoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = E793856F1A6694C8003B66D7 /* CoreData.m */; };
 		E7B915201A42399100A8FBD3 /* UIImage+ImagePickerCrop.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B9151F1A42399100A8FBD3 /* UIImage+ImagePickerCrop.m */; };
+		E7C281BD1A6196AD00B66C33 /* WebCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C281BC1A6196AD00B66C33 /* WebCompanyViewController.m */; };
 		E7C7F1D11A479B7100AF7B35 /* JSBubbleMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C7F1891A479B7100AF7B35 /* JSBubbleMessageCell.m */; };
 		E7C7F1D21A479B7100AF7B35 /* JSBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C7F18B1A479B7100AF7B35 /* JSBubbleView.m */; };
 		E7C7F1D31A479B7100AF7B35 /* JSDismissiveTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C7F18D1A479B7100AF7B35 /* JSDismissiveTextView.m */; };
@@ -169,6 +171,47 @@
 		E7F7BEE71A3C80010013F46A /* pageDot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F7BEE51A3C80010013F46A /* pageDot@2x.png */; };
 		E7F7BEED1A3CAC2F0013F46A /* SetShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = E7F7BEEC1A3CAC2F0013F46A /* SetShadow.m */; };
 		E7F7BEF21A3CB0100013F46A /* Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = E7F7BEF11A3CB0100013F46A /* Animations.m */; };
+		E7F89D611A632476006F042B /* Альфа страхование.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D3B1A632476006F042B /* Альфа страхование.png */; };
+		E7F89D621A632476006F042B /* Альфа страхование@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D3C1A632476006F042B /* Альфа страхование@2x.png */; };
+		E7F89D631A632476006F042B /* Альянс(РОСНО).png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D3D1A632476006F042B /* Альянс(РОСНО).png */; };
+		E7F89D641A632476006F042B /* Альянс(РОСНО)@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D3E1A632476006F042B /* Альянс(РОСНО)@2x.png */; };
+		E7F89D651A632476006F042B /* ВСК.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D3F1A632476006F042B /* ВСК.png */; };
+		E7F89D661A632476006F042B /* ВСК@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D401A632476006F042B /* ВСК@2x.png */; };
+		E7F89D671A632476006F042B /* ВТБ.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D411A632476006F042B /* ВТБ.png */; };
+		E7F89D681A632476006F042B /* ВТБ@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D421A632476006F042B /* ВТБ@2x.png */; };
+		E7F89D691A632476006F042B /* ГУТА страхование.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D431A632476006F042B /* ГУТА страхование.png */; };
+		E7F89D6A1A632476006F042B /* ГУТА страхование@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D441A632476006F042B /* ГУТА страхование@2x.png */; };
+		E7F89D6B1A632476006F042B /* Жасо.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D451A632476006F042B /* Жасо.png */; };
+		E7F89D6C1A632476006F042B /* Жасо@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D461A632476006F042B /* Жасо@2x.png */; };
+		E7F89D6D1A632476006F042B /* Ингосстрах.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D471A632476006F042B /* Ингосстрах.png */; };
+		E7F89D6E1A632476006F042B /* Ингосстрах@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D481A632476006F042B /* Ингосстрах@2x.png */; };
+		E7F89D6F1A632476006F042B /* Интач страхование.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D491A632476006F042B /* Интач страхование.png */; };
+		E7F89D701A632476006F042B /* Интач страхование@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D4A1A632476006F042B /* Интач страхование@2x.png */; };
+		E7F89D711A632476006F042B /* МАКС.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D4B1A632476006F042B /* МАКС.png */; };
+		E7F89D721A632476006F042B /* МАКС@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D4C1A632476006F042B /* МАКС@2x.png */; };
+		E7F89D731A632476006F042B /* МСК страховая.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D4D1A632476006F042B /* МСК страховая.png */; };
+		E7F89D741A632476006F042B /* МСК страховая@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D4E1A632476006F042B /* МСК страховая@2x.png */; };
+		E7F89D751A632476006F042B /* Рессо.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D4F1A632476006F042B /* Рессо.png */; };
+		E7F89D761A632476006F042B /* Рессо@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D501A632476006F042B /* Рессо@2x.png */; };
+		E7F89D771A632476006F042B /* Россия.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D511A632476006F042B /* Россия.png */; };
+		E7F89D781A632476006F042B /* Россия@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D521A632476006F042B /* Россия@2x.png */; };
+		E7F89D791A632476006F042B /* Роcгосстрах.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D531A632476006F042B /* Роcгосстрах.png */; };
+		E7F89D7A1A632476006F042B /* Роcгосстрах@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D541A632476006F042B /* Роcгосстрах@2x.png */; };
+		E7F89D7B1A632476006F042B /* СОГАЗ.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D551A632476006F042B /* СОГАЗ.png */; };
+		E7F89D7C1A632476006F042B /* СОГАЗ@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D561A632476006F042B /* СОГАЗ@2x.png */; };
+		E7F89D7D1A632476006F042B /* Согласие.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D571A632476006F042B /* Согласие.png */; };
+		E7F89D7E1A632476006F042B /* Согласие@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D581A632476006F042B /* Согласие@2x.png */; };
+		E7F89D7F1A632476006F042B /* ТРАНСНЕФТЬ.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D591A632476006F042B /* ТРАНСНЕФТЬ.png */; };
+		E7F89D801A632476006F042B /* ТРАНСНЕФТЬ@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D5A1A632476006F042B /* ТРАНСНЕФТЬ@2x.png */; };
+		E7F89D811A632476006F042B /* УРАЛСИБ.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D5B1A632476006F042B /* УРАЛСИБ.png */; };
+		E7F89D821A632476006F042B /* УРАЛСИБ@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D5C1A632476006F042B /* УРАЛСИБ@2x.png */; };
+		E7F89D831A632476006F042B /* Цюрих.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D5D1A632476006F042B /* Цюрих.png */; };
+		E7F89D841A632476006F042B /* Цюрих@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D5E1A632476006F042B /* Цюрих@2x.png */; };
+		E7F89D851A632476006F042B /* Югория.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D5F1A632476006F042B /* Югория.png */; };
+		E7F89D861A632476006F042B /* Югория@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D601A632476006F042B /* Югория@2x.png */; };
+		E7F89D881A632480006F042B /* fon.png in Resources */ = {isa = PBXBuildFile; fileRef = E7F89D871A632480006F042B /* fon.png */; };
+		E7F89D8B1A63424C006F042B /* NewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7F89D8A1A63424C006F042B /* NewViewController.m */; };
+		E7F89D8F1A6343F9006F042B /* NewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7F89D8E1A6343F9006F042B /* NewsTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -231,8 +274,12 @@
 		E755C18D1A458D5000E2BB6D /* KickViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KickViewController.m; sourceTree = "<group>"; };
 		E78D37AC1A52F72F00C9F632 /* API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
 		E78D37AD1A52F72F00C9F632 /* API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = API.m; sourceTree = "<group>"; };
+		E793856E1A6694C8003B66D7 /* CoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreData.h; sourceTree = "<group>"; };
+		E793856F1A6694C8003B66D7 /* CoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreData.m; sourceTree = "<group>"; };
 		E7B9151E1A42399100A8FBD3 /* UIImage+ImagePickerCrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImagePickerCrop.h"; sourceTree = "<group>"; };
 		E7B9151F1A42399100A8FBD3 /* UIImage+ImagePickerCrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImagePickerCrop.m"; sourceTree = "<group>"; };
+		E7C281BB1A6196AD00B66C33 /* WebCompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebCompanyViewController.h; sourceTree = "<group>"; };
+		E7C281BC1A6196AD00B66C33 /* WebCompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebCompanyViewController.m; sourceTree = "<group>"; };
 		E7C7F1881A479B7100AF7B35 /* JSBubbleMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBubbleMessageCell.h; sourceTree = "<group>"; };
 		E7C7F1891A479B7100AF7B35 /* JSBubbleMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSBubbleMessageCell.m; sourceTree = "<group>"; };
 		E7C7F18A1A479B7100AF7B35 /* JSBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBubbleView.h; sourceTree = "<group>"; };
@@ -401,6 +448,49 @@
 		E7F7BEEE1A3CAD530013F46A /* dtp-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "dtp-Prefix.pch"; sourceTree = "<group>"; };
 		E7F7BEF01A3CB0100013F46A /* Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animations.h; sourceTree = "<group>"; };
 		E7F7BEF11A3CB0100013F46A /* Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animations.m; sourceTree = "<group>"; };
+		E7F89D3B1A632476006F042B /* Альфа страхование.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Альфа страхование.png"; sourceTree = "<group>"; };
+		E7F89D3C1A632476006F042B /* Альфа страхование@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Альфа страхование@2x.png"; sourceTree = "<group>"; };
+		E7F89D3D1A632476006F042B /* Альянс(РОСНО).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Альянс(РОСНО).png"; sourceTree = "<group>"; };
+		E7F89D3E1A632476006F042B /* Альянс(РОСНО)@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Альянс(РОСНО)@2x.png"; sourceTree = "<group>"; };
+		E7F89D3F1A632476006F042B /* ВСК.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ВСК.png"; sourceTree = "<group>"; };
+		E7F89D401A632476006F042B /* ВСК@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ВСК@2x.png"; sourceTree = "<group>"; };
+		E7F89D411A632476006F042B /* ВТБ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ВТБ.png"; sourceTree = "<group>"; };
+		E7F89D421A632476006F042B /* ВТБ@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ВТБ@2x.png"; sourceTree = "<group>"; };
+		E7F89D431A632476006F042B /* ГУТА страхование.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ГУТА страхование.png"; sourceTree = "<group>"; };
+		E7F89D441A632476006F042B /* ГУТА страхование@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ГУТА страхование@2x.png"; sourceTree = "<group>"; };
+		E7F89D451A632476006F042B /* Жасо.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Жасо.png"; sourceTree = "<group>"; };
+		E7F89D461A632476006F042B /* Жасо@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Жасо@2x.png"; sourceTree = "<group>"; };
+		E7F89D471A632476006F042B /* Ингосстрах.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ингосстрах.png"; sourceTree = "<group>"; };
+		E7F89D481A632476006F042B /* Ингосстрах@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ингосстрах@2x.png"; sourceTree = "<group>"; };
+		E7F89D491A632476006F042B /* Интач страхование.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Интач страхование.png"; sourceTree = "<group>"; };
+		E7F89D4A1A632476006F042B /* Интач страхование@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Интач страхование@2x.png"; sourceTree = "<group>"; };
+		E7F89D4B1A632476006F042B /* МАКС.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "МАКС.png"; sourceTree = "<group>"; };
+		E7F89D4C1A632476006F042B /* МАКС@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "МАКС@2x.png"; sourceTree = "<group>"; };
+		E7F89D4D1A632476006F042B /* МСК страховая.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "МСК страховая.png"; sourceTree = "<group>"; };
+		E7F89D4E1A632476006F042B /* МСК страховая@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "МСК страховая@2x.png"; sourceTree = "<group>"; };
+		E7F89D4F1A632476006F042B /* Рессо.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Рессо.png"; sourceTree = "<group>"; };
+		E7F89D501A632476006F042B /* Рессо@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Рессо@2x.png"; sourceTree = "<group>"; };
+		E7F89D511A632476006F042B /* Россия.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Россия.png"; sourceTree = "<group>"; };
+		E7F89D521A632476006F042B /* Россия@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Россия@2x.png"; sourceTree = "<group>"; };
+		E7F89D531A632476006F042B /* Роcгосстрах.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Роcгосстрах.png"; sourceTree = "<group>"; };
+		E7F89D541A632476006F042B /* Роcгосстрах@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Роcгосстрах@2x.png"; sourceTree = "<group>"; };
+		E7F89D551A632476006F042B /* СОГАЗ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "СОГАЗ.png"; sourceTree = "<group>"; };
+		E7F89D561A632476006F042B /* СОГАЗ@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "СОГАЗ@2x.png"; sourceTree = "<group>"; };
+		E7F89D571A632476006F042B /* Согласие.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Согласие.png"; sourceTree = "<group>"; };
+		E7F89D581A632476006F042B /* Согласие@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Согласие@2x.png"; sourceTree = "<group>"; };
+		E7F89D591A632476006F042B /* ТРАНСНЕФТЬ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ТРАНСНЕФТЬ.png"; sourceTree = "<group>"; };
+		E7F89D5A1A632476006F042B /* ТРАНСНЕФТЬ@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ТРАНСНЕФТЬ@2x.png"; sourceTree = "<group>"; };
+		E7F89D5B1A632476006F042B /* УРАЛСИБ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "УРАЛСИБ.png"; sourceTree = "<group>"; };
+		E7F89D5C1A632476006F042B /* УРАЛСИБ@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "УРАЛСИБ@2x.png"; sourceTree = "<group>"; };
+		E7F89D5D1A632476006F042B /* Цюрих.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Цюрих.png"; sourceTree = "<group>"; };
+		E7F89D5E1A632476006F042B /* Цюрих@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Цюрих@2x.png"; sourceTree = "<group>"; };
+		E7F89D5F1A632476006F042B /* Югория.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Югория.png"; sourceTree = "<group>"; };
+		E7F89D601A632476006F042B /* Югория@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Югория@2x.png"; sourceTree = "<group>"; };
+		E7F89D871A632480006F042B /* fon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fon.png; sourceTree = "<group>"; };
+		E7F89D891A63424C006F042B /* NewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewViewController.h; sourceTree = "<group>"; };
+		E7F89D8A1A63424C006F042B /* NewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewViewController.m; sourceTree = "<group>"; };
+		E7F89D8D1A6343F9006F042B /* NewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsTableViewCell.h; sourceTree = "<group>"; };
+		E7F89D8E1A6343F9006F042B /* NewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsTableViewCell.m; sourceTree = "<group>"; };
 		F4E0203733417FCDEF5EAB49 /* libPods-dtp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dtp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -464,18 +554,23 @@
 			name = Lounch;
 			sourceTree = "<group>";
 		};
-		E70873F81A4DC01200E2503D /* News List */ = {
+		E70873F81A4DC01200E2503D /* Rewiev List */ = {
 			isa = PBXGroup;
 			children = (
+				E7C281BA1A61956100B66C33 /* WebView */,
+				E7C2818B1A614F7900B66C33 /* images */,
 				E7CF5DEB1A5B04E6004EE757 /* DetailCompany */,
 				E73C11F21A59740700776D40 /* TableViewCellWithAutoLayout */,
 			);
-			name = "News List";
+			name = "Rewiev List";
 			sourceTree = "<group>";
 		};
 		E7114F311A51E10300F2804D /* News */ = {
 			isa = PBXGroup;
 			children = (
+				E7F89D8C1A6343DC006F042B /* NewsTableViewCell */,
+				E7F89D891A63424C006F042B /* NewViewController.h */,
+				E7F89D8A1A63424C006F042B /* NewViewController.m */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -529,6 +624,61 @@
 				E78D37AD1A52F72F00C9F632 /* API.m */,
 			);
 			name = "API METHODS";
+			sourceTree = "<group>";
+		};
+		E7C2818B1A614F7900B66C33 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				E7F89D871A632480006F042B /* fon.png */,
+				E7F89D3B1A632476006F042B /* Альфа страхование.png */,
+				E7F89D3C1A632476006F042B /* Альфа страхование@2x.png */,
+				E7F89D3D1A632476006F042B /* Альянс(РОСНО).png */,
+				E7F89D3E1A632476006F042B /* Альянс(РОСНО)@2x.png */,
+				E7F89D3F1A632476006F042B /* ВСК.png */,
+				E7F89D401A632476006F042B /* ВСК@2x.png */,
+				E7F89D411A632476006F042B /* ВТБ.png */,
+				E7F89D421A632476006F042B /* ВТБ@2x.png */,
+				E7F89D431A632476006F042B /* ГУТА страхование.png */,
+				E7F89D441A632476006F042B /* ГУТА страхование@2x.png */,
+				E7F89D451A632476006F042B /* Жасо.png */,
+				E7F89D461A632476006F042B /* Жасо@2x.png */,
+				E7F89D471A632476006F042B /* Ингосстрах.png */,
+				E7F89D481A632476006F042B /* Ингосстрах@2x.png */,
+				E7F89D491A632476006F042B /* Интач страхование.png */,
+				E7F89D4A1A632476006F042B /* Интач страхование@2x.png */,
+				E7F89D4B1A632476006F042B /* МАКС.png */,
+				E7F89D4C1A632476006F042B /* МАКС@2x.png */,
+				E7F89D4D1A632476006F042B /* МСК страховая.png */,
+				E7F89D4E1A632476006F042B /* МСК страховая@2x.png */,
+				E7F89D4F1A632476006F042B /* Рессо.png */,
+				E7F89D501A632476006F042B /* Рессо@2x.png */,
+				E7F89D511A632476006F042B /* Россия.png */,
+				E7F89D521A632476006F042B /* Россия@2x.png */,
+				E7F89D531A632476006F042B /* Роcгосстрах.png */,
+				E7F89D541A632476006F042B /* Роcгосстрах@2x.png */,
+				E7F89D551A632476006F042B /* СОГАЗ.png */,
+				E7F89D561A632476006F042B /* СОГАЗ@2x.png */,
+				E7F89D571A632476006F042B /* Согласие.png */,
+				E7F89D581A632476006F042B /* Согласие@2x.png */,
+				E7F89D591A632476006F042B /* ТРАНСНЕФТЬ.png */,
+				E7F89D5A1A632476006F042B /* ТРАНСНЕФТЬ@2x.png */,
+				E7F89D5B1A632476006F042B /* УРАЛСИБ.png */,
+				E7F89D5C1A632476006F042B /* УРАЛСИБ@2x.png */,
+				E7F89D5D1A632476006F042B /* Цюрих.png */,
+				E7F89D5E1A632476006F042B /* Цюрих@2x.png */,
+				E7F89D5F1A632476006F042B /* Югория.png */,
+				E7F89D601A632476006F042B /* Югория@2x.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		E7C281BA1A61956100B66C33 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				E7C281BB1A6196AD00B66C33 /* WebCompanyViewController.h */,
+				E7C281BC1A6196AD00B66C33 /* WebCompanyViewController.m */,
+			);
+			name = WebView;
 			sourceTree = "<group>";
 		};
 		E7C7F1871A479B7100AF7B35 /* MessagesTableViewController */ = {
@@ -735,7 +885,7 @@
 			children = (
 				E78D37AB1A52F71100C9F632 /* API METHODS */,
 				E7114F311A51E10300F2804D /* News */,
-				E70873F81A4DC01200E2503D /* News List */,
+				E70873F81A4DC01200E2503D /* Rewiev List */,
 				E7CCBAC61A4B615900921C9D /* MZFormSheetController */,
 				E7C7F2101A49FB0400AF7B35 /* Pfagorasanspro-regular.ttf */,
 				E7C7F20E1A49FA2900AF7B35 /* Pfagorasanspro-bold.ttf */,
@@ -769,6 +919,8 @@
 		E7F7BE841A3C60AA0013F46A /* dtp */ = {
 			isa = PBXGroup;
 			children = (
+				E793856E1A6694C8003B66D7 /* CoreData.h */,
+				E793856F1A6694C8003B66D7 /* CoreData.m */,
 				E7CCBAF01A4B800F00921C9D /* Companies.txt */,
 				E7F230D61A3F2BC50038890B /* notesViewController.h */,
 				E7F230D91A3F2C360038890B /* AppConstant.h */,
@@ -877,6 +1029,15 @@
 			name = Animations;
 			sourceTree = "<group>";
 		};
+		E7F89D8C1A6343DC006F042B /* NewsTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E7F89D8D1A6343F9006F042B /* NewsTableViewCell.h */,
+				E7F89D8E1A6343F9006F042B /* NewsTableViewCell.m */,
+			);
+			name = NewsTableViewCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -963,30 +1124,40 @@
 			files = (
 				E7CCBAEF1A4B7EC100921C9D /* InshCompanies in Resources */,
 				E712C3841A43AEB600EBFCF6 /* Icon-Small-50@2x.png in Resources */,
+				E7F89D7D1A632476006F042B /* Согласие.png in Resources */,
 				E7F230D41A3F24840038890B /* pinkodoff.png in Resources */,
 				E7F231011A41EE560038890B /* back.png in Resources */,
 				E7C7F2021A479B7100AF7B35 /* send-highlighted@2x.png in Resources */,
+				E7F89D881A632480006F042B /* fon.png in Resources */,
+				E7F89D801A632476006F042B /* ТРАНСНЕФТЬ@2x.png in Resources */,
 				E70796F11A439F4400DF5E14 /* fon1.jpg in Resources */,
 				E7F7BE941A3C60AA0013F46A /* Main.storyboard in Resources */,
 				E7C7F1E01A479B7100AF7B35 /* bubble-default-outgoing-green@2x.png in Resources */,
 				E7F231061A41EE560038890B /* lenta@2x.png in Resources */,
+				E7F89D701A632476006F042B /* Интач страхование@2x.png in Resources */,
+				E7F89D7A1A632476006F042B /* Роcгосстрах@2x.png in Resources */,
 				E7F231091A41EE560038890B /* poddergka.png in Resources */,
 				E74A3E511A51B6B300E6A1B3 /* Pfagorasanspro-regular.ttf in Resources */,
 				E7C7F1DF1A479B7100AF7B35 /* bubble-default-outgoing-green.png in Resources */,
 				E7F7BEE71A3C80010013F46A /* pageDot@2x.png in Resources */,
 				E712C3871A43AEB600EBFCF6 /* iTunesArtwork.png in Resources */,
+				E7F89D741A632476006F042B /* МСК страховая@2x.png in Resources */,
 				E7C7F2031A479B7100AF7B35 /* send.png in Resources */,
 				E712C3861A43AEB600EBFCF6 /* Icon@2x.png in Resources */,
 				E70796F71A43AA6F00DF5E14 /* splash.jpg in Resources */,
 				E7C7F1E71A479B7100AF7B35 /* bubble-flat-incoming.png in Resources */,
+				E7F89D611A632476006F042B /* Альфа страхование.png in Resources */,
 				E7C7F1E31A479B7100AF7B35 /* bubble-default-outgoing.png in Resources */,
 				E712C36E1A43AE9600EBFCF6 /* Icon-40@2x.png in Resources */,
+				E7F89D691A632476006F042B /* ГУТА страхование.png in Resources */,
 				E7C7F1EE1A479B7100AF7B35 /* bubble-flat-outgoing@2x.png in Resources */,
 				E712C3801A43AEB600EBFCF6 /* Icon-60.png in Resources */,
+				E7F89D6D1A632476006F042B /* Ингосстрах.png in Resources */,
 				E74A3E501A51B6AD00E6A1B3 /* PFAgoraSansPro-Light.ttf in Resources */,
 				E7F230EE1A41AC880038890B /* avatar.png in Resources */,
 				E7C7F1E21A479B7100AF7B35 /* bubble-default-outgoing-selected@2x.png in Resources */,
 				E7C7F2051A479B7100AF7B35 /* messageReceived.aiff in Resources */,
+				E7F89D831A632476006F042B /* Цюрих.png in Resources */,
 				E7F7BEE11A3C7CBF0013F46A /* IntroPage3.xib in Resources */,
 				E7C7F1D91A479B7100AF7B35 /* bubble-default-incoming-green.png in Resources */,
 				E712C3761A43AE9600EBFCF6 /* Icon-Small@3x.png in Resources */,
@@ -994,6 +1165,7 @@
 				E7C7F1EB1A479B7100AF7B35 /* bubble-flat-outgoing-selected.png in Resources */,
 				E7C7F1FD1A479B7100AF7B35 /* input-field.png in Resources */,
 				E7C7F1ED1A479B7100AF7B35 /* bubble-flat-outgoing.png in Resources */,
+				E7F89D841A632476006F042B /* Цюрих@2x.png in Resources */,
 				E7C7F1FB1A479B7100AF7B35 /* input-bar.png in Resources */,
 				E7F7BEE61A3C80010013F46A /* pageDot.png in Resources */,
 				E7C7F1FF1A479B7100AF7B35 /* PhotoIcon.png in Resources */,
@@ -1002,11 +1174,17 @@
 				E7C7F1E61A479B7100AF7B35 /* bubble-flat-incoming-selected@2x.png in Resources */,
 				E712C3881A43AEB600EBFCF6 /* iTunesArtwork@2x.png in Resources */,
 				E7F7BECB1A3C647E0013F46A /* icon2.png in Resources */,
+				E7F89D851A632476006F042B /* Югория.png in Resources */,
+				E7F89D811A632476006F042B /* УРАЛСИБ.png in Resources */,
+				E7F89D771A632476006F042B /* Россия.png in Resources */,
 				E7F231041A41EE560038890B /* galovatsya@2x.png in Resources */,
+				E7F89D651A632476006F042B /* ВСК.png in Resources */,
 				E7F231031A41EE560038890B /* galovatsya.png in Resources */,
 				E70796F51A439F4400DF5E14 /* fon5.jpg in Resources */,
 				E7C7F1E81A479B7100AF7B35 /* bubble-flat-incoming@2x.png in Resources */,
 				E712C3721A43AE9600EBFCF6 /* Icon-76.png in Resources */,
+				E7F89D681A632476006F042B /* ВТБ@2x.png in Resources */,
+				E7F89D6A1A632476006F042B /* ГУТА страхование@2x.png in Resources */,
 				E7C7F1F71A479B7100AF7B35 /* bubble-typing.png in Resources */,
 				E7C7F1E41A479B7100AF7B35 /* bubble-default-outgoing@2x.png in Resources */,
 				E7F7BEE21A3C7CBF0013F46A /* IntroPage4.xib in Resources */,
@@ -1016,39 +1194,58 @@
 				E7C7F2001A479B7100AF7B35 /* PhotoIcon@2x.png in Resources */,
 				E7C7F1DB1A479B7100AF7B35 /* bubble-default-incoming-selected.png in Resources */,
 				E7C7F1DD1A479B7100AF7B35 /* bubble-default-incoming.png in Resources */,
+				E7F89D7B1A632476006F042B /* СОГАЗ.png in Resources */,
 				E712C3701A43AE9600EBFCF6 /* Icon-60@2x.png in Resources */,
 				E7C7F1FE1A479B7100AF7B35 /* input-field@2x.png in Resources */,
+				E7F89D7F1A632476006F042B /* ТРАНСНЕФТЬ.png in Resources */,
 				E7C7F1E91A479B7100AF7B35 /* bubble-flat-outgoing-old.png in Resources */,
 				E712C3741A43AE9600EBFCF6 /* Icon-Small.png in Resources */,
 				E7F7BECE1A3C647E0013F46A /* icon5.png in Resources */,
 				E7F7BED91A3C79800013F46A /* IntroPage1.xib in Resources */,
 				E7C7F1F41A479B7100AF7B35 /* bubble-square-outgoing-selected@2x.png in Resources */,
+				E7F89D721A632476006F042B /* МАКС@2x.png in Resources */,
 				E712C36C1A43AE9600EBFCF6 /* Contents.json in Resources */,
 				E7F7BE991A3C60AA0013F46A /* LaunchScreen.xib in Resources */,
 				E7F2310A1A41EE560038890B /* poddergka@2x.png in Resources */,
+				E7F89D631A632476006F042B /* Альянс(РОСНО).png in Resources */,
 				E7F230D11A3F1E050038890B /* start.png in Resources */,
 				E712C3831A43AEB600EBFCF6 /* Icon-Small-50.png in Resources */,
 				E7C7F1E51A479B7100AF7B35 /* bubble-flat-incoming-selected.png in Resources */,
 				E712C36D1A43AE9600EBFCF6 /* Icon-40.png in Resources */,
 				E7F7BECC1A3C647E0013F46A /* icon3.png in Resources */,
+				E7F89D821A632476006F042B /* УРАЛСИБ@2x.png in Resources */,
 				E7C7F1E11A479B7100AF7B35 /* bubble-default-outgoing-selected.png in Resources */,
+				E7F89D751A632476006F042B /* Рессо.png in Resources */,
 				E7C7F1EA1A479B7100AF7B35 /* bubble-flat-outgoing-old@2x.png in Resources */,
 				E7C7F1F91A479B7100AF7B35 /* input-bar-flat.png in Resources */,
 				E7C7F1FC1A479B7100AF7B35 /* input-bar@2x.png in Resources */,
 				E7F7BEE01A3C7CBF0013F46A /* IntroPage2.xib in Resources */,
+				E7F89D6B1A632476006F042B /* Жасо.png in Resources */,
 				E7C7F1F11A479B7100AF7B35 /* bubble-square-incoming.png in Resources */,
 				E7C7F1F61A479B7100AF7B35 /* bubble-square-outgoing@2x.png in Resources */,
 				E7F2310C1A41EE560038890B /* profil@2x.png in Resources */,
+				E7F89D761A632476006F042B /* Рессо@2x.png in Resources */,
+				E7F89D641A632476006F042B /* Альянс(РОСНО)@2x.png in Resources */,
+				E7F89D6F1A632476006F042B /* Интач страхование.png in Resources */,
 				E7F7BE961A3C60AA0013F46A /* Images.xcassets in Resources */,
+				E7F89D671A632476006F042B /* ВТБ.png in Resources */,
+				E7F89D621A632476006F042B /* Альфа страхование@2x.png in Resources */,
 				E7C7F1F81A479B7100AF7B35 /* bubble-typing@2x.png in Resources */,
 				E70796F31A439F4400DF5E14 /* fon3.jpg in Resources */,
 				E712C3711A43AE9600EBFCF6 /* Icon-60@3x.png in Resources */,
 				E712C3821A43AEB600EBFCF6 /* Icon-72@2x.png in Resources */,
+				E7F89D6C1A632476006F042B /* Жасо@2x.png in Resources */,
+				E7F89D711A632476006F042B /* МАКС.png in Resources */,
 				E7C7F1EF1A479B7100AF7B35 /* bubble-square-incoming-selected.png in Resources */,
+				E7F89D791A632476006F042B /* Роcгосстрах.png in Resources */,
 				E7F230D51A3F24840038890B /* pinkodon.png in Resources */,
 				E7F2310B1A41EE560038890B /* profil.png in Resources */,
 				E70796F21A439F4400DF5E14 /* fon2.jpg in Resources */,
+				E7F89D6E1A632476006F042B /* Ингосстрах@2x.png in Resources */,
+				E7F89D661A632476006F042B /* ВСК@2x.png in Resources */,
+				E7F89D781A632476006F042B /* Россия@2x.png in Resources */,
 				E7F231051A41EE560038890B /* lenta.png in Resources */,
+				E7F89D7C1A632476006F042B /* СОГАЗ@2x.png in Resources */,
 				E7C7F2041A479B7100AF7B35 /* send@2x.png in Resources */,
 				E7F231021A41EE560038890B /* back@2x.png in Resources */,
 				E7C7F1DA1A479B7100AF7B35 /* bubble-default-incoming-green@2x.png in Resources */,
@@ -1060,15 +1257,18 @@
 				E7F231071A41EE560038890B /* novosti.png in Resources */,
 				E7C7F1F51A479B7100AF7B35 /* bubble-square-outgoing.png in Resources */,
 				E7F231081A41EE560038890B /* novosti@2x.png in Resources */,
+				E7F89D861A632476006F042B /* Югория@2x.png in Resources */,
 				E7C7F2011A479B7100AF7B35 /* send-highlighted.png in Resources */,
 				E7C7F1DE1A479B7100AF7B35 /* bubble-default-incoming@2x.png in Resources */,
 				E7F7BEE31A3C7CBF0013F46A /* IntroPage5.xib in Resources */,
 				E712C3751A43AE9600EBFCF6 /* Icon-Small@2x.png in Resources */,
+				E7F89D7E1A632476006F042B /* Согласие@2x.png in Resources */,
 				E712C3851A43AEB600EBFCF6 /* Icon.png in Resources */,
 				E7C7F1F01A479B7100AF7B35 /* bubble-square-incoming-selected@2x.png in Resources */,
 				E712C36F1A43AE9600EBFCF6 /* Icon-40@3x.png in Resources */,
 				E7C7F1EC1A479B7100AF7B35 /* bubble-flat-outgoing-selected@2x.png in Resources */,
 				E7F7BECA1A3C647E0013F46A /* icon1.png in Resources */,
+				E7F89D731A632476006F042B /* МСК страховая.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1128,7 +1328,9 @@
 				E73C12051A59742C00776D40 /* RJModel.m in Sources */,
 				E7C7F20D1A479B8200AF7B35 /* MessageData.m in Sources */,
 				E7C7F2091A479B7100AF7B35 /* UIImage+JSMessagesView.m in Sources */,
+				E7C281BD1A6196AD00B66C33 /* WebCompanyViewController.m in Sources */,
 				E7F7BE8B1A3C60AA0013F46A /* AppDelegate.m in Sources */,
+				E7F89D8F1A6343F9006F042B /* NewsTableViewCell.m in Sources */,
 				E7CCBAE71A4B618800921C9D /* NSInvocation+Copy.m in Sources */,
 				E7F7BEF21A3CB0100013F46A /* Animations.m in Sources */,
 				E7C7F1D51A479B7100AF7B35 /* JSMessageSoundEffect.m in Sources */,
@@ -1145,6 +1347,7 @@
 				E7F7BE911A3C60AA0013F46A /* ViewController.m in Sources */,
 				E78D37AE1A52F72F00C9F632 /* API.m in Sources */,
 				E7C7F2071A479B7100AF7B35 /* UIButton+JSMessagesView.m in Sources */,
+				E79385701A6694C8003B66D7 /* CoreData.m in Sources */,
 				E7CCBADB1A4B615900921C9D /* UIImage+Additional.m in Sources */,
 				E7CCBAD71A4B615900921C9D /* MZFormSheetBackgroundWindowViewController.m in Sources */,
 				E7C7F1D11A479B7100AF7B35 /* JSBubbleMessageCell.m in Sources */,
@@ -1155,6 +1358,7 @@
 				E7CF5DEE1A5B052A004EE757 /* DetailCompanyViewController.m in Sources */,
 				E7C7F1D61A479B7100AF7B35 /* JSMessagesViewController.m in Sources */,
 				E73C11FD1A59741700776D40 /* NSArray+PureLayout.m in Sources */,
+				E7F89D8B1A63424C006F042B /* NewViewController.m in Sources */,
 				E7CCBAEB1A4B70FF00921C9D /* SearchCompaniesViewController.m in Sources */,
 				E73C12061A59742C00776D40 /* RJTableViewCell.m in Sources */,
 				E7C7F1D71A479B7100AF7B35 /* JSMessageTextView.m in Sources */,

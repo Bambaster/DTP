@@ -44,6 +44,13 @@
             <string>PFAgoraSansPro-Regular</string>
             <string>PFAgoraSansPro-Regular</string>
             <string>PFAgoraSansPro-Regular</string>
+            <string>PFAgoraSansPro-Regular</string>
+            <string>PFAgoraSansPro-Regular</string>
+            <string>PFAgoraSansPro-Regular</string>
+            <string>PFAgoraSansPro-Regular</string>
+            <string>PFAgoraSansPro-Regular</string>
+            <string>PFAgoraSansPro-Regular</string>
+            <string>PFAgoraSansPro-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -293,14 +300,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qJf-Wz-p88" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1467" y="768.99999999999977"/>
+            <point key="canvasLocation" x="1573" y="773"/>
         </scene>
         <!--Sample Table View Controller-->
         <scene sceneID="70p-QQ-Cwg">
             <objects>
                 <viewController id="5Xv-RI-Zva" customClass="HTKSampleTableViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MgE-K1-VlE">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="DxZ-n1-LKy">
@@ -318,10 +325,10 @@
             </objects>
             <point key="canvasLocation" x="1900" y="768.99999999999977"/>
         </scene>
-        <!--News View Controller-->
+        <!--New View Controller-->
         <scene sceneID="Afc-9I-cWr">
             <objects>
-                <viewController id="Ad8-vL-BD6" customClass="NewsViewController" sceneMemberID="viewController">
+                <viewController id="Ad8-vL-BD6" customClass="NewViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cQQ-N4-nDD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -329,36 +336,79 @@
                             <view contentMode="scaleToFill" id="HbY-b5-kLH">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" id="J9B-ys-g82">
+                                        <rect key="frame" x="0.0" y="62" width="320" height="2"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </progressView>
+                                </subviews>
                                 <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ANR-Ah-h5q">
-                                <rect key="frame" x="117" y="258" width="46" height="30"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="159" sectionHeaderHeight="22" sectionFooterHeight="22" id="wfL-zv-fA5">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="159" id="M10-MX-1xK" customClass="NewsTableViewCell">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M10-MX-1xK" id="XTE-gK-2vz">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9NJ-3L-H8c">
+                                                    <rect key="frame" x="8" y="8" width="304" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="PFAgoraSansPro-Regular" family="PF Agora Sans Pro" pointSize="18"/>
+                                                    <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FuA-Z8-wNU">
+                                                    <rect key="frame" x="8" y="50" width="304" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="PFAgoraSansPro-Regular" family="PF Agora Sans Pro" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nri-YA-RgA">
+                                                    <rect key="frame" x="260" y="129" width="52" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5z6-3p-0L0">
+                                                    <rect key="frame" x="8" y="129" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="label_News_Body" destination="FuA-Z8-wNU" id="8xo-4E-NQ0"/>
+                                            <outlet property="label_News_Date" destination="5z6-3p-0L0" id="eCf-b0-iex"/>
+                                            <outlet property="label_News_Title" destination="9NJ-3L-H8c" id="G9w-xu-sqn"/>
+                                            <outlet property="label_Reviews_Count" destination="nri-YA-RgA" id="Pl7-td-K9f"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
-                                    <action selector="testAPI:" destination="Ad8-vL-BD6" eventType="touchUpInside" id="LM6-pd-aUr"/>
+                                    <outlet property="dataSource" destination="Ad8-vL-BD6" id="uUi-JJ-blm"/>
+                                    <outlet property="delegate" destination="Ad8-vL-BD6" id="Awc-FP-B1C"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9Iv-Cv-KK3">
-                                <rect key="frame" x="111" y="359" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="testAPI2:" destination="Ad8-vL-BD6" eventType="touchUpInside" id="8xm-Bs-bbR"/>
-                                </connections>
-                            </button>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Xlp-FS-cxw"/>
+                    <connections>
+                        <outlet property="tableView" destination="wfL-zv-fA5" id="TgB-KA-IYA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NZV-lD-Zad" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1900" y="109.99999999999997"/>
+            <point key="canvasLocation" x="1900" y="109"/>
         </scene>
         <!--Лента-->
         <scene sceneID="uHP-oG-lYs">
@@ -418,6 +468,7 @@
                     <connections>
                         <outlet property="search_Bar" destination="QPb-fD-EkO" id="AAD-t8-kLR"/>
                         <outlet property="tableView" destination="0Ki-pc-mtN" id="opn-Dr-S1K"/>
+                        <segue destination="gch-DA-VcF" kind="push" id="loR-Ma-5CR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9EN-Sl-W6u" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -429,7 +480,7 @@
             <objects>
                 <viewController storyboardIdentifier="DetailCompany" id="gch-DA-VcF" customClass="DetailCompanyViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kpl-qw-BAW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="Wgv-7R-CDD">
@@ -437,9 +488,9 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jc9-X8-NTc">
-                                        <rect key="frame" x="8" y="17" width="46" height="30"/>
+                                        <rect key="frame" x="8" y="22" width="27" height="27"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button">
+                                        <state key="normal" backgroundImage="back.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -450,62 +501,98 @@
                                 <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" id="99C-Wg-DOB">
-                                <rect key="frame" x="0.0" y="64" width="320" height="168"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="209"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="jxw-6D-rCE">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="168"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fon.png" id="jxw-6D-rCE">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="209"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="0.12" colorSpace="calibratedRGB"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="c58-e6-wQJ">
-                                        <rect key="frame" x="0.0" y="73" width="320" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <rect key="frame" x="0.0" y="76" width="320" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="PFAgoraSansPro-Regular" family="PF Agora Sans Pro" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7zG-J4-vNF">
+                                        <rect key="frame" x="0.0" y="102" width="320" height="13"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="PFAgoraSansPro-Regular" family="PF Agora Sans Pro" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kBX-zk-SYB">
+                                        <rect key="frame" x="0.0" y="123" width="320" height="13"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="PFAgoraSansPro-Regular" family="PF Agora Sans Pro" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gxP-VV-SBQ">
+                                        <rect key="frame" x="139" y="144" width="24" height="13"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="PFAgoraSansPro-Regular" family="PF Agora Sans Pro" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dyD-0Y-ERZ">
+                                        <rect key="frame" x="75" y="166" width="170" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="PFAgoraSansPro-Regular" family="PF Agora Sans Pro" pointSize="14"/>
+                                        <state key="normal" title="Написать жалобу" backgroundImage="start.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="send_kick_Action:" destination="gch-DA-VcF" eventType="touchUpInside" id="8Vz-la-ocY"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сайт:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="llt-05-6St">
+                                        <rect key="frame" x="89" y="141" width="42" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="PFAgoraSansPro-Regular" family="PF Agora Sans Pro" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" alpha="0.89999999999999991" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="KCF-Kz-5yQ">
+                                        <rect key="frame" x="125" y="5" width="70" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="1V8-WK-AcM">
-                                <rect key="frame" x="0.0" y="274" width="320" height="40"/>
+                                <rect key="frame" x="0.0" y="311" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="dgZ-u6-Z4y">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minus.png" id="dgZ-u6-Z4y">
                                         <rect key="frame" x="8" y="10" width="20" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="0.45000000000000001" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4vn-WX-C3D">
-                                        <rect key="frame" x="8" y="10" width="20" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="PFAgoraSansPro-Regular" family="PF Agora Sans Pro" pointSize="30"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Отрицательные отзывы" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZxA-Y6-sDZ">
                                         <rect key="frame" x="36" y="10" width="202" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="PFAgoraSansPro-Regular" family="PF Agora Sans Pro" pointSize="17"/>
-                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.85098039215686272" green="0.32941176470588235" blue="0.32941176470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lLP-9k-eOg">
                                         <rect key="frame" x="270" y="10" width="42" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="PFAgoraSansPro-Regular" family="PF Agora Sans Pro" pointSize="17"/>
-                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.85098039215686272" green="0.32941176470588235" blue="0.32941176470588235" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="fTn-Nw-CNL">
-                                <rect key="frame" x="0.0" y="232" width="320" height="40"/>
+                                <rect key="frame" x="0.0" y="269" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="34M-c3-QnB">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.png" id="34M-c3-QnB">
                                         <rect key="frame" x="8" y="10" width="20" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -513,40 +600,34 @@
                                         <rect key="frame" x="36" y="10" width="202" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="PFAgoraSansPro-Regular" family="PF Agora Sans Pro" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="1" blue="0.23795345279720279" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.63137254901960782" green="0.89411764705882357" blue="0.33725490196078434" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bZD-jn-Yw5">
                                         <rect key="frame" x="270" y="10" width="42" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="PFAgoraSansPro-Regular" family="PF Agora Sans Pro" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="1" blue="0.23795345279999999" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lIo-wz-OFg">
-                                        <rect key="frame" x="8" y="10" width="20" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="PFAgoraSansPro-Regular" family="PF Agora Sans Pro" pointSize="30"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="0.63137254899999995" green="0.89411764709999997" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="kV2-E1-WUe">
-                                <rect key="frame" x="0.0" y="272" width="320" height="2"/>
+                                <rect key="frame" x="0.0" y="309" width="320" height="2"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" id="fgd-wc-ea3">
-                                <rect key="frame" x="0.0" y="314" width="320" height="2"/>
+                                <rect key="frame" x="0.0" y="351" width="320" height="2"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="thI-TR-xSZ">
-                                <rect key="frame" x="0.0" y="314" width="320" height="254"/>
+                                <rect key="frame" x="0.0" y="353" width="320" height="166"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <connections>
                                     <outlet property="dataSource" destination="gch-DA-VcF" id="g7g-X4-yZq"/>
                                     <outlet property="delegate" destination="gch-DA-VcF" id="szV-nK-hkp"/>
@@ -558,17 +639,76 @@
                     <navigationItem key="navigationItem" id="cCq-Bn-hPV"/>
                     <connections>
                         <outlet property="image_backgroundImage" destination="jxw-6D-rCE" id="Ni0-60-0Fa"/>
+                        <outlet property="image_main_companyImage" destination="KCF-Kz-5yQ" id="yhf-uU-QcR"/>
                         <outlet property="label_Name_Company" destination="c58-e6-wQJ" id="ahB-4w-Gbp"/>
+                        <outlet property="label_adres" destination="kBX-zk-SYB" id="t0B-iO-FKs"/>
+                        <outlet property="label_dateOf_State" destination="7zG-J4-vNF" id="kaM-bu-SbI"/>
                         <outlet property="label_reviewMinus_count" destination="lLP-9k-eOg" id="aqF-yE-kWy"/>
                         <outlet property="label_reviewPlus_count" destination="bZD-jn-Yw5" id="c4F-cP-IJA"/>
+                        <outlet property="label_site" destination="gxP-VV-SBQ" id="rCI-0b-aks"/>
                         <outlet property="tableView" destination="thI-TR-xSZ" id="b3N-Yj-SI2"/>
                         <outlet property="view_mines_reviewCount" destination="1V8-WK-AcM" id="Onl-zL-6QB"/>
                         <outlet property="view_plus_reviewCount" destination="fTn-Nw-CNL" id="pdd-zz-f1X"/>
+                        <segue destination="CYg-vy-41o" kind="push" id="AIF-qg-hRg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GfQ-zw-E84" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2369" y="-537"/>
+        </scene>
+        <!--Web Company View Controller-->
+        <scene sceneID="8wc-rp-G4P">
+            <objects>
+                <viewController storyboardIdentifier="webDetail" id="CYg-vy-41o" customClass="WebCompanyViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oOL-2S-jPs">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" id="xcO-US-5Ku">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="CYg-vy-41o" id="RFW-HP-VAM"/>
+                                </connections>
+                            </webView>
+                            <view contentMode="scaleToFill" id="Szf-iE-4zA">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ay2-D2-vcN">
+                                        <rect key="frame" x="8" y="22" width="27" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="back.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="back:" destination="gch-DA-VcF" eventType="touchUpInside" id="W7v-4z-Gh6"/>
+                                            <action selector="back:" destination="CYg-vy-41o" eventType="touchUpInside" id="laC-VL-sjh"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wpu-zJ-cM4">
+                                        <rect key="frame" x="43" y="28" width="234" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="PFAgoraSansPro-Regular" family="PF Agora Sans Pro" pointSize="20"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="HeD-dk-q3U"/>
+                    <connections>
+                        <outlet property="label_NavBar" destination="wpu-zJ-cM4" id="ZgI-FQ-3fR"/>
+                        <outlet property="myWebView" destination="xcO-US-5Ku" id="P5f-9b-LDk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tua-s2-B3I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2788" y="-536"/>
         </scene>
         <!--Жаловаться-->
         <scene sceneID="ZBR-6W-abi">
@@ -665,8 +805,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="axW-Wz-YWx">
             <objects>
-                <tabBarController storyboardIdentifier="tabBarView" id="uHh-Sj-HIe" sceneMemberID="viewController">
-                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                <tabBarController storyboardIdentifier="tabBarView" extendedLayoutIncludesOpaqueBars="YES" id="uHh-Sj-HIe" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="dCj-Co-Cxg"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="1My-1t-hIx">
@@ -677,7 +816,6 @@
                     <connections>
                         <segue destination="pGK-ud-clr" kind="relationship" relationship="viewControllers" id="l0x-gG-1hT"/>
                         <segue destination="Tkl-oA-6VF" kind="relationship" relationship="viewControllers" id="bro-MT-ULa"/>
-                        <segue destination="qbg-WW-Je7" kind="relationship" relationship="viewControllers" id="KKb-bC-Lp2"/>
                         <segue destination="84r-Wt-6b3" kind="relationship" relationship="viewControllers" id="pvs-La-0tx"/>
                         <segue destination="rd8-2h-guM" kind="relationship" relationship="viewControllers" id="cMP-wb-Cwd"/>
                     </connections>
@@ -727,6 +865,10 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" id="ecV-j7-OiS">
+                                        <rect key="frame" x="0.0" y="61" width="320" height="3"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </progressView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -967,6 +1109,7 @@
                         <outlet property="label_NoName" destination="T1x-d1-y8m" id="1SS-bc-im4"/>
                         <outlet property="label_change_Photo_One" destination="XOt-RC-4vf" id="2QA-OH-dff"/>
                         <outlet property="label_change_Photo_Two" destination="Y8L-eo-KIN" id="K1B-jA-Le7"/>
+                        <outlet property="progressView" destination="ecV-j7-OiS" id="i05-yh-eHL"/>
                         <outlet property="textField_Name" destination="NNZ-nI-etA" id="zxL-7b-NEI"/>
                         <outlet property="textField_Phone" destination="gOl-pq-pzI" id="F1B-VP-nzW"/>
                     </connections>
@@ -1007,12 +1150,17 @@
     </scenes>
     <resources>
         <image name="avatar.png" width="151" height="151"/>
+        <image name="back.png" width="30" height="30"/>
+        <image name="fon.png" width="640" height="352"/>
         <image name="galovatsya.png" width="30" height="30"/>
         <image name="lenta.png" width="30" height="30"/>
+        <image name="minus.png" width="40" height="40"/>
         <image name="novosti.png" width="30" height="30"/>
         <image name="pinkodoff.png" width="29" height="29"/>
+        <image name="plus.png" width="40" height="40"/>
         <image name="poddergka.png" width="30" height="30"/>
         <image name="profil.png" width="30" height="30"/>
+        <image name="start.png" width="438" height="66"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

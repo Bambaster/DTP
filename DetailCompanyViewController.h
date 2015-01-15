@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailCompanyViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
+@interface DetailCompanyViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate ,UIGestureRecognizerDelegate>
 @property (strong, nonatomic) IBOutlet UILabel *label_Name_Company;
 @property (strong, nonatomic) NSString * company_name;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;

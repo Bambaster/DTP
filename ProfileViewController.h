@@ -13,4 +13,8 @@
 
 @interface ProfileViewController : UIViewController <UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, EAIntroDelegate>
 
+
+@property (strong, nonatomic) IBOutlet UIProgressView *progressView;
+
+
 @end

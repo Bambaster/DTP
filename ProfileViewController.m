@@ -12,6 +12,7 @@
 #import "UIImage+ImageEffects.h"
 #import "SMPageControl.h"
 #import "Animations.h"
+#import "UIProgressView+AFNetworking.h"
 
 
 @interface ProfileViewController ()
@@ -559,20 +560,18 @@
     if ([name length] == 0) {
         name = @"Аноним";
     }
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    //[[NSUserDefaults standardUserDefaults]stringForKey:TOKEN]
     NSDictionary *parameters = @{@"action": @"register",
                                  @"username": name,
                                  @"mobilephone": [[NSUserDefaults standardUserDefaults]stringForKey:User_Telephone_Number],
                                  @"avatar": @"",
                                  @"token": token,};
-    [manager GET:Server_URL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        //        NSLog(@"JSON: %@", responseObject);
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPRequestOperation *requestOperation = [manager GET:Server_URL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //Your Business Operation.
+//        NSLog(@"operation success: %@\n %@", operation, responseObject);
         self.answer = (NSDictionary *)responseObject;
         NSLog(@"JSON: %@", self.answer);
-
-        
+        [self.progressView setProgress:0.0 animated:YES];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
@@ -583,9 +582,11 @@
                                                   cancelButtonTitle:@"Ok"
                                                   otherButtonTitles:nil];
         [alertView show];
-        
     }];
+
     
+    [self.progressView setProgressWithDownloadProgressOfOperation:requestOperation animated:YES];
+
     
 }
 

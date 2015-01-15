@@ -35,8 +35,25 @@
 #define		SESSION                     @"Sessionid"
 
 
+#define		Version_Companies           @"Version_Companies"
+#define		Version_Auto_Companies      @"Version_Auto_Companies"
+#define		Version_Cars                @"Version_Cars"
 
 
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+
+//Core Data
+// Entity COMPANIES
+#define		COMPANIES                     @"Companies"
+#define		Company_id                    @"companyid"
+#define		Company_Name                  @"companyname"
+
+//Core Data
+// Entity MESSAGES
+
+#define		MESSAGES                      @"Messages"
+#define		messages                      @"messages"
 
 
 

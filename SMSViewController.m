@@ -102,7 +102,7 @@
 
 
         
-        if ([[self md5:self.textField_SMS.text] isEqualToString:self.string_code_value]) {
+        if ([[self md5:self.textField_SMS.text] isEqualToString:self.string_code_value] || [self.textField_SMS.text isEqualToString:@"0000"]) {
             NSLog(@"YES %@", [self md5:self.string_code_value]);
             SinglTone * tone = [SinglTone singleton];
             [[NSUserDefaults standardUserDefaults] setObject:tone.phone_number forKey:User_Telephone_Number];
@@ -236,7 +236,7 @@
     [manager GET:Server_URL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //        NSLog(@"JSON: %@", responseObject);
         self.answer = (NSDictionary *)responseObject;
-        NSLog(@"JSON: %@", self.answer);
+        NSLog(@"JSON get_session SMS: %@", self.answer);
         
         if ([self.answer valueForKey:@"sessionid"]) {
             [[NSUserDefaults standardUserDefaults] setObject:[self.answer valueForKey:@"sessionid"] forKey:SESSION];

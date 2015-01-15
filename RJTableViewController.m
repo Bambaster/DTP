@@ -213,6 +213,12 @@ static NSString *CellIdentifier = @"CellIdentifier";
     else {
         cell.bodyLabel.text = bioString;
     }
+    
+
+    
+    [cell.image_company setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [dataSourceItem valueForKey:@"title"]]]];
+    
+
     // Make sure the constraints have been added to this cell, since it may have just been created from scratch
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
@@ -245,7 +251,9 @@ static NSString *CellIdentifier = @"CellIdentifier";
     }
     else {
         dataSourceItem = [self.model.dataSource objectAtIndex:indexPath.row];
-    }    cell.titleLabel.text =  [dataSourceItem valueForKey:@"title"];
+    }
+    
+    cell.titleLabel.text =  [dataSourceItem valueForKey:@"title"];
     
     NSString *bioString = [dataSourceItem valueForKey:@"body"];
 
@@ -276,7 +284,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
         cell.bodyLabel.text = bioString;
     }
     
-//    cell.bodyLabel.text = [dataSourceItem valueForKey:@"body"];
+
     
     // Make sure the constraints have been added to this cell, since it may have just been created from scratch
     [cell setNeedsUpdateConstraints];

@@ -9,11 +9,13 @@
 #import "AppDelegate.h"
 #import "AppConstant.h"
 #import "AFNetworkActivityIndicatorManager.h"
+#import "CoreData.h"
 
 
 @interface AppDelegate ()
 
 @property (nonatomic, strong) UITabBarController * tabBarController;
+@property (strong, nonatomic) NSDictionary * answer;
 
 @end
 
@@ -35,6 +37,8 @@
   //  [[UITabBar appearance] setTintColor:[UIColor colorWithRed:227/255.0 green:180/255.0 blue:204/255.0 alpha:1]];
     
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+    
+    [self firstLunch];
 
     return YES;
 }
@@ -171,6 +175,239 @@
             abort();
         }
     }
+}
+
+
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+
+
+#pragma mark - First Lunch, Download data and Chek session
+
+
+
+-(void) firstLunch {
+    
+    
+    BOOL isFirstLunch = [[NSUserDefaults standardUserDefaults] boolForKey: @"FirstLunch"];
+    if (!isFirstLunch) {
+
+        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@", @"1"] forKey:Version_Companies];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@", @"1"] forKey:Version_Auto_Companies];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@", @"1"] forKey:Version_Cars];
+        
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey: @"FirstLunch"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [self getCompanies];
+
+        NSLog(@"First lunch start");
+        
+        
+    }
+    
+    else {
+        
+        [self session_check];
+    }
+    
+}
+
+
+- (void) getCompanies {
+    
+
+    NSDictionary *parameters = @{@"action": @"getcompanies",};
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:Server_URL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"JSON: %@", responseObject);
+        self.answer = (NSDictionary *)responseObject;
+//        NSLog(@"JSON getCompanies : %@", self.answer);
+        
+        NSArray * array_Companies = [self.answer valueForKey:@"data"];
+        
+//        NSLog(@"array_Companies: %@", array_Companies);
+        
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:array_Companies];
+        
+        [self saveCompanies:data];
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:[error localizedDescription]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+        
+    }];
+    
+    
+}
+
+
+
+
+- (void) session_check {
+    NSString * token = [self md5:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults]stringForKey:TOKEN], [[NSUserDefaults standardUserDefaults]stringForKey:SESSION]]];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    //[[NSUserDefaults standardUserDefaults]stringForKey:TOKEN]
+    NSDictionary *parameters = @{@"action": @"sessioncheck",
+                                 @"token": token,};
+    NSLog(@"JSON session_check parameters: %@", parameters);
+
+    [manager GET:Server_URL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //        NSLog(@"JSON: %@", responseObject);
+        self.answer = (NSDictionary *)responseObject;
+        NSLog(@"JSON session_check: %@", self.answer);
+        if ([[self.answer valueForKey:@"answer"] isEqualToString:@"error"]) {
+            [self get_session];
+        }
+        else {
+            
+            NSString * version = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]stringForKey:Version_Companies]];
+            NSDictionary *versionDict = [self.answer valueForKey:@"db_version"];
+            if ([version isEqualToString:[NSString stringWithFormat:@"%@",[versionDict valueForKey:@"companies"]]]) {
+                NSLog(@"Version Companies is OK");
+            }
+            else {
+                
+                [self clear_Companies];
+            }
+        }
+        
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:[error localizedDescription]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+        
+    }];
+}
+
+
+- (void) saveCompanies: (NSData *) data_Companies {
+    
+    CoreData * data = [CoreData new];
+    [data writeData:COMPANIES Value:data_Companies Key:Company_Name];
+    
+    
+//    for (int i=0; i<[array_Companies count];i++) {
+////
+////        NSString * companyid = [NSString stringWithFormat:@"%@", [[array_Companies objectAtIndex:i] valueForKey:@"companyid"]];
+////        NSString * companyname = [[array_Companies objectAtIndex:i] valueForKey:@"companyname"];
+////
+////        [data writeClass:COMPANIES Value:companyid Key:Company_id];
+//        [data writeData:COMPANIES Value:[array_Companies objectAtIndex:i] Key:Company_Name];
+//
+//    }
+
+}
+
+
+
+- (void) get_session {
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    //[[NSUserDefaults standardUserDefaults]stringForKey:TOKEN]
+    NSDictionary *parameters = @{@"action": @"sessionset",
+                                 @"hardwareid":[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]stringForKey:TOKEN]],};
+    [manager GET:Server_URL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //        NSLog(@"JSON: %@", responseObject);
+        self.answer = (NSDictionary *)responseObject;
+        NSLog(@"JSON get_session APPDELEGATE: %@", self.answer);
+        
+        if ([self.answer valueForKey:@"sessionid"]) {
+            [[NSUserDefaults standardUserDefaults] setObject:[self.answer valueForKey:@"sessionid"] forKey:SESSION];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            NSLog(@"SESSION: %@", [[NSUserDefaults standardUserDefaults]stringForKey:SESSION]);
+            [self session_check];
+        }
+        
+        else {
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                message:@"Что-то пошло не так, попробуйте еще раз"
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+            [alertView show];
+        }
+        
+        
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:[error localizedDescription]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+        
+    }];
+    
+    
+}
+
+
+
+
+
+- (NSString *) md5:(NSString *) input
+{
+    const char *cStr = [input UTF8String];
+    unsigned char digest[16];
+    CC_MD5( cStr, strlen(cStr), digest ); // This is the md5 call
+    
+    NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    
+    for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
+        [output appendFormat:@"%02x", digest[i]];
+    NSLog(@"md5 output %@", output);
+    
+    return  output;
+    
+}
+
+
+
+- (void) clear_Companies {
+    
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    NSFetchRequest * requestData = [[NSFetchRequest alloc] init];
+    NSEntityDescription * entityData = [NSEntityDescription entityForName:COMPANIES inManagedObjectContext:self.managedObjectContext];
+    [requestData setEntity:entityData];
+    NSError * requestError = nil;
+    NSArray * dictData = [context executeFetchRequest:requestData error:&requestError];
+    
+    for (NSManagedObject *managedObject in dictData) {
+        [context deleteObject:managedObject];
+        NSLog(@"%@ object deleted",context);
+    }
+    if (![context save:&requestError]) {
+        
+        
+        NSLog (@"Error deleting %@ - error:%@",context,requestError);
+        
+    }
+    
+    [self getCompanies];
 }
 
 @end

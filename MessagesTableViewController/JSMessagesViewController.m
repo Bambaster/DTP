@@ -322,7 +322,7 @@
 - (void) setCompany_Button_Title:(NSNotification*) notification  {
     
     
-    self.string_Company = [notification.userInfo valueForKey:@"ChooseCompany"];
+    self.string_Company = [[notification.userInfo valueForKey:@"ChooseCompany"]valueForKey:Company_Name];
     self.label_ButtonTitle.text = self.string_Company;
     self.label_ButtonTitle.textColor = [UIColor whiteColor];
     self.inputToolBarView.sendButton.enabled = ([self.inputToolBarView.textView.text trimWhitespace].length > 0 && self.string_Company.length != 0);

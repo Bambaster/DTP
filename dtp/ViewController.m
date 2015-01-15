@@ -327,10 +327,13 @@
     NSDictionary *parameters = @{@"action": @"register",
                                  @"mobilephone": tone.phone_number,
                                  @"hardwareid": [[NSUserDefaults standardUserDefaults]stringForKey:TOKEN],};
+    
+    NSLog(@"parameters get_session : %@", parameters);
+
     [manager GET:Server_URL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         //        NSLog(@"JSON: %@", responseObject);
         self.answer = (NSDictionary *)responseObject;
-        NSLog(@"JSON: %@", self.answer);
+        NSLog(@"JSON get_session : %@", self.answer);
         [self go_to_Detail_SMS:[self.answer valueForKey:@"code"]];
         NSLog(@"go_to_Detail_SMS code - %@", [self.answer valueForKey:@"code"]);
 

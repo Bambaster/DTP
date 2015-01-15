@@ -9,11 +9,22 @@
 #import "DetailCompanyViewController.h"
 #import "RJModel.h"
 #import "RJTableViewCell.h"
+#import "WebCompanyViewController.h"
 
 
 static NSString *CellIdentifier = @"CellIdentifier";
 
 @interface DetailCompanyViewController ()
+
+@property (strong, nonatomic) IBOutlet UIImageView *image_main_companyImage;
+@property (strong, nonatomic) IBOutlet UILabel *label_dateOf_State;
+@property (strong, nonatomic) IBOutlet UILabel *label_adres;
+@property (strong, nonatomic) IBOutlet UILabel *label_site;
+- (IBAction)send_kick_Action:(id)sender;
+
+
+
+
 @property (strong, nonatomic) IBOutlet UIImageView *image_backgroundImage;
 @property (strong, nonatomic) IBOutlet UIView *view_mines_reviewCount;
 @property (strong, nonatomic) IBOutlet UIView *view_plus_reviewCount;
@@ -84,13 +95,35 @@ static NSString *CellIdentifier = @"CellIdentifier";
     UIImageView * mines_Reviews = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.minus_count, self.view_mines_reviewCount.frame.size.height)];
     mines_Reviews.backgroundColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:0.1];
     UIImageView * plus_Reviews = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.plus_count, self.view_plus_reviewCount.frame.size.height)];
-    plus_Reviews.backgroundColor = [UIColor colorWithRed:0 green:1 blue:0 alpha:0.1];
+    plus_Reviews.backgroundColor = [UIColor colorWithRed:0 green:190 blue:0 alpha:0.1];
     [self.view_mines_reviewCount addSubview:mines_Reviews];
     [self.view_plus_reviewCount addSubview:plus_Reviews];
     
     ////----------------------------------------------------------------------------------------
     ////----------------------------------------------------------------------------------------
     ////----------------------------------------------------------------------------------------
+    
+    
+    self.label_site.text = @"http://yandex.ru";
+    self.label_site.userInteractionEnabled = YES;
+    CALayer* layer = [self.label_site layer];
+    [self.label_site sizeToFit];
+    CALayer *bottomBorder = [CALayer layer];
+    bottomBorder.borderColor = [UIColor whiteColor].CGColor;
+    bottomBorder.borderWidth = 1;
+    bottomBorder.frame = CGRectMake(-1, layer.frame.size.height-1, layer.frame.size.width, 1);
+    [bottomBorder setBorderColor:[UIColor whiteColor].CGColor];
+    [layer addSublayer:bottomBorder];
+    
+    
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handle_Go_To_WEB)];
+    [tapRecognizer setDelegate:self];
+    [tapRecognizer setNumberOfTapsRequired:1];
+    [self.label_site addGestureRecognizer:tapRecognizer];
+    
+    
+    [self.image_main_companyImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", self.company_name]]];
+
 
 }
 
@@ -175,6 +208,10 @@ static NSString *CellIdentifier = @"CellIdentifier";
     else {
         cell.bodyLabel.text = bioString;
     }
+    
+    [cell.image_company setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [dataSourceItem valueForKey:@"title"]]]];
+
+    
     // Make sure the constraints have been added to this cell, since it may have just been created from scratch
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
@@ -298,6 +335,26 @@ static NSString *CellIdentifier = @"CellIdentifier";
 ////----------------------------------------------------------------------------------------
 ////----------------------------------------------------------------------------------------
 
+- (void) handle_Go_To_WEB {
+    
+    UIStoryboard* storyBoard =  [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    WebCompanyViewController *destViewController = [storyBoard instantiateViewControllerWithIdentifier:@"webDetail"];
+    destViewController.labelNavText = self.company_name;
+    destViewController.url = @"http://yandex.ru";
+    [self.navigationController pushViewController:destViewController animated:YES];
 
+}
 
+- (IBAction)send_kick_Action:(id)sender {
+    [self.tabBarController setSelectedIndex:2];
+    int64_t delayInSeconds = 100;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_MSEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+    NSMutableDictionary * dictCompany = [[NSMutableDictionary alloc] init];
+    [dictCompany setValue:self.company_name forKey:@"ChooseCompany"];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"ChooseCompany" object:nil userInfo:dictCompany];
+        
+    });
+
+}
 @end

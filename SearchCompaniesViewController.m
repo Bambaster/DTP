@@ -8,6 +8,7 @@
 
 #import "SearchCompaniesViewController.h"
 #import "MZFormSheetController.h"
+#import "CoreData.h"
 
 
 @interface SearchCompaniesViewController ()
@@ -40,8 +41,14 @@
 {
     [super viewDidAppear:animated];
     isSearching = NO;
-    NSString* path = [[NSBundle mainBundle] pathForResource: @"Companies" ofType: @"txt"];
-    self.array_Companies = [[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil] componentsSeparatedByString:@", "];
+    CoreData * data = [CoreData new];
+    
+    NSArray *array = [[NSArray alloc] initWithArray:[data getData:COMPANIES Key:Company_Name]];
+    self.array_Companies  = [NSKeyedUnarchiver unarchiveObjectWithData:[array objectAtIndex:0]];
+//    NSLog(@"%@", self.array_Companies);
+
+//    NSString* path = [[NSBundle mainBundle] pathForResource: @"Companies" ofType: @"txt"];
+//    self.array_Companies = [[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil] componentsSeparatedByString:@", "];
 
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
@@ -56,10 +63,9 @@
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     
     NSPredicate *resultPredicate = [NSPredicate
-                                    predicateWithFormat:@"SELF contains[cd] %@",
+                                    predicateWithFormat:@"companyname contains[cd] %@",
                                     searchText];
 
-    
     self.array_SearchResults = [self.array_Companies filteredArrayUsingPredicate:resultPredicate];
     if (searchBar.text.length == 0) {
         isSearching = NO;
@@ -119,10 +125,10 @@
     }
     
     if (isSearching) {
-        cell.textLabel.text = [self.array_SearchResults objectAtIndex:indexPath.row];
+        cell.textLabel.text = [[self.array_SearchResults objectAtIndex:indexPath.row]valueForKey:Company_Name];
     }
     else {
-        cell.textLabel.text = [self.array_Companies objectAtIndex:indexPath.row];
+        cell.textLabel.text = [[self.array_Companies objectAtIndex:indexPath.row]valueForKey:Company_Name];
     }
     [cell.textLabel setFont:[UIFont fontWithName:@"PFAgoraSansPro-Light" size:18.0]];
     return cell;

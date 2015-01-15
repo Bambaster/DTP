@@ -68,11 +68,11 @@
         
         self.image_company = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 50, 50)];
         self.image_company.contentMode = UIViewContentModeScaleAspectFill;
-        self.image_company.layer.cornerRadius = self.image_company.frame.size.width / 2;
+//        self.image_company.layer.cornerRadius = self.image_company.frame.size.width / 2;
         self.image_company.clipsToBounds = YES;
         self.image_company.userInteractionEnabled  = YES;
 
-        self.image_company.backgroundColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:0.1];
+//        self.image_company.backgroundColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:0.1];
         
         
         self.label_review_count = [UILabel newAutoLayoutView];

@@ -10,6 +10,7 @@
 #import "MessageData.h"
 #import "SinglTone.h"
 #import "AppConstant.h"
+#import "CoreData.h"
 
 @interface KickViewController () <JSMessagesViewDelegate, JSMessagesViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIActionSheetDelegate>
 
@@ -17,6 +18,11 @@
 @property (nonatomic,strong) UIImage *willSendImage;
 @property (strong, nonatomic) IBOutlet UITextView *textView_Message;
 @property (nonatomic,strong) NSString * string_Company;
+@property (nonatomic,strong) NSString * string_Company_ID;
+@property (strong, nonatomic) NSDictionary * answer;
+@property (strong, nonatomic) NSArray *array_Saved_Messages;
+@property (nonatomic, strong) NSArray * array_Companies;
+
 
 
 @property (nonatomic,strong) SinglTone * sing;
@@ -43,8 +49,15 @@
     
     self.delegate = self;
     self.dataSource = self;
+    self.messageArray = [[NSMutableArray alloc] init];
+    CoreData * data = [CoreData new];
+    NSArray *array = [[NSArray alloc] initWithArray:[data getData:COMPANIES Key:Company_Name]];
+    self.array_Companies  = [NSKeyedUnarchiver unarchiveObjectWithData:[array objectAtIndex:0]];
+    self.array_Saved_Messages = [[NSArray alloc] initWithArray:[data getData:MESSAGES Key:messages]];
     
-    self.messageArray = [NSMutableArray array];
+    if (self.array_Saved_Messages.count > 0) {
+        [self set_Saved_Messages_List:self.array_Saved_Messages];
+    }
     
      
     
@@ -98,7 +111,11 @@
 - (void) setCompany:(NSNotification*) notification  {
     
     
-    self.string_Company = [notification.userInfo valueForKey:@"ChooseCompany"];
+    self.string_Company = [[notification.userInfo valueForKey:@"ChooseCompany"] valueForKey:Company_Name];
+    self.string_Company_ID = [NSString stringWithFormat:@"%@", [[notification.userInfo valueForKey:@"ChooseCompany"] valueForKey:Company_id]];
+    NSLog(@"self.string_Company_ID - %@",self.string_Company_ID);
+
+    
     
     //    nationalityField.text = [notification.userInfo valueForKey:@"CurrentNationality"];
     //
@@ -119,6 +136,65 @@
 }
 
 #pragma mark - Messages view delegate
+
+- (void) set_Saved_Messages_List : (NSArray *) array{
+    
+    JSBubbleMessageType msgType;
+
+    for (NSData * data in array){
+
+        NSDictionary *dict  = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+
+        NSLog(@"dict set_Saved_Messages_List - %@", dict);
+
+        
+        msgType = JSBubbleMessageTypeOutgoing;
+
+        NSString * string_Company = [self find_Company:[NSString stringWithFormat:@"%@", [dict valueForKey:@"companyid"]]];
+        NSString * string_Type_Review = [self set_Type_Of_Review:[NSString stringWithFormat:@"%@", [dict valueForKey:@"isgood"]]];
+        NSString * text = [dict valueForKey:@"message"];
+        NSString * msgId = @"1";
+
+        NSString * string_Line = @"_______________________";
+        NSString * total_review = [NSString stringWithFormat:@"%@\n%@\n%@\n\n,%@",string_Company,string_Type_Review, string_Line, text];
+        MessageData *message = [[MessageData alloc] initWithMsgId:msgId text:total_review date:nil msgType:msgType mediaType:JSBubbleMediaTypeText img:nil];
+        [self.messageArray addObject:message];
+        [self finishSend:YES];
+    }
+}
+
+- (NSString *)find_Company:(NSString *)search_Index {
+    
+    NSPredicate *resultPredicate = [NSPredicate
+                                    predicateWithFormat:@"companyid.description contains[cd] %@",
+                                    search_Index];
+    NSArray * arrayResult = [self.array_Companies filteredArrayUsingPredicate:resultPredicate];
+    NSString * result = [[arrayResult valueForKey:Company_Name] objectAtIndex:0];
+    NSLog(@"result Company - %@", result);
+    
+    
+    return result;
+}
+
+- (NSString *) set_Type_Of_Review: (NSString *) type {
+    NSString * result;
+
+    if ([type isEqualToString:@"1"]) {
+        result = @"Отрицательный отзыв";
+    }
+    else {
+        result = @"Положительный отзыв";
+    }
+    
+    NSLog(@"result Type_Of_Reviw - %@", result);
+
+    
+    return result;
+
+}
+
+
+
 - (void)sendPressed:(UIButton *)sender withText:(NSString *)text
 {
     int value = arc4random() % 1000;
@@ -136,23 +212,16 @@
         isUserMessage = NO;
         NSString * string_Company = self.string_Company;
         NSString * string_Type_Review = [[NSUserDefaults standardUserDefaults] stringForKey:Type_of_Review];
-
         NSString * string_Line = @"_______________________";
         NSString * total_review = [NSString stringWithFormat:@"%@\n%@\n%@\n\n,%@",string_Company,string_Type_Review, string_Line, text];
-
-        NSString * last_Date = [[NSUserDefaults standardUserDefaults]
-                                stringForKey:LAST_MESSAGE_DATE];
+        NSString * last_Date = [[NSUserDefaults standardUserDefaults] stringForKey:LAST_MESSAGE_DATE];
         NSString * current_Date = [NSString stringWithFormat:@"%@", [NSDate date]];
         NSString * last_Date_Value = [[last_Date componentsSeparatedByString:@" "]firstObject];
         NSString * current_Date_Value = [[current_Date componentsSeparatedByString:@" "]firstObject];
-
-
         [[NSNotificationCenter defaultCenter]postNotificationName:@"SetNormal" object:nil userInfo:nil];
         if ([last_Date_Value isEqualToString:current_Date_Value]) {
-            MessageData *message = [[MessageData alloc] initWithMsgId:msgId text:total_review date:nil msgType:msgType mediaType:JSBubbleMediaTypeText img:nil];
-            
+        MessageData *message = [[MessageData alloc] initWithMsgId:msgId text:total_review date:nil msgType:msgType mediaType:JSBubbleMediaTypeText img:nil];
             [self.messageArray addObject:message];
-            
             [self finishSend:NO];
 //            
 //            NSLog(@"last_Date_Value %@", last_Date_Value);
@@ -229,11 +298,78 @@
 //    
 
 
+NSString * token = [self md5:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults]stringForKey:TOKEN], [[NSUserDefaults standardUserDefaults]stringForKey:SESSION]]];
+
+    
+//action=addmessage&companyid=1&isgood=1&message=nwtreb&token=d4ba1283f51bed83c266c5d584f0bebc
+    NSDictionary *parameters = @{@"action": @"addmessage",
+                                 @"companyid": self.string_Company_ID,
+                                 @"isgood":[self type_Of_ReviwValue:string_Type_Review],
+                                 @"message": text,
+                                 @"token": token,};
+    NSLog(@"parameters: %@", parameters);
+
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    AFHTTPRequestOperation *requestOperation =
+    [manager GET:Server_URL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //Your Business Operation.
+//        NSLog(@"operation success: %@\n %@", operation, responseObject);
+        self.answer = (NSDictionary *)responseObject;
+        NSLog(@"JSON addmessage: %@", self.answer);
+        
+        if ([[self.answer valueForKey:@"answer"] isEqualToString:@"ok"]) {
+            NSLog(@"self.messageArray  addmessage: %@", self.messageArray );
+
+            
+            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:parameters];
+            [self addMessages_To_CoreData:data];
+        }
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:[error localizedDescription]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    }];
+
     
 
 
 
 }
+
+
+
+- (void) addMessages_To_CoreData: (NSData *) data_Messages {
+    CoreData * data = [CoreData new];
+//    void (^clear_Messages_Block) (void);
+//    clear_Messages_Block = ^ {
+//        NSLog(@"clear_Messages_Block!!!");
+//        [data clear_Entity:MESSAGES];
+//    };
+//    clear_Messages_Block();
+    [data writeData:MESSAGES Value:data_Messages Key:messages];
+}
+
+
+- (NSString *) type_Of_ReviwValue:(NSString *) string {
+    NSString * result;
+    if ([string isEqualToString:@"Положительный"]) {
+        result = [NSString stringWithFormat:@"%@", @"1"];
+    }
+    else {
+        result = [NSString stringWithFormat:@"%@", @"0"];
+    }
+    return result;
+}
+
+
 
 - (void)cameraPressed:(id)sender{
     
@@ -422,6 +558,20 @@
 //----------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------
 
-
+- (NSString *) md5:(NSString *) input
+{
+    const char *cStr = [input UTF8String];
+    unsigned char digest[16];
+    CC_MD5( cStr, strlen(cStr), digest ); // This is the md5 call
+    
+    NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    
+    for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
+        [output appendFormat:@"%02x", digest[i]];
+    NSLog(@"md5 output %@", output);
+    
+    return  output;
+    
+}
 
 @end
