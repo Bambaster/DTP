@@ -128,38 +128,50 @@
     NSString * token = [self md5:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults]stringForKey:TOKEN], [[NSUserDefaults standardUserDefaults]stringForKey:SESSION]]];
     NSDictionary *parameters = @{@"action": @"getmessages",
                                  @"token": token,
-                                 @"messageid": message_ID,};
+                                 @"messageid": [[NSUserDefaults standardUserDefaults]stringForKey:Last_Message_ID],};
     
     
     [[API sharedManager] get_request:parameters onSuccess:^(NSDictionary *answer) {
 
         NSLog(@"answer = %@", answer);
+        NSArray * array_messages = [answer valueForKey:@"messages"];
+        [array_messages enumerateObjectsUsingBlock:^(id object, NSUInteger idx, BOOL *stop) {
+            // do something with object
+            NSDictionary *dict  = (NSDictionary *)object;
+            NSString * message = [dict valueForKey:@"message"];
+            NSString * direction = [dict valueForKey:@"direction"];
 
-        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@", message_ID] forKey:Last_Message_ID];
-        NSLog(@"get_unreceved_messages message_ID: %@", [[NSUserDefaults standardUserDefaults]stringForKey:Last_Message_ID]);
+            
+            NSMutableDictionary * dict_Message = [[NSMutableDictionary alloc] init];
+            [dict_Message setObject:message forKey:@"message"];
+            [dict_Message setObject:direction forKey:@"direction"];
+            
+            NSString * last_Date = [[NSUserDefaults standardUserDefaults] stringForKey:LAST_MESSAGE_DATE];
+            NSString * current_Date = [NSString stringWithFormat:@"%@", [NSDate date]];
+            NSString * last_Date_Value = [[last_Date componentsSeparatedByString:@" "]firstObject];
+            NSString * current_Date_Value = [[current_Date componentsSeparatedByString:@" "]firstObject];
+            if ([last_Date_Value isEqualToString:current_Date_Value]) {
+                [dict_Message setObject:@"nodate" forKey:@"date"];
+            }
+            else {
+                [dict_Message setObject:[NSDate date] forKey:@"date"];
+            }
+            //    [dict_Message setValue:@"test" forKey:@"test"];
+            NSLog(@"didReceiveRemoteNotification dict_Message %@", dict_Message);
+            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dict_Message];
+            [self addMessages_To_CoreData:data];
+
+            if (stop) {
+
+                NSLog(@"stop == stop");
+                [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@", message_ID] forKey:Last_Message_ID];
+                NSLog(@"get_unreceved_messages message_ID: %@", [[NSUserDefaults standardUserDefaults]stringForKey:Last_Message_ID]);
+
+            }
+            
+        }];
+
         
-//        NSDictionary * dict = [answer valueForKey:@"aps"];
-//        NSString * message = [dict valueForKey:@"alert"];
-//        NSString * direction = [dict valueForKey:@"direction"];
-//        
-//        NSMutableDictionary * dict_Message = [[NSMutableDictionary alloc] init];
-//        [dict_Message setObject:message forKey:@"message"];
-//        [dict_Message setObject:direction forKey:@"direction"];
-//        
-//        NSString * last_Date = [[NSUserDefaults standardUserDefaults] stringForKey:LAST_MESSAGE_DATE];
-//        NSString * current_Date = [NSString stringWithFormat:@"%@", [NSDate date]];
-//        NSString * last_Date_Value = [[last_Date componentsSeparatedByString:@" "]firstObject];
-//        NSString * current_Date_Value = [[current_Date componentsSeparatedByString:@" "]firstObject];
-//        if ([last_Date_Value isEqualToString:current_Date_Value]) {
-//            [dict_Message setObject:@"nodate" forKey:@"date"];
-//        }
-//        else {
-//            [dict_Message setObject:[NSDate date] forKey:@"date"];
-//        }
-//        //    [dict_Message setValue:@"test" forKey:@"test"];
-//        NSLog(@"didReceiveRemoteNotification dict_Message %@", dict_Message);
-//        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dict_Message];
-//        [self addMessages_To_CoreData:data];
     } onFailure:^(NSError *error, NSInteger statusCode) {
         NSLog(@"error = %@, code = %d", [error localizedDescription], statusCode);
     }];

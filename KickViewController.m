@@ -410,6 +410,9 @@
 
             NSData *data = [NSKeyedArchiver archivedDataWithRootObject:parameters];
             [self addMessages_To_CoreData:data];
+            [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@", [self.answer valueForKey:@"messageid"]] forKey:Last_Message_ID];
+
+
         }
         
         
