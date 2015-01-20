@@ -46,6 +46,7 @@
       NSFontAttributeName, nil]];
  //   self.title = @"Жаловаться";
     isUserMessage = NO;
+    isMessageWithDate = NO;
     
     self.delegate = self;
     self.dataSource = self;
@@ -71,6 +72,8 @@
 //                                                 name:UIKeyboardWillHideNotification
 //                                               object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(setCompany:) name:@"ChooseCompany" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(addMessage_FromPush) name:@"Incomming_Message" object:nil];
+
 
     
 }
@@ -137,31 +140,101 @@
 
 #pragma mark - Messages view delegate
 
-- (void) set_Saved_Messages_List : (NSArray *) array{
-    
+- (void) addMessage_FromPush {
     JSBubbleMessageType msgType;
+    CoreData * data = [CoreData new];
+    NSArray *array = [[NSArray alloc] initWithArray:[data getData:MESSAGES Key:messages]];
+    NSDictionary *dict  = [NSKeyedUnarchiver unarchiveObjectWithData:[array lastObject]];
 
-    for (NSData * data in array){
-
-        NSDictionary *dict  = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-
-        NSLog(@"dict set_Saved_Messages_List - %@", dict);
-
-        
-        msgType = JSBubbleMessageTypeOutgoing;
-
-        NSString * string_Company = [self find_Company:[NSString stringWithFormat:@"%@", [dict valueForKey:@"companyid"]]];
-        NSString * string_Type_Review = [self set_Type_Of_Review:[NSString stringWithFormat:@"%@", [dict valueForKey:@"isgood"]]];
-        NSString * text = [dict valueForKey:@"message"];
-        NSString * msgId = @"1";
-
-        NSString * string_Line = @"_______________________";
-        NSString * total_review = [NSString stringWithFormat:@"%@\n%@\n%@\n\n,%@",string_Company,string_Type_Review, string_Line, text];
-        MessageData *message = [[MessageData alloc] initWithMsgId:msgId text:total_review date:nil msgType:msgType mediaType:JSBubbleMediaTypeText img:nil];
+    msgType = JSBubbleMessageTypeIncoming;
+    NSString * msgId = @"2";
+    NSString * total_review = [dict valueForKey:@"message"];
+    
+    if (![[NSString stringWithFormat:@"%@",[dict valueForKey:@"date"]]isEqualToString:@"nodate"]) {
+        MessageData *message = [[MessageData alloc] initWithMsgId:msgId text:total_review date:[dict valueForKey:@"date"] msgType:msgType mediaType:JSBubbleMediaTypeText img:nil];
         [self.messageArray addObject:message];
         [self finishSend:YES];
     }
+    
+    else {
+        
+        MessageData *message = [[MessageData alloc] initWithMsgId:msgId text:total_review date:nil msgType:msgType mediaType:JSBubbleMediaTypeText img:nil];
+        [self.messageArray addObject:message];
+        [self finishSend:YES];
+        
+    }
+    
 }
+
+
+- (void) set_Saved_Messages_List : (NSArray *) array{
+    
+    JSBubbleMessageType msgType;
+    NSString * string_Company;
+    NSString * string_Type_Review;
+    NSString * text;
+
+    for (NSData * data in array){
+        NSDictionary *dict  = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        NSLog(@"dict set_Saved_Messages_List - %@", dict);
+        
+        if ([[dict valueForKey:@"direction"] isEqualToString:@"input"]) {
+            
+            msgType = JSBubbleMessageTypeIncoming;
+            NSString * msgId = @"2";
+            NSString * total_review = [dict valueForKey:@"message"];
+            
+            if (![[NSString stringWithFormat:@"%@",[dict valueForKey:@"date"]]isEqualToString:@"nodate"]) {
+                MessageData *message = [[MessageData alloc] initWithMsgId:msgId text:total_review date:[dict valueForKey:@"date"] msgType:msgType mediaType:JSBubbleMediaTypeText img:nil];
+                [self.messageArray addObject:message];
+                [self finishSend:YES];
+
+            }
+            
+            else {
+                
+                MessageData *message = [[MessageData alloc] initWithMsgId:msgId text:total_review date:nil msgType:msgType mediaType:JSBubbleMediaTypeText img:nil];
+                [self.messageArray addObject:message];
+                [self finishSend:YES];
+
+            }
+        }
+             
+        else {
+                 
+            msgType = JSBubbleMessageTypeOutgoing;
+            string_Company = [self find_Company:[NSString stringWithFormat:@"%@", [dict valueForKey:@"companyid"]]];
+            string_Type_Review = [self set_Type_Of_Review:[NSString stringWithFormat:@"%@", [dict valueForKey:@"isgood"]]];
+            text = [dict valueForKey:@"message"];
+            NSString * msgId = @"1";
+            NSString * string_Line = @"_______________________";
+            NSString * total_review = [NSString stringWithFormat:@"%@\n%@\n%@\n\n,%@",string_Company,string_Type_Review, string_Line, text];
+            
+
+            
+            if (![[NSString stringWithFormat:@"%@",[dict valueForKey:@"date"]]isEqualToString:@"nodate"]) {
+                
+            MessageData *message = [[MessageData alloc] initWithMsgId:msgId text:total_review date:[dict valueForKey:@"date"] msgType:msgType mediaType:JSBubbleMediaTypeText img:nil];
+                [self.messageArray addObject:message];
+                [self finishSend:YES];
+
+            }
+            
+            else {
+                
+            MessageData *message = [[MessageData alloc] initWithMsgId:msgId text:total_review date:nil msgType:msgType mediaType:JSBubbleMediaTypeText img:nil];
+                [self.messageArray addObject:message];
+                [self finishSend:YES];
+
+            }
+            
+        }
+        
+    }
+    
+}
+
+
 
 - (NSString *)find_Company:(NSString *)search_Index {
     
@@ -206,10 +279,13 @@
 
     
 //    if(isUserMessage){
-
+      NSDictionary *parameters = [[NSDictionary alloc] init];
+      NSString * token = [self md5:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults]stringForKey:TOKEN], [[NSUserDefaults standardUserDefaults]stringForKey:SESSION]]];
         msgType = JSBubbleMessageTypeOutgoing;
         [JSMessageSoundEffect playMessageSentSound];
         isUserMessage = NO;
+    
+//        NSDate * date_CurrentDate = [[NSDate alloc] init];
         NSString * string_Company = self.string_Company;
         NSString * string_Type_Review = [[NSUserDefaults standardUserDefaults] stringForKey:Type_of_Review];
         NSString * string_Line = @"_______________________";
@@ -234,7 +310,15 @@
 //            
 //            NSLog(@"isEqualToString");
 
-            
+            parameters = @{@"action": @"addmessage",
+                                         @"companyid": self.string_Company_ID,
+                                         @"isgood":[self type_Of_ReviwValue:string_Type_Review],
+                                         @"message": text,
+                                         @"date": @"nodate",
+                                         @"direction": @"output",
+                                         @"token": token,};
+            NSLog(@"parameters: %@", parameters);
+  
             
         }
         
@@ -247,6 +331,15 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         [self finishSend:NO];
+//        date_CurrentDate = [NSDate date];
+        parameters = @{@"action": @"addmessage",
+                           @"companyid": self.string_Company_ID,
+                           @"isgood":[self type_Of_ReviwValue:string_Type_Review],
+                           @"message": text,
+                           @"date": [NSDate date],
+                           @"direction": @"output",
+                           @"token": token,};
+            NSLog(@"parameters: %@", parameters);
             
             NSLog(@"!!isEqualToString");
 
@@ -298,16 +391,11 @@
 //    
 
 
-NSString * token = [self md5:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults]stringForKey:TOKEN], [[NSUserDefaults standardUserDefaults]stringForKey:SESSION]]];
+
 
     
 //action=addmessage&companyid=1&isgood=1&message=nwtreb&token=d4ba1283f51bed83c266c5d584f0bebc
-    NSDictionary *parameters = @{@"action": @"addmessage",
-                                 @"companyid": self.string_Company_ID,
-                                 @"isgood":[self type_Of_ReviwValue:string_Type_Review],
-                                 @"message": text,
-                                 @"token": token,};
-    NSLog(@"parameters: %@", parameters);
+
 
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -319,9 +407,7 @@ NSString * token = [self md5:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults
         NSLog(@"JSON addmessage: %@", self.answer);
         
         if ([[self.answer valueForKey:@"answer"] isEqualToString:@"ok"]) {
-            NSLog(@"self.messageArray  addmessage: %@", self.messageArray );
 
-            
             NSData *data = [NSKeyedArchiver archivedDataWithRootObject:parameters];
             [self addMessages_To_CoreData:data];
         }
@@ -360,11 +446,18 @@ NSString * token = [self md5:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults
 
 - (NSString *) type_Of_ReviwValue:(NSString *) string {
     NSString * result;
-    if ([string isEqualToString:@"Положительный"]) {
+
+    if ([string isEqualToString:@"Положительный отзыв"]) {
         result = [NSString stringWithFormat:@"%@", @"1"];
+        
+        NSLog(@"Положительный - %@", result);
+
     }
     else {
         result = [NSString stringWithFormat:@"%@", @"0"];
+        
+        NSLog(@"Отрицательный - %@", result);
+
     }
     return result;
 }

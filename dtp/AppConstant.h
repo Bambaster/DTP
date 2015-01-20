@@ -38,6 +38,8 @@
 #define		Version_Companies           @"Version_Companies"
 #define		Version_Auto_Companies      @"Version_Auto_Companies"
 #define		Version_Cars                @"Version_Cars"
+#define		Last_Message_ID             @"Last_Message_ID"
+
 
 
 

@@ -10,4 +10,14 @@
 
 @interface API : NSObject
 
+@property (strong, nonatomic) NSDictionary * answer;
+
++ (API*) sharedManager;
+- (void) get_request:(NSDictionary*) params
+                    onSuccess:(void(^)(NSDictionary* answer)) success
+                    onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure;
+
+
+//- (NSDictionary *) get_request: (NSDictionary *) parameters;
+
 @end

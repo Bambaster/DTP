@@ -15,6 +15,8 @@
 @interface KickViewController : JSMessagesViewController {
     
     BOOL isUserMessage;
+    BOOL isMessageWithDate;
+
 }
 
 @end

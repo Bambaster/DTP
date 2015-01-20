@@ -16,10 +16,13 @@
 
 @property (nonatomic, strong) UITabBarController * tabBarController;
 @property (strong, nonatomic) NSDictionary * answer;
+@property (strong, nonatomic) API * api;
+
 
 @end
 
 @implementation AppDelegate
+@synthesize api;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -39,8 +42,39 @@
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     
     [self firstLunch];
+//    [self get_Incoming_Messawges];
 
     return YES;
+}
+
+
+- (void) get_Incoming_Messawges {
+    CoreData * data = [CoreData new];
+    NSArray *array = [[NSArray alloc] initWithArray:[data getData:MESSAGES Key:messages]];
+    NSMutableArray * array_Input_Messawges = [[NSMutableArray alloc]init];
+    int total_messages = array.count;
+    __block int count_messages;
+
+    [array enumerateObjectsUsingBlock:^(id object, NSUInteger idx, BOOL *stop) {
+        // do something with object
+        NSDictionary *dict  = [NSKeyedUnarchiver unarchiveObjectWithData:object];
+        if ([[dict valueForKey:@"direction"] isEqualToString:@"input"]) {
+            
+            [array_Input_Messawges addObject:[dict valueForKey:@"direction"]];
+        }
+
+        if (stop) {
+            count_messages ++;
+            if (count_messages == total_messages) {
+                NSLog(@"count_messages == total_messages");
+                NSLog(@"array_Input_Messawges.count == %d", array_Input_Messawges.count);
+                NSLog(@"count_messages == %d", count_messages);
+                NSLog(@"total_messages == %d", total_messages);
+
+            }
+        }
+
+    }];
 }
 
 
@@ -48,9 +82,9 @@
 {
     
     if (![[NSUserDefaults standardUserDefaults]stringForKey:TOKEN]) {
-        [[NSUserDefaults standardUserDefaults] setObject:[self deviceTokenWithData:newDeviceToken ] forKey:TOKEN];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        NSLog(@"newDeviceToken %@", [self deviceTokenWithData:newDeviceToken ]);
+         [[NSUserDefaults standardUserDefaults] setObject:[self deviceTokenWithData:newDeviceToken ] forKey:TOKEN];
+         [[NSUserDefaults standardUserDefaults] synchronize];
+         NSLog(@"newDeviceToken %@", [self deviceTokenWithData:newDeviceToken ]);
     }
     else {
         
@@ -61,8 +95,95 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
+//    NSLog(@"didReceiveRemoteNotification userInfo%@", userInfo);
+
+    NSDictionary * dict = [userInfo valueForKey:@"aps"];
+    NSString * message = [dict valueForKey:@"alert"];
+    NSString * direction = [dict valueForKey:@"direction"];
+
+    NSMutableDictionary * dict_Message = [[NSMutableDictionary alloc] init];
+    [dict_Message setObject:message forKey:@"message"];
+    [dict_Message setObject:direction forKey:@"direction"];
+
+    NSString * last_Date = [[NSUserDefaults standardUserDefaults] stringForKey:LAST_MESSAGE_DATE];
+    NSString * current_Date = [NSString stringWithFormat:@"%@", [NSDate date]];
+    NSString * last_Date_Value = [[last_Date componentsSeparatedByString:@" "]firstObject];
+    NSString * current_Date_Value = [[current_Date componentsSeparatedByString:@" "]firstObject];
+    if ([last_Date_Value isEqualToString:current_Date_Value]) {
+        [dict_Message setObject:@"nodate" forKey:@"date"];
+    }
+    else {
+        [dict_Message setObject:[NSDate date] forKey:@"date"];
+    }
+//    [dict_Message setValue:@"test" forKey:@"test"];
+    NSLog(@"didReceiveRemoteNotification dict_Message %@", dict_Message);
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dict_Message];
+    [self addMessages_To_CoreData:data];
 
 }
+
+
+- (void) get_unreceved_messages: (NSString *) message_ID {
+    
+    NSString * token = [self md5:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults]stringForKey:TOKEN], [[NSUserDefaults standardUserDefaults]stringForKey:SESSION]]];
+    NSDictionary *parameters = @{@"action": @"getmessages",
+                                 @"token": token,
+                                 @"messageid": message_ID,};
+    
+    
+    [[API sharedManager] get_request:parameters onSuccess:^(NSDictionary *answer) {
+
+        NSLog(@"answer = %@", answer);
+
+        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@", message_ID] forKey:Last_Message_ID];
+        NSLog(@"get_unreceved_messages message_ID: %@", [[NSUserDefaults standardUserDefaults]stringForKey:Last_Message_ID]);
+        
+//        NSDictionary * dict = [answer valueForKey:@"aps"];
+//        NSString * message = [dict valueForKey:@"alert"];
+//        NSString * direction = [dict valueForKey:@"direction"];
+//        
+//        NSMutableDictionary * dict_Message = [[NSMutableDictionary alloc] init];
+//        [dict_Message setObject:message forKey:@"message"];
+//        [dict_Message setObject:direction forKey:@"direction"];
+//        
+//        NSString * last_Date = [[NSUserDefaults standardUserDefaults] stringForKey:LAST_MESSAGE_DATE];
+//        NSString * current_Date = [NSString stringWithFormat:@"%@", [NSDate date]];
+//        NSString * last_Date_Value = [[last_Date componentsSeparatedByString:@" "]firstObject];
+//        NSString * current_Date_Value = [[current_Date componentsSeparatedByString:@" "]firstObject];
+//        if ([last_Date_Value isEqualToString:current_Date_Value]) {
+//            [dict_Message setObject:@"nodate" forKey:@"date"];
+//        }
+//        else {
+//            [dict_Message setObject:[NSDate date] forKey:@"date"];
+//        }
+//        //    [dict_Message setValue:@"test" forKey:@"test"];
+//        NSLog(@"didReceiveRemoteNotification dict_Message %@", dict_Message);
+//        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dict_Message];
+//        [self addMessages_To_CoreData:data];
+    } onFailure:^(NSError *error, NSInteger statusCode) {
+        NSLog(@"error = %@, code = %d", [error localizedDescription], statusCode);
+    }];
+    
+
+
+
+}
+
+
+- (void) addMessages_To_CoreData: (NSData *) data_Messages {
+    CoreData * data = [CoreData new];
+    //    void (^clear_Messages_Block) (void);
+    //    clear_Messages_Block = ^ {
+    //        NSLog(@"clear_Messages_Block!!!");
+    //        [data clear_Entity:MESSAGES];
+    //    };
+    //    clear_Messages_Block();
+    [data writeData:MESSAGES Value:data_Messages Key:messages];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"Incomming_Message" object:nil userInfo:nil];
+
+}
+
+
 
 -(NSString *)deviceTokenWithData:(NSData *)data
 {
@@ -199,6 +320,8 @@
         [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@", @"1"] forKey:Version_Companies];
         [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@", @"1"] forKey:Version_Auto_Companies];
         [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@", @"1"] forKey:Version_Cars];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@", @"1"] forKey:Last_Message_ID];
+
         
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey: @"FirstLunch"];
         [[NSUserDefaults standardUserDefaults] synchronize];
@@ -256,46 +379,50 @@
 
 - (void) session_check {
     NSString * token = [self md5:[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults]stringForKey:TOKEN], [[NSUserDefaults standardUserDefaults]stringForKey:SESSION]]];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     //[[NSUserDefaults standardUserDefaults]stringForKey:TOKEN]
     NSDictionary *parameters = @{@"action": @"sessioncheck",
                                  @"token": token,};
     NSLog(@"JSON session_check parameters: %@", parameters);
-
-    [manager GET:Server_URL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        //        NSLog(@"JSON: %@", responseObject);
-        self.answer = (NSDictionary *)responseObject;
-        NSLog(@"JSON session_check: %@", self.answer);
+    
+    [[API sharedManager] get_request:parameters onSuccess:^(NSDictionary *answer) {
+        
+        self.answer = answer;
+        NSLog(@"JSON session_check answer : %@", self.answer);
         if ([[self.answer valueForKey:@"answer"] isEqualToString:@"error"]) {
             [self get_session];
         }
         else {
+            NSDictionary *versionDict = [self.answer valueForKey:@"db_version"];
             
             NSString * version = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]stringForKey:Version_Companies]];
-            NSDictionary *versionDict = [self.answer valueForKey:@"db_version"];
             if ([version isEqualToString:[NSString stringWithFormat:@"%@",[versionDict valueForKey:@"companies"]]]) {
                 NSLog(@"Version Companies is OK");
             }
             else {
-                
                 [self clear_Companies];
+            }
+            
+            int las_message_count  = [[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]stringForKey:Last_Message_ID]] intValue];
+            
+            if (las_message_count == [[NSString stringWithFormat:@"%@",[self.answer valueForKey:@"maxMessageID"]]intValue]) {
+
+                NSLog(@"las_message_count is OK %d",[[NSString stringWithFormat:@"%@",[self.answer valueForKey:@"maxMessageID"]]intValue]);
+                
+            }
+            
+            else {
+                NSLog(@"las_message_count is not OK %d",[[NSString stringWithFormat:@"%@",[self.answer valueForKey:@"maxMessageID"]]intValue]);
+                [self get_unreceved_messages:[NSString stringWithFormat:@"%@",[self.answer valueForKey:@"maxMessageID"]]];
+
             }
         }
         
-        
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                            message:[error localizedDescription]
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Ok"
-                                                  otherButtonTitles:nil];
-        [alertView show];
-        
+    } onFailure:^(NSError *error, NSInteger statusCode) {
+        NSLog(@"error = %@, code = %d", [error localizedDescription], statusCode);
+
     }];
-}
+    
+ }
 
 
 - (void) saveCompanies: (NSData *) data_Companies {
