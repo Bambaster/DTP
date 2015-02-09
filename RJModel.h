@@ -30,7 +30,7 @@
 
 @property (nonatomic, strong) NSMutableArray *dataSource;
 
-- (void)populateDataSource;
+- (void)populateDataSource: (NSArray *) array;
 
 - (void)addSingleItemToDataSource;
 

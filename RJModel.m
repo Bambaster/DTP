@@ -44,17 +44,17 @@
     return _dataSource;
 }
 
-- (void)populateDataSource {
+- (void)populateDataSource : (NSArray *) array {
     
-    NSString* path = [[NSBundle mainBundle] pathForResource: @"Companies" ofType: @"txt"];
-    NSArray *fontFamilies = [[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil] componentsSeparatedByString:@", "];
-    NSMutableArray *result = [[NSMutableArray alloc] initWithCapacity:[fontFamilies count]];
+//    NSString* path = [[NSBundle mainBundle] pathForResource: @"Companies" ofType: @"txt"];
+//    NSArray *fontFamilies = [[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil] componentsSeparatedByString:@", "];
+    NSMutableArray *result = [[NSMutableArray alloc] initWithCapacity:[array count]];
     
-    for ( NSString *familyName in fontFamilies ) {
-        NSDictionary *dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:familyName, @"title",
-                                    [self randomLorumIpsum], @"body",
-                                    @"", @"element2",
-                                    @"", @"element3",
+    for (int i = 0; i < array.count; i ++) {
+        NSDictionary *dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:[[array objectAtIndex:i] valueForKey:@"companyname"], @"title",
+                                    [[array objectAtIndex:i] valueForKey:@"message"], @"body",
+                                    [[array objectAtIndex:i] valueForKey:@"isgood"], @"isgood",
+                                    [[array objectAtIndex:i] valueForKey:@"isgood"], @"moment",
                                     @"", @"element4",
                                     nil];
         [result addObject:dictionary];

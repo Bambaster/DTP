@@ -38,6 +38,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
+@property (strong, nonatomic) NSDictionary * answer;
 
 // A dictionary of offscreen cells that are used within the tableView:heightForRowAtIndexPath: method to
 // handle the height calculations. These are never drawn onscreen. The dictionary is in the format:
@@ -75,7 +76,6 @@ static NSString *CellIdentifier = @"CellIdentifier";
 
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.model = [[RJModel alloc] init];
-    [self.model populateDataSource];
     self.offscreenCells = [NSMutableDictionary dictionary];
     
     [self.tableView registerClass:[RJTableViewCell class] forCellReuseIdentifier:CellIdentifier];
@@ -87,6 +87,8 @@ static NSString *CellIdentifier = @"CellIdentifier";
     self.tableView.allowsSelection = NO;
     self.search_Bar.enablesReturnKeyAutomatically = NO;
     self.search_Bar.returnKeyType = UIReturnKeyDone;
+    
+    [self get_rewievs];
 
 
 }
@@ -119,8 +121,11 @@ static NSString *CellIdentifier = @"CellIdentifier";
 // This method is called when the Dynamic Type user setting changes (from the system Settings app)
 - (void)contentSizeCategoryChanged:(NSNotification *)notification
 {
-    [self.tableView reloadData];
+    [self reload_TableView];
+
 }
+
+
 /*
 
 - (void)clear:(id)sender
@@ -367,6 +372,8 @@ static NSString *CellIdentifier = @"CellIdentifier";
 //    }
     
     
+    
+    
     NSArray * companies = [[NSArray alloc] initWithArray:self.model.dataSource];
 
     self.array_SearchResults = [companies filteredArrayUsingPredicate:resultPredicate];
@@ -444,6 +451,36 @@ static NSString *CellIdentifier = @"CellIdentifier";
     
     
     [self.navigationController pushViewController:destViewController animated:YES];
+
+}
+
+
+
+
+
+#pragma mark - API 
+
+- (void) get_rewievs {
+    
+    NSDictionary *parameters = @{@"action": @"getribbon",
+                                 @"page": @"1",};
+    
+    [[API sharedManager] get_request:parameters onSuccess:^(NSDictionary *answer) {
+//        self.answer = answer;
+        
+        [self.model populateDataSource:[answer valueForKey:@"ribbon"]];
+
+        [self reload_TableView];
+
+        
+//        NSLog(@"get_rewievs %@", self.answer);
+
+    }
+        onFailure:^(NSError *error, NSInteger statusCode) {
+        NSLog(@"error = %@, code = %ld", [error localizedDescription], (long)statusCode);
+
+    }];
+    
 
 }
 
